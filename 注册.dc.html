@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="assets/mycelium-tokens.css">
+<script src="auth-nav.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: var(--mp-font-sans); color: var(--mp-fg-1); background: var(--mp-gray-50); -webkit-font-smoothing: antialiased; }
+  ::selection { background: rgba(118,75,162,0.22); }
+  @keyframes mp-blink { 0%,100% { opacity: 1; } 50% { opacity: .2; } }
+  @keyframes mp-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  @keyframes mp-pop { from { opacity: 0; transform: translateY(12px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+  .mp-blink { animation: mp-blink 1.6s ease-in-out infinite; }
+  .reg-logo:hover { opacity: 0.82; }
+  .reg-in:focus { border-color: var(--mp-purple-500) !important; background: #fff !important; box-shadow: 0 0 0 4px rgba(118,75,162,0.10) !important; }
+  .reg-btn:hover { transform: translateY(-2px); box-shadow: var(--mp-shadow-button); }
+  .reg-link:hover { color: var(--mp-purple-700) !important; }
+  .eye:hover { color: var(--mp-purple-700) !important; }
+  .back-link:hover { color: var(--mp-purple-700) !important; }
+  .pop { animation: mp-pop .3s var(--mp-ease); }
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:grid;grid-template-columns:0.86fr 1fr;background:#fff;">
+
+  <!-- ===== LEFT BRAND PANEL ===== -->
+  <div style="position:relative;background:linear-gradient(160deg,#120e2b 0%,#241a4d 55%,#2c2060 100%);padding:clamp(36px,4vw,56px);overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;min-height:100vh;">
+    <div style="position:absolute;top:-20%;right:-10%;width:70%;height:120%;background:radial-gradient(circle,rgba(123,95,224,0.45) 0%,transparent 60%);pointer-events:none;"></div>
+    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(150,140,230,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(150,140,230,0.06) 1px,transparent 1px);background-size:44px 44px;-webkit-mask-image:radial-gradient(ellipse 80% 70% at 40% 50%,#000 10%,transparent 80%);mask-image:radial-gradient(ellipse 80% 70% at 40% 50%,#000 10%,transparent 80%);pointer-events:none;"></div>
+    <!-- filament network -->
+    <svg viewBox="0 0 120 80" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0.9;">
+      <defs>
+        <radialGradient id="glowR" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#7b5fe0" stop-opacity="0.5"></stop><stop offset="100%" stop-color="#7b5fe0" stop-opacity="0"></stop></radialGradient>
+        <linearGradient id="sporeR" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff6b6b"></stop><stop offset="50%" stop-color="#4ecdc4"></stop><stop offset="100%" stop-color="#45b7d1"></stop></linearGradient>
+      </defs>
+      <circle cx="60" cy="42" r="34" fill="url(#glowR)"></circle>
+      <sc-for list="{{ edges }}" as="e" hint-placeholder-count="12">
+        <line x1="{{ e.x1 }}" y1="{{ e.y1 }}" x2="{{ e.x2 }}" y2="{{ e.y2 }}" stroke="rgba(160,150,220,0.20)" stroke-width="0.3"></line>
+      </sc-for>
+      <sc-for list="{{ nodes }}" as="n" hint-placeholder-count="9">
+        <circle cx="{{ n.cx }}" cy="{{ n.cy }}" r="{{ n.r }}" fill="{{ n.fill }}" stroke="rgba(255,255,255,0.35)" stroke-width="0.18"></circle>
+      </sc-for>
+    </svg>
+
+    <!-- logo -->
+    <a href="数字游民社区集合网.dc.html" title="返回首页" class="reg-logo" style="position:relative;display:inline-flex;align-items:center;gap:11px;text-decoration:none;transition:opacity var(--mp-dur-base) var(--mp-ease);">
+      <img src="assets/mushroom-logo.png" alt="" style="width:38px;height:38px;object-fit:contain;filter:drop-shadow(0 4px 10px rgba(0,0,0,0.4));">
+      <div style="font-size:20px;font-weight:800;color:#fff;">Next Stop</div>
+    </a>
+
+    <!-- tagline + benefits -->
+    <div style="position:relative;">
+      <div style="display:inline-flex;align-items:center;gap:9px;padding:6px 14px;background:rgba(95,224,200,0.08);border:1px solid rgba(95,224,200,0.28);border-radius:var(--mp-radius-pill);margin-bottom:24px;font-family:var(--mp-font-mono);">
+        <span class="mp-blink" style="width:7px;height:7px;border-radius:50%;background:#5fe0c8;box-shadow:0 0 10px #5fe0c8;"></span>
+        <span style="color:#9fe9dc;font-size:12px;letter-spacing:2px;">JOIN THE NETWORK</span>
+      </div>
+      <h1 style="font-size:clamp(30px,3.4vw,44px);font-weight:800;color:#fff;line-height:1.15;letter-spacing:-1px;margin:0 0 16px;text-shadow:0 0 40px rgba(123,95,224,0.5);">接入菌丝网络，<br>找到你的同路人</h1>
+      <p style="font-size:15px;line-height:1.65;color:rgba(255,255,255,0.72);font-weight:300;max-width:380px;margin:0 0 34px;">用邮箱创建账号，加入中国数字游民社区集合网——一张连接社区、城市与人的活网络。</p>
+      <div style="display:flex;flex-direction:column;gap:18px;">
+        <sc-for list="{{ benefits }}" as="b" hint-placeholder-count="3">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div style="flex-shrink:0;width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:{{ b.grad }};box-shadow:0 6px 16px rgba(102,126,234,0.28);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="{{ b.icon }}"></use></svg>
+            </div>
+            <div>
+              <div style="font-size:15px;font-weight:700;color:#fff;">{{ b.title }}</div>
+              <div style="font-size:12.5px;color:rgba(255,255,255,0.6);margin-top:2px;">{{ b.sub }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <!-- footer note -->
+    <div style="position:relative;font-family:var(--mp-font-mono);font-size:11.5px;color:rgba(255,255,255,0.4);letter-spacing:0.5px;">© 2026 菌丝 Mycelium · 数字游民社区集合网</div>
+  </div>
+
+  <!-- ===== RIGHT FORM PANEL ===== -->
+  <div style="position:relative;display:flex;flex-direction:column;padding:clamp(28px,3vw,44px) clamp(28px,5vw,80px);min-height:100vh;">
+    <!-- top bar -->
+    <div style="display:flex;align-items:center;justify-content:flex-end;gap:8px;font-size:13.5px;color:var(--mp-gray-500);">
+      已有账号？<a href="#" class="reg-link" style="color:var(--mp-purple-700);font-weight:700;text-decoration:none;transition:color var(--mp-dur-base) var(--mp-ease);">登录</a>
+    </div>
+
+    <!-- FORM STATE -->
+    <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:center;max-width:400px;width:100%;margin:0 auto;padding:24px 0;">
+        <h2 style="font-size:clamp(26px,3vw,32px);font-weight:800;color:var(--mp-gray-900);margin:0 0 8px;letter-spacing:-0.5px;border:0;padding:0;">创建你的菌丝账号</h2>
+        <p style="font-size:14.5px;color:var(--mp-gray-500);margin:0 0 30px;">只需邮箱即可开始，1 分钟完成注册。</p>
+
+        <!-- email -->
+        <label style="display:block;font-size:13px;font-weight:700;color:var(--mp-gray-800);margin-bottom:8px;">邮箱</label>
+        <div style="position:relative;margin-bottom:6px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--mp-gray-400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+          <input type="email" value="{{ email }}" onInput="{{ setEmail }}" placeholder="you@example.com" class="reg-in" style="width:100%;padding:13px 44px 13px 42px;border:1px solid {{ emailBorder }};border-radius:12px;font-family:inherit;font-size:15px;color:var(--mp-gray-900);outline:none;background:var(--mp-gray-50);transition:all var(--mp-dur-base) var(--mp-ease);">
+          <sc-if value="{{ emailValid }}" hint-placeholder-val="{{ false }}">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--mp-sage)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);"><path d="m5 12 5 5L20 7"></path></svg>
+          </sc-if>
+        </div>
+        <div style="min-height:18px;margin-bottom:12px;">
+          <sc-if value="{{ emailError }}" hint-placeholder-val="{{ false }}">
+            <span style="font-size:12px;color:var(--mp-coral);">请输入有效的邮箱地址</span>
+          </sc-if>
+        </div>
+
+        <!-- password -->
+        <label style="display:block;font-size:13px;font-weight:700;color:var(--mp-gray-800);margin-bottom:8px;">设置密码</label>
+        <div style="position:relative;margin-bottom:10px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--mp-gray-400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);"><rect width="18" height="11" x="3" y="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          <input type="{{ pwType }}" value="{{ pw }}" onInput="{{ setPw }}" placeholder="至少 8 位字符" class="reg-in" style="width:100%;padding:13px 44px 13px 42px;border:1px solid var(--mp-border);border-radius:12px;font-family:inherit;font-size:15px;color:var(--mp-gray-900);outline:none;background:var(--mp-gray-50);transition:all var(--mp-dur-base) var(--mp-ease);">
+          <span onClick="{{ togglePw }}" class="eye" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--mp-gray-400);cursor:pointer;display:flex;transition:color var(--mp-dur-base) var(--mp-ease);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="{{ eyeIcon }}"></use></svg>
+          </span>
+        </div>
+        <!-- strength -->
+        <div style="display:flex;align-items:center;gap:10px;min-height:16px;margin-bottom:20px;">
+          <div style="display:flex;gap:5px;flex:1;">
+            <span style="height:5px;flex:1;border-radius:3px;background:{{ str0 }};transition:background var(--mp-dur-base) var(--mp-ease);"></span>
+            <span style="height:5px;flex:1;border-radius:3px;background:{{ str1 }};transition:background var(--mp-dur-base) var(--mp-ease);"></span>
+            <span style="height:5px;flex:1;border-radius:3px;background:{{ str2 }};transition:background var(--mp-dur-base) var(--mp-ease);"></span>
+          </div>
+          <span style="font-size:11.5px;font-weight:600;color:{{ strColor }};min-width:24px;">{{ strLabel }}</span>
+        </div>
+
+        <!-- agree -->
+        <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:22px;cursor:pointer;" onClick="{{ toggleAgree }}">
+          <div style="flex-shrink:0;width:20px;height:20px;border-radius:6px;border:1.5px solid {{ agreeBorder }};background:{{ agreeBg }};display:flex;align-items:center;justify-content:center;transition:all var(--mp-dur-base) var(--mp-ease);margin-top:1px;">
+            <sc-if value="{{ agree }}" hint-placeholder-val="{{ false }}">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"></path></svg>
+            </sc-if>
+          </div>
+          <div style="font-size:12.5px;line-height:1.5;color:var(--mp-gray-600);">我已阅读并同意 <a href="#" style="color:var(--mp-purple-700);font-weight:600;text-decoration:none;">服务条款</a> 与 <a href="#" style="color:var(--mp-purple-700);font-weight:600;text-decoration:none;">隐私政策</a></div>
+        </div>
+
+        <!-- submit -->
+        <button onClick="{{ submit }}" class="reg-btn" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px;background:{{ submitBg }};border:0;border-radius:12px;color:{{ submitColor }};font-family:inherit;font-size:15px;font-weight:700;cursor:{{ submitCursor }};box-shadow:0 6px 18px rgba(102,126,234,0.28);transition:all var(--mp-dur-base) var(--mp-ease);">
+          创建账号
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </button>
+
+        <!-- divider -->
+        <div style="display:flex;align-items:center;gap:14px;margin:24px 0;">
+          <span style="flex:1;height:1px;background:var(--mp-border-soft);"></span>
+          <span style="font-size:12px;color:var(--mp-gray-400);">或使用</span>
+          <span style="flex:1;height:1px;background:var(--mp-border-soft);"></span>
+        </div>
+        <div style="display:flex;gap:12px;">
+          <sc-for list="{{ socials }}" as="s" hint-placeholder-count="3">
+            <button class="reg-btn" style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:11px;background:#fff;border:1px solid var(--mp-border);border-radius:12px;color:var(--mp-gray-700);font-family:inherit;font-size:13.5px;font-weight:600;cursor:pointer;transition:all var(--mp-dur-base) var(--mp-ease);">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="{{ s.icon }}"></use></svg>
+              {{ s.label }}
+            </button>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- SUCCESS STATE -->
+    <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+      <div class="pop" style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;max-width:420px;width:100%;margin:0 auto;padding:24px 0;">
+        <div style="position:relative;width:88px;height:88px;border-radius:50%;background:var(--mp-grad-dao);display:flex;align-items:center;justify-content:center;box-shadow:0 14px 34px rgba(67,233,123,0.4);margin-bottom:28px;">
+          <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+        </div>
+        <h2 style="font-size:26px;font-weight:800;color:var(--mp-gray-900);margin:0 0 12px;letter-spacing:-0.5px;border:0;padding:0;">验证邮件已发送</h2>
+        <p style="font-size:14.5px;line-height:1.7;color:var(--mp-gray-600);margin:0 0 8px;">我们向 <span style="color:var(--mp-purple-700);font-weight:700;">{{ email }}</span> 发送了一封验证邮件，点击邮件中的链接即可完成注册。</p>
+        <p style="font-size:12.5px;color:var(--mp-gray-400);margin:0 0 30px;">没收到？请检查垃圾邮件文件夹。</p>
+        <div style="display:flex;align-items:center;gap:14px;">
+          <a href="我的设置.dc.html" data-login class="reg-btn" style="display:flex;align-items:center;gap:7px;padding:12px 22px;background:linear-gradient(135deg,#667eea,#764ba2);border:0;border-radius:12px;color:#fff;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;text-decoration:none;box-shadow:0 6px 18px rgba(102,126,234,0.28);transition:all var(--mp-dur-base) var(--mp-ease);">
+            完善我的资料
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </a>
+          <span onClick="{{ backToForm }}" class="back-link" style="font-size:14px;font-weight:600;color:var(--mp-gray-600);cursor:pointer;transition:color var(--mp-dur-base) var(--mp-ease);">返回修改邮箱</span>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+
+  <!-- icon sprite -->
+  <svg width="0" height="0" style="position:absolute;" aria-hidden="true"><defs>
+    <symbol id="rg-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></symbol>
+    <symbol id="rg-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></symbol>
+    <symbol id="rg-cal" viewBox="0 0 24 24"><path d="M8 2v4M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18M8 15l2.5 2.5L15 13"></path></symbol>
+    <symbol id="rg-eye" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></symbol>
+    <symbol id="rg-eye-off" viewBox="0 0 24 24"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"></path><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path><line x1="2" x2="22" y1="2" y2="22"></line></symbol>
+    <symbol id="rg-wechat" viewBox="0 0 24 24"><path d="M8 3C4.7 3 2 5.4 2 8.3c0 1.6.8 3 2.1 4L3 15l2.8-1.3c.7.2 1.4.3 2.2.3M16 8c-3.3 0-6 2.4-6 5.3S12.7 18.6 16 18.6c.7 0 1.4-.1 2-.3L20.5 20l-.9-2.2c1.3-1 2.4-2.4 2.4-4C22 10.4 19.3 8 16 8Z"></path></symbol>
+    <symbol id="rg-phone" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2"></rect><path d="M12 18h.01"></path></symbol>
+    <symbol id="rg-github" viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 4 5 4 5 4c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 11c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></symbol>
+  </defs></svg>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { email: '', pw: '', showPw: false, agree: false, touched: false, sent: false };
+
+  setEmail = (e) => this.setState({ email: e.target.value.trim(), touched: true });
+  setPw = (e) => this.setState({ pw: e.target.value });
+  togglePw = () => this.setState({ showPw: !this.state.showPw });
+  toggleAgree = () => this.setState({ agree: !this.state.agree });
+  backToForm = () => this.setState({ sent: false });
+  submit = () => {
+    const okEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.state.email);
+    if (okEmail && this.state.pw.length >= 8 && this.state.agree) {
+      this.setState({ sent: true });
+    } else {
+      this.setState({ touched: true });
+    }
+  };
+
+  renderVals() {
+    const email = this.state.email;
+    const pw = this.state.pw;
+    const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const emailError = this.state.touched && email.length > 0 && !emailValid;
+
+    // password strength 0..3
+    let sc = 0;
+    if (pw.length >= 8) sc++;
+    if (/[A-Z]/.test(pw) && /[a-z]/.test(pw)) sc++;
+    if (/[0-9]/.test(pw) && /[^A-Za-z0-9]/.test(pw)) sc++;
+    if (pw.length === 0) sc = 0;
+    const strColors = ['var(--mp-coral)', '#e0922a', 'var(--mp-sage)'];
+    const on = (i) => sc > i ? strColors[Math.min(sc - 1, 2)] : 'var(--mp-gray-200)';
+    const strLabel = pw.length === 0 ? '' : ['弱', '中', '强'][Math.min(sc - 1, 2)] || '弱';
+    const strColor = pw.length === 0 ? 'var(--mp-gray-400)' : strColors[Math.min(sc - 1, 2)] || strColors[0];
+
+    const canSubmit = emailValid && pw.length >= 8 && this.state.agree;
+
+    const benefits = [
+      { icon: '#rg-pin', grad: 'var(--mp-grad-whitepaper)', title: '128 个数字游民社区', sub: '真实数据，找到下一个落脚点' },
+      { icon: '#rg-users', grad: 'var(--mp-grad-dao)', title: '8,400+ 同路人', sub: '在版块与见面会里遇见同频的人' },
+      { icon: '#rg-cal', grad: 'var(--mp-grad-milestone)', title: '每年 200+ 场活动', sub: '露营、共创、城市聚会不断线' }
+    ];
+    const socials = [
+      { icon: '#rg-wechat', label: '微信' },
+      { icon: '#rg-phone', label: '手机号' },
+      { icon: '#rg-github', label: 'GitHub' }
+    ];
+
+    // filament network
+    const NN = [
+      { x: 20, y: 24, r: 1.6, hot: true }, { x: 40, y: 48, r: 1.0 }, { x: 56, y: 20, r: 1.2 },
+      { x: 60, y: 42, r: 1.9, hot: true }, { x: 82, y: 26, r: 1.0 }, { x: 92, y: 54, r: 1.3, hot: true },
+      { x: 34, y: 64, r: 1.0 }, { x: 74, y: 62, r: 1.1 }, { x: 104, y: 38, r: 0.9 }
+    ];
+    const pairs = [[0, 1], [0, 2], [1, 3], [2, 3], [3, 4], [4, 5], [1, 6], [3, 7], [5, 7], [4, 8], [5, 8], [6, 7]];
+    const edges = pairs.map(([a, b]) => ({ x1: NN[a].x, y1: NN[a].y, x2: NN[b].x, y2: NN[b].y }));
+    const nodes = NN.map(n => ({ cx: n.x, cy: n.y, r: n.r, fill: n.hot ? 'url(#sporeR)' : 'rgba(157,134,240,0.85)' }));
+
+    return {
+      email, pw, edges, nodes, benefits, socials,
+      showForm: !this.state.sent, sent: this.state.sent,
+      setEmail: this.setEmail, setPw: this.setPw, togglePw: this.togglePw, toggleAgree: this.toggleAgree,
+      submit: this.submit, backToForm: this.backToForm,
+      emailValid, emailError,
+      emailBorder: emailError ? 'var(--mp-coral)' : 'var(--mp-border)',
+      pwType: this.state.showPw ? 'text' : 'password',
+      eyeIcon: this.state.showPw ? '#rg-eye-off' : '#rg-eye',
+      str0: on(0), str1: on(1), str2: on(2), strLabel, strColor,
+      agree: this.state.agree,
+      agreeBg: this.state.agree ? 'var(--mp-purple-500)' : '#fff',
+      agreeBorder: this.state.agree ? 'var(--mp-purple-500)' : 'var(--mp-border)',
+      submitBg: canSubmit ? 'linear-gradient(135deg,#667eea,#764ba2)' : 'var(--mp-gray-200)',
+      submitColor: canSubmit ? '#fff' : 'var(--mp-gray-400)',
+      submitCursor: canSubmit ? 'pointer' : 'not-allowed'
+    };
+  }
+}
+</script>
+</body>
+</html>

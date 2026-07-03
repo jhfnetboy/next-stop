@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="assets/mycelium-tokens.css">
+<script src="auth-nav.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: var(--mp-font-sans); color: var(--mp-fg-1); background: var(--mp-gray-50); -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+  ::selection { background: rgba(118,75,162,0.22); }
+  @keyframes mp-blink { 0%,100% { opacity: 1; } 50% { opacity: .2; } }
+  .mp-blink { animation: mp-blink 1.6s ease-in-out infinite; }
+  .nav-link:hover { color: #fff !important; }
+  .nav-logo:hover { opacity: .82; }
+  .crumb:hover { color: #cbb9ff !important; }
+  .cta-btn:hover { transform: translateY(-2px); box-shadow: var(--mp-shadow-button); }
+  .ghost-btn:hover { background: rgba(255,255,255,0.16) !important; }
+  .space-card:hover { transform: translateY(-6px); box-shadow: var(--mp-shadow-card-hover); }
+  .space-card:hover .sp-cover-img { transform: scale(1.06); }
+  .space-card:hover .sp-detail { gap: 8px; }
+  .rel-card:hover { transform: translateY(-4px); box-shadow: var(--mp-shadow-card-hover); }
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:var(--mp-gray-50);">
+
+  <!-- ===== NAV ===== -->
+  <nav style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px clamp(20px,5vw,60px);background:rgba(18,14,43,0.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.12);">
+    <a href="数字游民社区集合网.dc.html" class="nav-logo" style="display:flex;align-items:center;gap:11px;text-decoration:none;transition:opacity var(--mp-dur-base) var(--mp-ease);">
+      <img src="assets/mushroom-logo.png" alt="" style="width:34px;height:34px;object-fit:contain;filter:drop-shadow(0 4px 8px rgba(0,0,0,0.3));">
+      <div style="font-size:18px;font-weight:800;color:#fff;letter-spacing:0.2px;">Next Stop</div>
+    </a>
+    <div style="display:flex;align-items:center;gap:28px;">
+      <a href="数字游民社区集合网.dc.html" class="nav-link" style="color:#fff;text-decoration:none;font-size:14px;font-weight:600;transition:color var(--mp-dur-base) var(--mp-ease);">发现社区</a>
+      <a href="#" class="nav-link" style="color:rgba(255,255,255,0.82);text-decoration:none;font-size:14px;font-weight:500;transition:color var(--mp-dur-base) var(--mp-ease);">城市榜单</a>
+      <a href="活动.dc.html" class="nav-link" style="color:rgba(255,255,255,0.82);text-decoration:none;font-size:14px;font-weight:500;transition:color var(--mp-dur-base) var(--mp-ease);">活动</a>
+      <a href="指南.dc.html" class="nav-link" style="color:rgba(255,255,255,0.82);text-decoration:none;font-size:14px;font-weight:500;transition:color var(--mp-dur-base) var(--mp-ease);">指南</a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <header style="position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:{{ c.grad }};"></div>
+    <sc-if value="{{ c.photo }}" hint-placeholder-val="{{ false }}">
+      <img src="{{ c.photo }}" alt="{{ c.name }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+    </sc-if>
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.05) 0%,rgba(0,0,0,0.32) 100%);"></div>
+    <svg viewBox="0 0 1200 160" preserveAspectRatio="none" style="position:absolute;left:0;right:0;bottom:0;width:100%;height:52%;"><path d="M0 120 Q150 90 300 118 T600 116 T900 118 T1200 108 L1200 160 L0 160 Z" fill="rgba(255,255,255,0.14)"></path></svg>
+    <div style="position:relative;max-width:1120px;margin:0 auto;padding:clamp(22px,3vw,30px) clamp(20px,5vw,60px) clamp(30px,4vw,44px);">
+      <!-- breadcrumb -->
+      <div style="display:flex;align-items:center;gap:8px;font-family:var(--mp-font-mono);font-size:12.5px;color:rgba(255,255,255,0.85);margin-bottom:clamp(30px,6vw,72px);">
+        <a href="数字游民社区集合网.dc.html" class="crumb" style="color:rgba(255,255,255,0.85);text-decoration:none;transition:color var(--mp-dur-base) var(--mp-ease);">首页</a>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
+        <a href="数字游民社区集合网.dc.html" class="crumb" style="color:rgba(255,255,255,0.85);text-decoration:none;transition:color var(--mp-dur-base) var(--mp-ease);">数字游民社区</a>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
+        <span style="color:#fff;font-weight:600;">{{ c.name }}</span>
+      </div>
+
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px;">
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+            <span style="display:inline-flex;align-items:center;padding:5px 12px;background:rgba(20,12,40,0.4);border:1px solid rgba(255,255,255,0.28);border-radius:var(--mp-radius-pill);backdrop-filter:blur(6px);font-size:13px;font-weight:700;color:#fff;">#{{ c.rank }}</span>
+            <span style="display:inline-flex;align-items:center;gap:5px;padding:5px 12px;background:rgba(255,255,255,0.95);border-radius:var(--mp-radius-pill);box-shadow:0 4px 12px rgba(0,0,0,0.18);"><svg width="14" height="14" viewBox="0 0 24 24" fill="#f5a623"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 7.1-1.01L12 2z"></path></svg><span style="font-size:14px;font-weight:800;color:var(--mp-gray-900);">{{ c.score }}</span></span>
+          </div>
+          <h1 style="font-family:var(--mp-font-display);font-size:clamp(40px,6vw,68px);font-weight:800;color:#fff;line-height:1;letter-spacing:-1.5px;margin:0;text-shadow:0 4px 20px rgba(0,0,0,0.3);">{{ c.name }}</h1>
+          <div style="font-size:16px;font-weight:500;color:rgba(255,255,255,0.9);margin-top:10px;letter-spacing:0.5px;">{{ c.region }}</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;">
+            <sc-for list="{{ c.tags }}" as="tag" hint-placeholder-count="3">
+              <span style="padding:5px 14px;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.25);border-radius:var(--mp-radius-pill);font-size:13px;font-weight:600;color:#fff;backdrop-filter:blur(6px);">{{ tag }}</span>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:14px;">
+          <div style="display:inline-flex;align-items:center;gap:7px;padding:8px 16px;background:rgba(20,12,40,0.42);border:1px solid rgba(255,255,255,0.25);border-radius:var(--mp-radius-pill);backdrop-filter:blur(6px);">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <span style="font-size:14px;font-weight:700;color:#fff;">{{ c.members }}</span>
+            <span style="font-size:12px;color:rgba(255,255,255,0.7);">位游民在此</span>
+          </div>
+          <div style="display:flex;gap:10px;">
+            <button class="ghost-btn" style="display:flex;align-items:center;gap:7px;padding:11px 18px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.3);border-radius:var(--mp-radius-pill);color:#fff;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;backdrop-filter:blur(8px);transition:background var(--mp-dur-base) var(--mp-ease);">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
+              收藏
+            </button>
+            <button class="cta-btn" style="display:flex;align-items:center;gap:7px;padding:11px 22px;background:#fff;border:0;border-radius:var(--mp-radius-pill);color:var(--mp-purple-700);font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.2);transition:all var(--mp-dur-base) var(--mp-ease);">
+              加入社区
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== KEY STATS BAR ===== -->
+  <div style="max-width:1120px;margin:0 auto;padding:0 clamp(20px,5vw,60px);">
+    <div style="margin-top:-26px;position:relative;z-index:3;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--mp-border-soft);border-radius:var(--mp-radius-lg);overflow:hidden;box-shadow:var(--mp-shadow-card);">
+      <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+        <div style="background:#fff;padding:18px 20px;">
+          <div style="display:flex;align-items:center;gap:7px;color:var(--mp-gray-500);margin-bottom:8px;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="{{ s.color }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="{{ s.icon }}"></use></svg>
+            <span style="font-size:12px;font-weight:600;">{{ s.label }}</span>
+          </div>
+          <div style="font-size:22px;font-weight:800;color:var(--mp-gray-900);letter-spacing:-0.5px;">{{ s.value }}<span style="font-size:12px;font-weight:500;color:var(--mp-gray-400);"> {{ s.unit }}</span></div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- ===== BODY ===== -->
+  <div style="max-width:1120px;margin:0 auto;padding:clamp(28px,4vw,40px) clamp(20px,5vw,60px) clamp(48px,6vw,80px);display:grid;grid-template-columns:1fr 320px;gap:32px;align-items:start;">
+
+    <!-- MAIN -->
+    <div style="min-width:0;display:flex;flex-direction:column;gap:28px;">
+      <!-- 简介 -->
+      <section>
+        <h2 style="font-size:22px;font-weight:800;color:var(--mp-gray-900);margin:0 0 14px;letter-spacing:-0.3px;border:0;padding:0;">城市简介</h2>
+        <div style="background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:24px 26px;">
+          <sc-for list="{{ c.about }}" as="p" hint-placeholder-count="2">
+            <p style="font-size:15px;line-height:1.8;color:var(--mp-slate-body);margin:0 0 14px;">{{ p }}</p>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- 基地 & 空间 (首页卡片风格) -->
+      <section>
+        <h2 style="font-size:22px;font-weight:800;color:var(--mp-gray-900);margin:0 0 14px;letter-spacing:-0.3px;border:0;padding:0;">数字游民基地与空间</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px;">
+          <sc-for list="{{ c.spaces }}" as="sp" hint-placeholder-count="3">
+            <a href="{{ sp.href }}" class="space-card" style="display:block;text-decoration:none;background:#fff;border-radius:var(--mp-radius-lg);overflow:hidden;box-shadow:var(--mp-shadow-card);transition:transform var(--mp-dur-base) var(--mp-ease),box-shadow var(--mp-dur-base) var(--mp-ease);cursor:pointer;">
+              <!-- cover -->
+              <div style="position:relative;height:172px;overflow:hidden;">
+                <div class="sp-cover-img" style="position:absolute;inset:0;background:{{ sp.grad }};transition:transform var(--mp-dur-slow) var(--mp-ease);"></div>
+                <sc-if value="{{ sp.photo }}" hint-placeholder-val="{{ false }}">
+                  <img src="{{ sp.photo }}" alt="{{ sp.name }}" class="sp-cover-img" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform var(--mp-dur-slow) var(--mp-ease);">
+                </sc-if>
+                <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 38%,rgba(0,0,0,0.42) 100%);"></div>
+                <!-- type badge -->
+                <div style="position:absolute;top:12px;left:12px;display:inline-flex;align-items:center;padding:5px 11px;background:rgba(20,12,40,0.42);border:1px solid rgba(255,255,255,0.25);border-radius:var(--mp-radius-pill);backdrop-filter:blur(6px);font-size:11.5px;font-weight:600;color:#fff;">{{ sp.type }}</div>
+                <!-- status -->
+                <sc-if value="{{ sp.live }}" hint-placeholder-val="{{ false }}">
+                  <div style="position:absolute;top:12px;right:12px;display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:rgba(255,255,255,0.95);border-radius:var(--mp-radius-pill);box-shadow:0 4px 12px rgba(0,0,0,0.18);"><span style="width:6px;height:6px;border-radius:50%;background:#15915a;"></span><span style="font-size:11px;font-weight:700;color:#15915a;">营业中</span></div>
+                </sc-if>
+                <sc-if value="{{ sp.liveLabel }}" hint-placeholder-val="{{ false }}">
+                  <div style="position:absolute;top:12px;right:12px;display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:rgba(255,255,255,0.95);border-radius:var(--mp-radius-pill);box-shadow:0 4px 12px rgba(0,0,0,0.18);"><span style="width:6px;height:6px;border-radius:50%;background:#c9971f;"></span><span style="font-size:11px;font-weight:700;color:#b3610f;">{{ sp.liveLabel }}</span></div>
+                </sc-if>
+                <!-- name -->
+                <div style="position:absolute;left:14px;right:14px;bottom:12px;">
+                  <div style="font-family:var(--mp-font-display);font-size:20px;font-weight:800;color:#fff;line-height:1.1;letter-spacing:-0.4px;text-shadow:0 2px 8px rgba(0,0,0,0.35);">{{ sp.name }}</div>
+                </div>
+              </div>
+              <!-- body -->
+              <div style="padding:13px 16px 15px;">
+                <div style="font-size:13px;line-height:1.6;color:var(--mp-gray-500);min-height:41px;">{{ sp.desc }}</div>
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-top:11px;padding-top:11px;border-top:1px solid var(--mp-border-soft);">
+                  <sc-if value="{{ sp.price }}" hint-placeholder-val="{{ true }}">
+                    <span style="font-family:var(--mp-font-mono);font-size:13.5px;font-weight:700;color:var(--mp-gray-900);">{{ sp.price }}</span>
+                  </sc-if>
+                  <span class="sp-detail" style="display:inline-flex;align-items:center;gap:4px;font-size:12.5px;font-weight:700;color:var(--mp-purple-500);">查看详情<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span>
+                </div>
+              </div>
+            </a>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- 生活成本 -->
+      <section>
+        <h2 style="font-size:22px;font-weight:800;color:var(--mp-gray-900);margin:0 0 14px;letter-spacing:-0.3px;border:0;padding:0;">生活成本明细<span style="font-size:14px;font-weight:500;color:var(--mp-gray-400);"> · 单人每月估算</span></h2>
+        <div style="background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:22px 26px;">
+          <sc-for list="{{ c.costs }}" as="ci" hint-placeholder-count="4">
+            <div style="display:flex;align-items:center;gap:14px;padding:11px 0;border-bottom:1px solid var(--mp-border-soft);">
+              <span style="font-size:14px;color:var(--mp-gray-700);width:96px;flex-shrink:0;">{{ ci.label }}</span>
+              <div style="flex:1;height:8px;border-radius:4px;background:var(--mp-gray-100);overflow:hidden;">
+                <div style="height:100%;width:{{ ci.pct }};background:var(--mp-grad-whitepaper);border-radius:4px;"></div>
+              </div>
+              <span style="font-family:var(--mp-font-mono);font-size:13px;font-weight:700;color:var(--mp-gray-900);width:112px;text-align:right;white-space:nowrap;">{{ ci.amount }}</span>
+            </div>
+          </sc-for>
+          <sc-if value="{{ c.costTotal }}" hint-placeholder-val="">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 0 2px;">
+              <span style="font-size:14px;font-weight:800;color:var(--mp-gray-900);">合计</span>
+              <span style="font-family:var(--mp-font-mono);font-size:14px;font-weight:800;color:var(--mp-purple-700);">{{ c.costTotal }}</span>
+            </div>
+          </sc-if>
+          <sc-if value="{{ c.showBaseCost }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding-top:16px;margin-top:4px;">
+            <span style="font-size:15px;font-weight:700;color:var(--mp-gray-900);">合计</span>
+            <span style="font-family:var(--mp-font-mono);font-size:20px;font-weight:800;color:var(--mp-purple-700);">¥{{ c.cost }}<span style="font-size:12px;font-weight:500;color:var(--mp-gray-400);">/月</span></span>
+          </div>
+          </sc-if>
+        </div>
+      </section>
+
+      <!-- 优点 & 注意 -->
+      <section>
+        <h2 style="font-size:22px;font-weight:800;color:var(--mp-gray-900);margin:0 0 14px;letter-spacing:-0.3px;border:0;padding:0;">优点 &amp; 注意</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <div style="background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:20px 22px;">
+            <div style="display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:#15915a;margin-bottom:14px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"></path></svg>优点</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <sc-for list="{{ c.pros }}" as="p" hint-placeholder-count="3">
+                <div style="display:flex;align-items:flex-start;gap:9px;font-size:14px;line-height:1.5;color:var(--mp-gray-700);"><span style="color:var(--mp-sage);margin-top:1px;">·</span>{{ p }}</div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:20px 22px;">
+            <div style="display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:#d84c4c;margin-bottom:14px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"></path><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"></path></svg>注意</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <sc-for list="{{ c.cons }}" as="p" hint-placeholder-count="3">
+                <div style="display:flex;align-items:flex-start;gap:9px;font-size:14px;line-height:1.5;color:var(--mp-gray-700);"><span style="color:var(--mp-coral);margin-top:1px;">·</span>{{ p }}</div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside style="display:flex;flex-direction:column;gap:20px;position:sticky;top:82px;">
+      <!-- quick facts -->
+      <div style="background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:20px 22px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mp-gray-900);margin-bottom:14px;">速览</div>
+        <div style="display:flex;flex-direction:column;">
+          <sc-for list="{{ c.facts }}" as="f" hint-placeholder-count="4">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--mp-border-soft);">
+              <span style="font-size:13px;color:var(--mp-gray-500);">{{ f.k }}</span>
+              <span style="font-size:13px;font-weight:600;color:var(--mp-gray-800);">{{ f.v }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <!-- 加入群 -->
+      <div style="position:relative;border-radius:var(--mp-radius-lg);overflow:hidden;background:linear-gradient(150deg,#241a4d,#2c2060);box-shadow:var(--mp-shadow-card);padding:20px 22px;">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--mp-grad-spore);"></div>
+        <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;">加入 {{ c.name }} 社群</div>
+        <p style="font-size:12.5px;line-height:1.6;color:rgba(255,255,255,0.7);margin:0 0 14px;">{{ c.members }} 位游民已在这里，进群获取在地资讯、拼房与活动信息。</p>
+        <button onClick="{{ communityGo }}" class="cta-btn" style="display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:11px;background:#fff;border:0;border-radius:var(--mp-radius-pill);color:var(--mp-purple-700);font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;transition:all var(--mp-dur-base) var(--mp-ease);">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+          进入社群
+        </button>
+      </div>
+
+      <!-- 相关活动 -->
+      <div style="background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:20px 22px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+          <div style="font-size:14px;font-weight:700;color:var(--mp-gray-900);">近期活动</div>
+          <a href="活动.dc.html" style="font-size:12px;font-weight:600;color:var(--mp-purple-700);text-decoration:none;">全部</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <sc-for list="{{ c.events }}" as="e" hint-placeholder-count="2">
+            <a href="活动.dc.html" style="display:flex;gap:12px;text-decoration:none;">
+              <div style="width:42px;height:42px;border-radius:11px;background:{{ e.grad }};display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;color:#fff;line-height:1;"><span style="font-family:var(--mp-font-mono);font-size:15px;font-weight:800;">{{ e.day }}</span><span style="font-size:9px;margin-top:1px;">{{ e.mon }}月</span></div>
+              <div style="min-width:0;"><div style="font-size:13.5px;font-weight:600;color:var(--mp-gray-800);line-height:1.35;">{{ e.title }}</div><div style="font-size:12px;color:var(--mp-gray-400);margin-top:3px;">{{ e.meta }}</div></div>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ===== RELATED CITIES ===== -->
+  <section style="background:#fff;border-top:1px solid var(--mp-border-soft);padding:clamp(36px,5vw,56px) clamp(20px,5vw,60px);">
+    <div style="max-width:1120px;margin:0 auto;">
+      <h2 style="font-size:22px;font-weight:800;color:var(--mp-gray-900);margin:0 0 20px;letter-spacing:-0.3px;border:0;padding:0;">其他数字游民社区</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;">
+        <sc-for list="{{ related }}" as="r" hint-placeholder-count="4">
+          <a href="{{ r.href }}" class="rel-card" style="display:block;border-radius:var(--mp-radius-lg);overflow:hidden;box-shadow:var(--mp-shadow-card);text-decoration:none;transition:transform var(--mp-dur-base) var(--mp-ease),box-shadow var(--mp-dur-base) var(--mp-ease);">
+            <div style="position:relative;height:96px;background:{{ r.grad }};">
+              <span style="position:absolute;top:10px;right:10px;display:inline-flex;align-items:center;gap:4px;padding:3px 9px;background:rgba(255,255,255,0.95);border-radius:var(--mp-radius-pill);font-size:11.5px;font-weight:800;color:var(--mp-gray-900);"><svg width="11" height="11" viewBox="0 0 24 24" fill="#f5a623"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 7.1-1.01L12 2z"></path></svg>{{ r.score }}</span>
+              <div style="position:absolute;left:12px;bottom:10px;font-family:var(--mp-font-display);font-size:20px;font-weight:800;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,0.3);">{{ r.name }}</div>
+            </div>
+            <div style="padding:11px 14px;background:#fff;display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:12px;color:var(--mp-gray-500);">{{ r.region }}</span>
+              <span style="font-family:var(--mp-font-mono);font-size:12px;font-weight:700;color:var(--mp-purple-700);">¥{{ r.cost }}</span>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <svg width="0" height="0" style="position:absolute;" aria-hidden="true"><defs>
+    <symbol id="st-cost" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></symbol>
+    <symbol id="st-wifi" viewBox="0 0 24 24"><path d="M5 13a10 10 0 0 1 14 0"></path><path d="M8.5 16.5a5 5 0 0 1 7 0"></path><path d="M2 8.82a15 15 0 0 1 20 0"></path><path d="M12 20h.01"></path></symbol>
+    <symbol id="st-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"></path></symbol>
+    <symbol id="st-cal" viewBox="0 0 24 24"><path d="M8 2v4M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path></symbol>
+  </defs></svg>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;city&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;dali&quot;,&quot;anji&quot;,&quot;chengdu&quot;,&quot;jingdezhen&quot;,&quot;moganshan&quot;,&quot;ningbo&quot;,&quot;lishui&quot;,&quot;kunming&quot;,&quot;suzhou&quot;,&quot;taizhou&quot;,&quot;wenzhou&quot;,&quot;nanping&quot;,&quot;lingshui&quot;,&quot;jinggangshan&quot;,&quot;zhoushan&quot;,&quot;yichun&quot;,&quot;kunshan&quot;,&quot;tianjin&quot;,&quot;haikou&quot;,&quot;puer&quot;,&quot;sanya&quot;,&quot;zhongshan&quot;,&quot;xian&quot;,&quot;ziyang&quot;,&quot;yaan&quot;,&quot;xinyang&quot;],&quot;default&quot;:&quot;dali&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;城市&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() {
+    this._onHash = () => this.forceUpdate();
+    window.addEventListener('hashchange', this._onHash);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('hashchange', this._onHash);
+  }
+  renderVals() {
+    const mk = (l, f, cf, t, tot) => ({ rows: [
+      { label: '住宿', amount: l[0], pct: l[1] },
+      { label: '餐饮', amount: f[0], pct: f[1] },
+      { label: '咖啡', amount: cf[0], pct: cf[1] },
+      { label: '共享办公', amount: '多数已包含', pct: '6%' },
+      { label: '水电网', amount: '多数已包含', pct: '6%' },
+      { label: '交通', amount: t[0], pct: t[1] }
+    ], total: tot });
+    const COST = {
+      dali: mk(['¥599–3,000','85%'],['¥1,200–2,200','66%'],['¥300–800','26%'],['¥100–400','14%'],'约 ¥2,200–6,400 / 月'),
+      hangzhou: mk(['¥459–2,600','80%'],['¥1,500–2,800','74%'],['¥300–800','26%'],['¥200–600','18%'],'约 ¥2,450–6,800 / 月'),
+      anji: mk(['¥300–2,000','72%'],['¥1,200–2,200','66%'],['¥200–600','20%'],['¥150–400','14%'],'约 ¥1,850–5,200 / 月'),
+      chengdu: mk(['¥680–2,500','76%'],['¥1,500–2,800','76%'],['¥300–800','26%'],['¥150–500','16%'],'约 ¥2,630–6,600 / 月'),
+      jingdezhen: mk(['¥1,000–2,000','66%'],['¥1,200–2,000','62%'],['¥200–600','20%'],['¥100–400','13%'],'约 ¥2,700–5,200 / 月'),
+      shanghai: mk(['¥1,100–4,500','90%'],['¥2,000–3,500','86%'],['¥400–1,000','30%'],['¥300–800','22%'],'约 ¥3,800–9,800 / 月'),
+      shenzhen: mk(['¥2,500–5,500','98%'],['¥2,000–3,500','84%'],['¥400–1,000','30%'],['¥300–800','22%'],'约 ¥5,500–11,000 / 月'),
+      suzhou: mk(['¥1,999–3,500','88%'],['¥1,500–2,800','74%'],['¥300–800','26%'],['¥200–600','18%'],'约 ¥4,200–7,800 / 月'),
+      moganshan: mk(['¥2,300–4,828','94%'],['¥1,500–2,800','74%'],['¥300–800','26%'],['¥200–600','18%'],'约 ¥4,500–9,200 / 月'),
+      ningbo: mk(['¥1,499–3,000','82%'],['¥1,500–2,600','72%'],['¥300–800','26%'],['¥200–600','18%'],'约 ¥3,700–7,200 / 月'),
+      lishui: mk(['¥800–2,000','62%'],['¥1,000–2,000','60%'],['¥200–600','20%'],['¥100–400','13%'],'约 ¥2,300–5,200 / 月'),
+      huangshan: mk(['¥350–2,200','62%'],['¥1,200–2,200','66%'],['¥200–600','20%'],['¥150–400','14%'],'约 ¥1,900–5,400 / 月'),
+      kunming: mk(['¥1,000–2,000','66%'],['¥1,200–2,200','66%'],['¥300–700','24%'],['¥150–500','16%'],'约 ¥2,900–5,600 / 月'),
+      taizhou: mk(['¥1,040–1,800','60%'],['¥1,200–2,200','66%'],['¥200–600','20%'],['¥150–400','14%'],'约 ¥2,800–5,200 / 月'),
+      wenzhou: mk(['¥499–1,500','48%'],['¥1,200–2,200','66%'],['¥200–600','20%'],['¥150–400','14%'],'约 ¥2,200–4,900 / 月'),
+      nanping: mk(['¥350–1,100','40%'],['¥1,000–1,800','56%'],['¥200–500','18%'],['¥100–400','13%'],'约 ¥1,900–3,900 / 月'),
+      jinggangshan: mk(['¥380–1,860','52%'],['¥900–1,600','48%'],['¥150–500','16%'],['¥100–400','13%'],'约 ¥1,600–4,400 / 月'),
+      haikou: mk(['¥1,880–2,680','74%'],['¥1,300–2,200','62%'],['¥300–800','26%'],['¥200–600','18%'],'约 ¥3,700–6,300 / 月'),
+      puer: mk(['¥980–1,680','52%'],['¥600–1,200','40%'],['¥150–400','14%'],['¥100–400','13%'],'约 ¥1,850–3,700 / 月'),
+      tianjin: mk(['¥1,500–3,000','80%'],['¥1,500–2,600','72%'],['¥300–800','26%'],['¥200–500','16%'],'约 ¥3,500–6,900 / 月'),
+      kunshan: mk(['¥1,050–3,990','82%'],['¥1,500–2,600','72%'],['¥300–800','26%'],['¥200–600','18%'],'约 ¥3,050–8,000 / 月'),
+      yichun: mk(['¥800–1,800','58%'],['¥1,000–1,800','56%'],['¥150–450','15%'],['¥100–400','13%'],'约 ¥2,200–4,600 / 月'),
+      zhoushan: mk(['¥720–5,999','80%'],['¥1,500–2,600','72%'],['¥300–700','24%'],['¥300–800','22%'],'约 ¥2,800–9,000 / 月'),
+      lingshui: mk(['¥1,580–3,200','90%'],['¥1,500–2,500','72%'],['¥300–800','24%'],['¥200–600','17%'],'约 ¥3,580–7,000 / 月'),
+      sanya: mk(['¥1,350–4,800','92%'],['¥1,500–2,800','80%'],['¥300–800','26%'],['¥200–600','18%'],'约 ¥3,350–9,000 / 月'),
+      zhongshan: mk(['¥1,500–3,000','82%'],['¥1,500–2,600','72%'],['¥300–700','24%'],['¥200–500','16%'],'约 ¥3,500–6,800 / 月'),
+      xian: mk(['¥600–2,604','58%'],['¥1,000–2,000','54%'],['¥200–600','18%'],['¥150–500','14%'],'约 ¥1,950–5,700 / 月'),
+      ziyang: mk(['¥1,500–2,200','62%'],['¥1,000–1,800','54%'],['¥200–500','16%'],['¥100–400','13%'],'约 ¥2,800–4,900 / 月'),
+      yaan: mk(['¥900–2,000','62%'],['¥1,000–1,800','54%'],['¥200–500','16%'],['¥100–400','13%'],'约 ¥2,200–4,700 / 月'),
+      xinyang: mk(['¥800–1,800','58%'],['¥1,000–1,800','54%'],['¥200–500','16%'],['¥100–400','13%'],'约 ¥2,100–4,500 / 月')
+    };
+    const CITY = {
+      dali: {
+        name: '大理', region: '云南 · 苍洱', rank: '1', score: '9.2', members: '1,240',
+        tags: ['洱海', '咖啡聚集', '山系'], cost: '2,200', wifi: '80', climate: '温和', best: '3–5 / 9–11 月',
+        grad: 'linear-gradient(135deg,#f6a96b,#ee6c8f)',
+        photo: 'assets/city/dali.jpg',
+        showBaseCost: false,
+        about: [
+          '大理位于云南西部，背靠苍山、面朝洱海，是中国数字游民最具代表性的聚集地之一。温和的气候、相对低廉的生活成本与成熟的咖啡与共居文化，让这里成为许多人「慢下来」工作与生活的首选。',
+          '从才村、龙龛到古城周边，散布着大量咖啡馆、共居空间与联合办公点。你几乎总能在洱海边的某家咖啡馆里，遇到正在远程办公的同路人。'
+        ],
+        costs: COST.dali.rows,
+        costTotal: COST.dali.total,
+        pros: ['苍山洱海，自然风景极佳', '咖啡与共居社区成熟，容易结识同路人', '生活成本在热门城市中偏低', '气候四季温和，适合长住'],
+        cons: ['旺季（暑期/黄金周）房租明显上涨', '医疗与部分商业配套不如大城市', '雨季（6–9 月）较潮湿多雨'],
+        spaces: [
+          { name: '大理 · CYC 链岛社区', type: '青年社区 · 海景避暑', desc: '大理古城月溪村，链岛青年社区，短租按天/长租按月，营业中。', grad: 'linear-gradient(135deg,#2f86b0,#1d5d7a)', photo: 'assets/cyc/dusk.png', href: '基地-CYC链岛.dc.html', price: '¥1,280/月起', live: true },
+          { name: '大理 · 旷野青年实验室', type: '共居 · 山景田园', desc: '湾桥镇云峰村上钏邑，白族院落，远眺苍山雪，营业中。', grad: 'linear-gradient(135deg,#4a9a54,#2f6b38)', photo: 'assets/kuangye/hero.png', href: '基地-旷野青年.dc.html', price: '¥599/月起', live: true },
+          { name: '大理 · Dali+', type: '共居 · 海景大草坪', desc: '银桥镇西城尾村大理家海房子，门口草坪可打飞盘，营业中。', grad: 'linear-gradient(135deg,#3f8fc4,#2a5b8a)', photo: 'assets/daliplus/hero.png', href: '基地-DaliPlus.dc.html', price: '¥899/月起', live: true },
+          { name: '大理 · 友易分享社区', type: '共居 · 七院田园', desc: '太和村友易分享社区，7 个院子各具风格，海景/田园，营业中。', grad: 'linear-gradient(135deg,#9aad4a,#6b7d2f)', photo: 'assets/youyi/card2.png', href: '基地-友易分享.dc.html', price: '¥900/月起', live: true },
+          { name: '大理 · NCC', type: '共居共创 · 山景', desc: '葱园村 114 号，Nomad Co-Living Co-Creating，天台观苍洱，营业中。', grad: 'linear-gradient(135deg,#6b5a96,#4a3a70)', photo: 'assets/ncc/rooftop.png', href: '基地-NCC.dc.html', price: '¥900/月起', live: true }
+        ],
+        facts: [
+          { k: '所在省份', v: '云南' }, { k: '最佳季节', v: '春秋两季' }, { k: '平均气温', v: '约 15°C' },
+          { k: '到达方式', v: '高铁 / 大理机场' }, { k: '常用签证', v: '国内无需' }
+        ],
+        events: [
+          { day: '5', mon: '7', title: '苍山观星露营 · 数字游民之夜', meta: '苍山营地 · ¥120', grad: 'linear-gradient(135deg,#43e97b,#38a3d7)' },
+          { day: '12', mon: '7', title: 'Web3 数字游民 Meetup · 大理站', meta: '床单厂 · 免费', grad: 'linear-gradient(135deg,#667eea,#764ba2)' }
+        ]
+      }
+    };
+
+    // fallback / other cities (basic data; content pending Notion)
+    const BASE = {
+      anji: { name: '安吉', region: '浙江 · 余村', rank: '2', score: '9.0', members: '860', tags: ['竹林', '游民公社', '联合办公'], cost: '2,800', wifi: '120', climate: '凉爽', best: '4–10 月', grad: 'linear-gradient(135deg,#43e97b,#38a3d7)', photo: 'assets/city/anji.png' },
+      chengdu: { name: '成都', region: '四川 · 天府', rank: '3', score: '8.8', members: '2,130', tags: ['美食', '包容', '夜生活'], cost: '4,200', wifi: '300', climate: '湿润', best: '3–5 / 9–11 月', grad: 'linear-gradient(135deg,#667eea,#764ba2)', photo: 'assets/city/chengdu.png' },
+      jingdezhen: { name: '景德镇', region: '江西 · 陶溪川', rank: '4', score: '8.5', members: '540', tags: ['陶艺', '手作', '文创'], cost: '2,600', wifi: '100', climate: '温和', best: '3–5 / 9–11 月', grad: 'linear-gradient(135deg,#fa709a,#fee140)' },
+      moganshan: { name: '莫干山', region: '浙江 · 德清', rank: '6', score: '8.4', members: '380', tags: ['民宿', '避暑', '户外'], cost: '3,800', wifi: '80', climate: '凉爽', best: '4–10 月', grad: 'linear-gradient(135deg,#0ba360,#3cba92)', photo: 'assets/city/moganshan.png' },
+      kunming: { name: '昆明', region: '云南 · 滇池', rank: '9', score: '8.6', members: '980', tags: ['春城', '花市', '慢节奏'], cost: '3,200', wifi: '110', climate: '阵雨 24°', best: '全年宜居', grad: 'linear-gradient(135deg,#43e97b,#38a3d7)', photo: 'https://rs-channel.huanqiucdn.cn/imageDir/42255cfd2754d18f1db44509fd175a06u5.jpg' },
+      ningbo: { name: '宁波', region: '浙江 · 甬城', rank: '7', score: '8.4', members: '780', tags: ['港城', '商帮', '滨海'], cost: '4,200', wifi: '300', climate: '温和', best: '3–5 / 9–11 月', grad: 'linear-gradient(135deg,#4facfe,#00f2fe)', photo: 'https://p7.itc.cn/images01/20210205/3cc647cf79f54194ae2b10cbf07ced18.jpeg' },
+      lishui: { name: '丽水', region: '浙江 · 瓯江', rank: '8', score: '8.3', members: '360', tags: ['山水', '古村', '生态'], cost: '2,500', wifi: '90', climate: '温和', best: '3–5 / 9–11 月', grad: 'linear-gradient(135deg,#11998e,#38ef7d)', photo: 'assets/city/lishui.png' },
+      hangzhou: { name: '杭州', region: '浙江 · 余杭', rank: '1', score: '8.7', members: '1,050', tags: ['数字经济', '创业', '西湖'], cost: '4,800', wifi: '300', climate: '湿润', best: '3–5 / 9–11 月', grad: 'linear-gradient(135deg,#30cfd0,#330867)', photo: 'assets/city/hangzhou.png' },
+      huangshan: { name: '黄山', region: '安徽 · 黟县', rank: '10', score: '8.4', members: '340', tags: ['云海', '古村', '山居'], cost: '2,600', wifi: '80', climate: '凉爽', best: '3–5 / 9–11 月', grad: 'linear-gradient(135deg,#6d8bad,#2c3e50)', photo: 'assets/city/huangshan_pine.jpg' },
+      shanghai: { name: '上海', region: '上海 · 浦东', rank: '9', score: '8.9', members: '1,680', tags: ['都市', '创业', '国际化'], cost: '6,500', wifi: '300', climate: '湿润', best: '3–5 / 9–11 月', grad: 'linear-gradient(135deg,#0f2027,#2c5364)', photo: 'assets/city/shanghai.jpg' },
+      suzhou: { name: '苏州', region: '江苏 · 姑苏', rank: '16', score: '8.5', members: '1,340', tags: ['园林', '软件园', '精致'], cost: '4,400', wifi: '300', climate: '温润', best: '3–5 / 9–11 月', grad: 'linear-gradient(135deg,#c79081,#8a5a44)', photo: 'assets/city/suzhou.png' },
+      shenzhen: { name: '深圳', region: '广东 · 粤港澳', rank: '11', score: '8.6', members: '1,480', tags: ['科技', '创业', '快节奏'], cost: '5,500', wifi: '300', climate: '雷阵雨 32°', best: '10–12 / 3–4 月', grad: 'linear-gradient(135deg,#0b3d2e,#009efd)', photo: 'https://www.carbonbrief.org/wp-content/uploads/2025/06/2SBH5MN-1550x804.jpg' },
+      taizhou: { name: '台州', region: '浙江 · 椒江', rank: '11', score: '8.3', members: '470', tags: ['山海', '府城', '民营'], cost: '2,800', wifi: '150', climate: '温和', best: '3–5 / 9–11 月', grad: 'linear-gradient(135deg,#f6d365,#fda085)', photo: 'assets/city/taizhou.png' },
+      wenzhou: { name: '温州', region: '浙江 · 瓯江', rank: '12', score: '8.3', members: '560', tags: ['山水', '商城', '民营'], cost: '3,000', wifi: '150', climate: '温润', best: '3–5 / 9–11 月', grad: 'linear-gradient(135deg,#0ba360,#3cba92)', photo: 'assets/city/wenzhou.png' },
+      nanping: { name: '南平', region: '福建 · 武夷山', rank: '13', score: '8.2', members: '360', tags: ['茶乡', '山水', '生态'], cost: '2,400', wifi: '80', climate: '温润', best: '3–5 / 9–11 月', grad: 'linear-gradient(135deg,#0ba360,#3cba92)', photo: 'https://tse2.mm.bing.net/th/id/OIP.D9da4NHl8w0RhXrEtjMmvgHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3' },
+      lingshui: { name: '陵水', region: '海南 · 清水湾', rank: '14', score: '8.3', members: '480', tags: ['海湾', '越冬', '热带'], cost: '3,200', wifi: '120', climate: '热带', best: '11–4 月', grad: 'linear-gradient(135deg,#4facfe,#00f2fe)', photo: 'https://rs-channel.huanqiucdn.cn/imageDir/6b03116d29955eb3dc71ff734ba0a3f7.jpg' },
+      jinggangshan: { name: '井冈山', region: '江西 · 吉安', rank: '17', score: '8.1', members: '260', tags: ['红色', '山水', '避暑'], cost: '2,200', wifi: '80', climate: '温和', best: '4–10 月', grad: 'linear-gradient(135deg,#0ba360,#3cba92)', photo: 'https://bkimg.cdn.bcebos.com/pic/d01373f082025aaf9b8de9a4f4edab64034f1a25?x-bce-process=image/resize,m_lfit,w_1280,limit_1' },
+      zhoushan: { name: '舟山', region: '浙江 · 群岛', rank: '18', score: '8.2', members: '320', tags: ['海岛', '渔港', '佛缘'], cost: '2,800', wifi: '120', climate: '海洋性', best: '4–6 / 9–11 月', grad: 'linear-gradient(135deg,#4facfe,#00f2fe)', photo: 'https://ak-d.tripcdn.com/images/01041120006307lzc919C_D_1180_558.jpg' },
+      yichun: { name: '伊春', region: '黑龙江 · 小兴安岭', rank: '19', score: '8.0', members: '180', tags: ['森林', '避暑', '康养'], cost: '2,000', wifi: '70', climate: '凉爽', best: '6–10 月', grad: 'linear-gradient(135deg,#0ba360,#3cba92)', photo: 'assets/city/yichun.jpg' },
+      kunshan: { name: '昆山', region: '江苏 · 苏州', rank: '20', score: '8.2', members: '420', tags: ['水乡', '制造', '沪苏'], cost: '3,200', wifi: '220', climate: '温和', best: '3–5 / 9–11 月', grad: 'linear-gradient(135deg,#4facfe,#2a6fdb)', photo: 'https://p1.ssl.qhmsg.com/t017b69930e932423a8.jpg' },
+      tianjin: { name: '天津', region: '天津 · 海河', rank: '21', score: '8.1', members: '390', tags: ['海河', '洋楼', '曲艺'], cost: '3,000', wifi: '200', climate: '温和', best: '4–6 / 9–10 月', grad: 'linear-gradient(135deg,#f6a552,#c9701f)', photo: 'http://n.sinaimg.cn/sinacn14/211/w2048h1363/20180912/e6fb-hiycyfx7894665.jpg' },
+      haikou: { name: '海口', region: '海南 · 琼北', rank: '22', score: '8.2', members: '360', tags: ['椰城', '骑楼', '越冬'], cost: '2,800', wifi: '150', climate: '热带', best: '11–4 月', grad: 'linear-gradient(135deg,#43e97b,#38a3d7)', photo: 'http://www.hkslww.com/upfile/article/202410/20241021102225999.jpg' },
+      puer: { name: '普洱', region: '云南 · 思茅', rank: '23', score: '8.2', members: '240', tags: ['普洱茶', '雨林', '康养'], cost: '2,200', wifi: '90', climate: '温润', best: '10–4 月', grad: 'linear-gradient(135deg,#0ba360,#3cba92)', photo: 'https://n.sinaimg.cn/spider20230921/625/w2048h977/20230921/7579-b67520e0d92f28354993529f907db187.jpg' },
+      sanya: { name: '三亚', region: '海南 · 天涯', rank: '24', score: '8.5', members: '820', tags: ['三亚湾', '越冬避寒', '热带海岛'], cost: '4,500', wifi: '150', climate: '热带', best: '11–4 月', grad: 'linear-gradient(135deg,#4facfe,#00f2fe)', photo: 'assets/city/sanya.jpg' },
+      zhongshan: { name: '中山', region: '广东 · 香山', rank: '15', score: '8.4', members: '620', tags: ['孙中山故里', '温泉', '岭南水乡'], cost: '3,500', wifi: '200', climate: '温润', best: '10–4 月', grad: 'linear-gradient(135deg,#4facfe,#00f2fe)', photo: 'assets/city/zhongshan.jpg' },
+      xian: { name: '西安', region: '陕西 · 关中', rank: '25', score: '8.5', members: '740', tags: ['十三朝古都', '硬科技', '性价比'], cost: '3,000', wifi: '300', climate: '四季分明', best: '3–5 / 9–11 月', grad: 'linear-gradient(135deg,#c9701f,#7a3a12)', photo: 'assets/city/xian.jpg' },
+      ziyang: { name: '资阳', region: '四川 · 沱江', rank: '26', score: '8.0', members: '220', tags: ['成渝之心', '安岳石刻', '低成本'], cost: '2,400', wifi: '120', climate: '温润', best: '3–5 / 9–11 月', grad: 'linear-gradient(135deg,#43e97b,#2f8f6b)', photo: 'assets/city/ziyang.jpg' },
+      yaan: { name: '雅安', region: '四川 · 青衣江', rank: '27', score: '8.2', members: '260', tags: ['熊猫故乡', '蒙顶山茶', '避暑康养'], photo: 'assets/city/yaan.jpg', cost: '2,600', wifi: '100', climate: '凉爽多雨', best: '5–10 月', grad: 'linear-gradient(135deg,#0ba360,#146b42)' },
+      xinyang: { name: '信阳', region: '河南 · 大别山', rank: '28', score: '8.1', members: '240', tags: ['信阳毛尖', '大别山', '避暑'], cost: '2,400', wifi: '100', climate: '温润', best: '4–10 月', grad: 'linear-gradient(135deg,#0ba360,#3cba92)' }
+    };
+
+    let key = 'dali';
+    try {
+      const h = (location.hash || '').replace(/^#/, '').trim();
+      key = h || this.props.city || 'dali';
+    } catch (e) { key = this.props.city || 'dali'; }
+
+    let c = CITY[key];
+    if (!c) {
+      const b = BASE[key] || null;
+      const base = b || { name: '大理', region: '云南 · 苍洱', rank: '1', score: '9.2', members: '1,240', tags: ['洱海', '咖啡聚集', '山系'], cost: '2,200', wifi: '80', climate: '温和', best: '3–5 / 9–11 月', grad: 'linear-gradient(135deg,#f6a96b,#ee6c8f)' };
+      c = {
+        ...base,
+        about: (key === 'chengdu'
+          ? ['成都，简称"蓉"，四川省省会，平均海拔 500 米左右。是西部消费中心和西南生活中心、国家中心城市、世界新兴城市，是全国重要的经济中心、科技中心、金融中心、文创中心、对外交往中心和国际综合交通通信枢纽。市域面积 1.43 万平方公里，辖 20 个区（市）县和天府新区成都直管区、高新区，户籍人口 1476 万人，常住人口 1633 万人，服务人口 2183 万人。',
+             '成都拥有举世闻名的旅游资源，最著名的是大熊猫繁育研究基地。市内有宽窄巷子、锦里、春熙路等体验人文与时尚的好去处，市郊还有世界文化遗产都江堰和道教名山青城山。成都人热爱生活，茶馆、麻将与独特的"慢节奏"构成了别具一格的城市文化。同时，川菜以麻辣鲜香闻名天下，火锅和小吃种类繁多。']
+          : key === 'anji'
+          ? ['安吉是浙江省湖州市下辖的一个县，地处长三角腹地，距离杭州、湖州等城市车程在一小时左右，区位优势明显，以其独特的竹海和茶文化闻名于世。它素有"中国竹乡"之称，森林覆盖率超 70%。作为"绿水青山就是金山银山"理念的发源地，安吉是联合国人居奖首个获得县，也是中国著名的绿色生态旅游城市。',
+             '安吉拥有丰富的旅游资源，主要景区包括：中国大竹海——感受茂密竹林、登高望远的经典景点；云上草原——高山旅游度假区，设有悬崖项目和高山滑雪场；江南天池——位于天荒坪，拥有亚洲最大的抽水蓄能电站和高山水库，冬季是热门滑雪胜地；安吉竹博园——集竹文化展示、观光和游乐于一体的大型公园。']
+          : key === 'hangzhou'
+          ? ['杭州是浙江省省会及中国"新一线"城市，素有"人间天堂"美誉。以秀美的西湖山水与深厚的历史人文闻名，城市集聚江南水乡韵味与现代繁华，是体验 City Walk（城市漫步）、探寻茶与丝绸文化的绝佳目的地。',
+             '核心打卡地：西湖风景名胜区（国家 5A 级景区，可漫步苏堤、远眺雷峰塔或乘船游湖，四季皆景）；灵隐寺（杭州历史最悠久的古刹，活佛济公出家地，香火鼎盛）；京杭大运河与小河直街（白墙黛瓦的江南水乡风貌，适合品茶、逛文创小店、体验老杭州慢生活）；杭州宋城（大型主题公园，主打与拉斯维加斯秀齐名的《宋城千古情》歌舞表演）；河坊街（充满市井气息的传统古街，可品尝定胜糕、葱包桧等地道小吃）。']
+          : key === 'huangshan'
+          ? ['黄山位于安徽省南部，古称徽州，以「五岳归来不看山，黄山归来不看岳」闻名于世，是世界文化与自然双遗产地。奇松、怪石、云海、温泉、冬雪「五绝」名扬四海，山下散落着西递、宏村等白墙黛瓦的徽派古村落，是徽文化的发源地，也是近年颇受青睐的山居慢生活与数字游民目的地。',
+             '核心打卡地：黄山风景区（迎客松、光明顶、始信峰，可观云海日出）；西递 · 宏村（世界文化遗产，明清徽派民居与月沼、南湖水景，写生与摄影胜地）；屯溪老街（保存完好的宋代商业街，品徽菜、寻徽墨歙砚）；徽州古城与呈坎八卦村（体验徽商故里与古村肌理）。徽菜以臭鳜鱼、毛豆腐、一品锅最具代表。']
+          : key === 'shenzhen'
+          ? ['深圳地处广东南部、珠江口东岸，与香港一水相连，是中国改革开放的第一个经济特区。四十余年间由小渔村崛起为常住人口超千万的一线城市，如今是全国重要的科技创新与创业中心——华为、腾讯、大疆等企业在此扎根，被誉为「中国硅谷」。城市年轻、包容、节奏快，地铁与产业园区密集，创客与工程师文化浓厚，是数字游民对接产业、寻找合伙人与技术资源的绝佳枢纽。',
+             '核心打卡地：深圳湾公园与人才公园（滨海绿道，可远眺后海天际线与跨海大桥）；平安金融中心 Free Sky（116 层观景台，晴日可远望香港）；华侨城与 OCT-LOFT 创意园（旧厂房改造的文创聚落，画廊、咖啡与设计小店云集）；南头古城与蛇口海上世界（历史街区与滨海夜生活）；莲花山公园（登顶俯瞰福田 CBD 全景）。城郊有大鹏半岛与较场尾海滩，可从都市快速切换到山海度假。']
+          : key === 'shanghai'
+          ? ['上海地处中国东部、长江入海口，是中国的经济、金融、贸易、航运与科技创新中心，也是最具国际化气质的超大城市。这里外滩万国建筑群与陆家嘴摩天天际线隔江相望，石库门里弄与法租界梧桐街区沉淀着近代人文，是「中西合璧、海纳百川」的海派文化发源地。发达的地铁网络、密集的咖啡馆与联合办公空间、活跃的创业与展会生态，让上海成为数字游民短期落脚与拓展人脉的绝佳枢纽。',
+             '核心打卡地：外滩（黄浦江畔的万国建筑博览群，夜景璀璨）；陆家嘴（东方明珠、上海中心、环球金融中心构成的天际线）；武康路与安福路（梧桐掩映的法式街区，City Walk 与小店文化的核心）；田子坊与新天地（石库门改造的文创与夜生活地标）；豫园与南京路（老城厢园林与百年商业街）。城郊还有朱家角古镇、佘山与崇明生态岛，可从都市快速切换到江南水乡与自然。']
+          : key === 'moganshan'
+          ? ['莫干山地处浙江省湖州市德清县，主峰海拔约 719 米，距杭州约 60 公里、上海约 200 公里，是长三角腹地难得的清凉山境。以竹海、云雾与民国老别墅闻名，自 20 世纪初便是上海名流的避暑胜地；近年更凭「洋家乐」与精品民宿的兴起，成为中国民宿产业的发源地之一。夏季山间气温较平原低 6–8℃，森林覆盖率极高，是逃离酷暑、慢下节奏、远程办公的理想目的地。',
+             '核心打卡地：莫干山国家级风景名胜区（剑池、芦花荡、塔山，可登高观竹海云雾）；蒋介石旧居与民国别墅群（散落山间的百年洋房，感受山居风情）；裸心谷、法国山居等精品度假村（引领莫干山民宿风潮）；后坞、庾村与劳岭村（民宿与咖啡聚落，骑行、徒步与在地市集的据点）。山下德清高铁直达杭州、上海，交通便利，适合周末往返与短居办公。']
+          : key === 'kunming'
+          ? ['昆明是云南省省会，地处云贵高原中部，平均海拔约 1,890 米，三面环山、南濒滇池。因地处低纬高原，四季温差极小，夏无酷暑、冬无严寒，年均气温 15℃ 左右，素有「春城」美誉，是全国少有的可全年舒适生活与办公的目的地。相对低廉的物价、发达的鲜花与咖啡文化，以及通往东南亚的区位，使它成为数字游民越冬与长居的热门据点。',
+             '核心打卡地：滇池与海埂大坝（冬季红嘴鸥成群，可环湖骑行）；翠湖公园与云南大学（市中心的城市绿心与老校园，咖啡馆聚集）；西山龙门（凭栏俯瞰滇池全景）；石林（世界自然遗产，喀斯特奇观，距市区约 1.5 小时）；斗南花市（亚洲最大鲜花交易市场，通宵灯火）；金马碧鸡坊与老街（体验市井烟火与过桥米线）。昆明长水机场是西南门户，高铁直达大理、丽江与西双版纳。']
+          : key === 'ningbo'
+          ? ['宁波地处浙江东部、东海之滨，是长三角南翼的港口名城与计划单列市，简称「甬」。这里「书藏古今、港通天下」——既有海上丝绸之路始发港的千年底蕴与「宁波帮」的商业传统，又坐拥吞吐量常年居世界前列的宁波舟山港。气候温润、物价与节奏比沪杭更从容，高铁 1 小时到杭州、约 2 小时到上海，是数字游民兼顾滨海生活与长三角资源的舒适落脚点。',
+             '核心打卡地：天一阁（现存最古老的私家藏书楼，园林与藏书文化）；老外滩（三江口畔的近代建筑群与夜生活）；东钱湖（浙东最大淡水湖，环湖骑行与露营）；月湖与鼓楼（老城文脉与市井烟火）；象山石浦渔港与松兰山（海边渔村与沙滩）。宁波菜以海鲜见长，汤圆、红膏怉蟹是必尝。']
+          : key === 'lishui'
+          ? ['丽水地处浙江西南山区，古称「处州」，是浙江陆地面积最大的地级市，境内群山连绵、瓯江穿流。这里森林覆盖率与空气质量常年位居浙江前列，有「中国生态第一市」之称——夏日清凉、物价亲民、古村与山水俱佳，是想要低成本亲近自然、慢下来生活与办公的数字游民的理想山居目的地。',
+             '核心打卡地：古堰画乡（瓯江畔的千年古堰与写生小镇，油画与咖啡聚集）；云和梯田（云雾梯田，摄影与观日出胜地）；缙云仙都（鼎湖峰丹霞奇峰，影视取景地）；松阳古村落群（保存完好的江南秘境古村，民宿与在地生活）；龙泉（青瓷与宝剑之乡，非遗手作体验）。丽水山耕的农家菜与山野食材是一大特色。']
+          : key === 'suzhou'
+          ? ['苏州地处江苏东南、太湖之滨，古称「姑苏」，是跨越两千五百年的国家历史文化名城，也是长三角举足轻重的制造与创新重镇。「上有天堂，下有苏杭」——白墓黑瓦的古城、甲天下的古典园林与水乡古镇，同工业园区、生物医药与纳米技术等现代产业比肩而立。高铁半小时到上海、约一小时到杭州，既有古典江南的精致，又有开放高效的产业生态，是兼顾生活美学与职业机会的数字游民目的地。',
+             '核心打卡地：拙政园（中国四大名园之首，江南古典山水园林的巡峰）；留园与狮子林（叠石与廊宇的园林典范）；平江路与山塘街（白墓黑瓦的水巷老城，咖啡与手作聚集）；金鸡湖与苏州中心（现代天际线与环湖 CBD）；周庄、同里与七里山塘（水乡古镇与橹橹船）；诚品书店·园区店（现代阅读与办公空间）。苏帮菜与面点、咐蕾鲜肉月饼是地道滋味。']
+          : key === 'taizhou'
+          ? ['台州地处浙江东中部沿海、椒江入海口，东逢东海、西倭括苍山脉，是一座山海契阔、民营经济活跃的市。这里既有国家历史文化名城临海古城的府城底蕴，也有神仙居、天台山与长屿岛的山海奇景；气候温和湿润、四季分明，物价与房租在长三角沿海城市中相对亲民，台州人的务实与烟火气，让它成为数字游民兼顾海鲜生活与低成本长居的宝藏选项。',
+             '核心打卡地：神仙居（国家 5A、古人云“以其形似天台仙居”，崖壁、飞瀑与横空栏道）；临海古城与紫阳古街（国家历史文化名城，台州府城与江南长城）；天台山国清寺（佛宗天台宗发源地，隔溡石梁飞瀑）；长屿岛（海岛渔村与“田岛”彩色村落）；临海东湖与椒江老街。台州鲜与小吃丰富，鲜味多、海产鲜。']
+          : key === 'wenzhou'
+          ? ['温州地处浙江东南部、瓯江入海口，东临东海、三面环山，是“温州模式”的发源地、民营经济与商业气息最浓的城市之一。这里山水城交织——既有雁荡山、楠溪的山水奇景与温润气候，又有发达的产业、便利的生活配套与浓郁的味温州饮食，是数字游民兼顾山海风光与城市便利的浙南据点。',
+             '核心打卡地：雁荡山（世界地质公园与国家 5A，灵峰、大龙湪瀑布与夜景）；楠溪（“中国山水诗歌之路”，碧水滩林与古村古桥）；三厡（雁荡与美丽乡村，适合骑行与露营）；温州古城与五马街、墓英荷花（市井烟火与琼岛风光）；洞头列岛（海岛与渔光。）温州鱼丸、醋鲒饭与糯米饭是必尝小吃。']
+          : key === 'nanping'
+          ? ['南平地处福建最北部、闽江上游，是福建陆地面积最大的设地级市，境内群山连绵、渪水縦横，森林覆盖率常年过七成，是世界自然与文化双遗产武夷山的所在地。这里是中国乌龙茶与正山小种红茶的故乡、朱子理学的发源地，气候温润、物价亲民，是想要低成本亲近山水茶香、慢下来生活与办公的数字游民的闽北据点。',
+             '核心打卡地：武夷山（世界双遗产与国家 5A，九曲溪竹筏、天游峰与大红袍岩茶）；下梅古村（万里茶道起点，古村与茶厂）；和平古镇（闽北千年古镇，青石老街）；建瓯（建盏天目盏与陆羽茶文化）；光泽鱼粒岛与武夷下梅户外线路。南平菜以山珍、笋钩、茶香菜肴见长。']
+          : key === 'lingshui'
+          ? ['陵水黎族自治县位于海南岛东南部、南海之滨，背山面海，以清水湾、香水湾的细白沙滩与玻璃海水闻名，是海南自由贸易港重点区域。这里属热带海洋性季风气候，冬暖夏凉、全年无霜，冬季均温在 20℃ 以上，是数字游民“候鸟式”越冬与海边长居的热门目的地，距三亚约 1 小时车程。',
+             '核心打卡地：清水湾（“中国白沙滩之王”，细软沙质与越野头大桥）；香水湾（弯月海滩与度假酒店群）；分界洲岛（潜水与珊瑚海域）；南湾猴岛（世界唯一岛屿型獅子岛自然保护区）；陵水黎族苗族风情与热带水果。海鲜、霍香鸭与陵水酸粉是必尝。']
+          : key === 'jinggangshan'
+          ? ['井冈山位于江西省西南部、罗霄山脉中段，地处湘赣边界，是“中国革命摇篮”与红色旅游圣地，也是国家 5A 级风景区。境内峰峦叠翠、瀑布游云，平均海拔较高、森林覆盖率超八成，夏日清凉、空气清新，是兼具红色人文与山水避暑的长居目的地。',
+             '核心打卡地：田式遂会师旧居与黄洋界（革命旧址与红色教育基地）；砥基里与井冈山革命博物馆；龙潭与五龙潭瀑布群（高山飞瀑与索道）；主峰一带的五指峰（五元人民币背面图案）；井冈山杭州与南昌方向高铁可达，杭植与笋干是当地特色。']
+          : key === 'zhoushan'
+          ? ['舟山位于浙江省东部、长江与钱塘江入海口外的东海之上，由 2,000 多个岛屿组成，是中国第一个以群岛设立的地级市，也是国家级渔港与海洋经济重镇。这里岛屿星罗、海天一色，既有普陀山的佛教人文、嵊泗岛的金沙碊石，又有新鲜海产与温润的海洋气候，是数字游民面海而居、一岛一日慢生活的海上据点。',
+             '核心打卡地：普陀山（四大佛教名山之一与国家 5A，观音道场）；嵊泗岛（“海天佛国”，金沙与海水浴场）；东极岛（《后会无期》取景地，最东海岛日出）；朱家尖与东沙渔村（渔火与市井烟火）；沈家门渔港（世界鱼都，海鲜大市场）。舟山海鲜、带鱼鲞与海鲜面是必尝。']
+          : key === 'yichun'
+          ? ['伊春位于黑龙江省东北部、小兴安岭腿地，是中国重要的国有林区与“中国林都”，森林覆盖率高达八成以上。这里夏季凉爽、空气清新，负氧离子浓度极高，素有“天然氧吧”之称；秋天五彩林海、冬季冰雪景观，是避暑康养与自然旅居的理想地。',
+             '核心打卡地：带岭国家森林公园（小兴安岭主峰，原始红松林）；汤旺河国家湿地公园（五彩山川与河曲景观）；伊春森林马拉松与嘉荫口（“小瑞士”风情镇）；鹤岗山 / 九新天民岛（滴翠湖与石海）。伊春蓝莓、松子与山野菌菇是当地特产，高铁与伊春机场可达。']
+          : key === 'kunshan'
+          ? ['昆山位于江苏省东南部、上海与苏州之间，是全国县域经济的领跑者与世界级制造重镇，同时也是百戏之祖昆曲的发源地。这里地处沪苏走廊核心，地铁与高铁直达上海与苏州，既有周庄、锦溪的江南水乡古韵，又有现代产业与完善配套，是“双城生活”与数字游民兼顾事业与生活的理想跳板。',
+             '核心打卡地：周庄古镇（“中国第一水乡”，双桥与沈厅）；锦溪古镇（“水乡佛国”，潮流与五保湖）；阳澄湖（大闸蟹与环湖湿地）；亚布力小镇与当代昆剧院（昆曲与度假）；沈庄、周市等江南老镇。昆山奥灶面、万三蚕训、3耳锦溪饱是当地特色。']
+          : key === 'tianjin'
+          ? ['天津地处华北平原东北、海河下游，东临渤海，是直辖市与北方重要的港口和工商业重镇，也是中西文化交融的“万国建筑博览会”。这里海河蟿蜒而过，既有五大道的洋楼风情与相声曲艺的市井烟火，又有便捷的交通与亲民的物价。高铁半小时直达北京，是数字游民享受都市生活与慢节奏兼得的北方据点。',
+             '核心打卡地：五大道与静园（洋楼建筑群与名人故居）；意式风情区与解放北路（欧式街区）；古文化街与天后宫（泥人张、杨柳青年画）；海河与天津之眼摩天轮（夜景与游船）；石坑地与滨海新区。天津狗不理包子、耳朵眼炋糕与煎饼果子是地道早点。']
+          : key === 'haikou'
+          ? ['海口是海南省省会，地处海南岛最北端、琼州海峡南岸，是海南自由贸易港的中心城市与进出海岛的门户。这里椰风海韵、气候温暖，冬季均温 20℃ 以上，既有骑楼老街的南洋风情与市井烟火，又有火山群、湿地与海滩的自然景观，是数字游民反季越冬、面海长居的热带据点。',
+             '核心打卡地：骑楼老街（南洋风格历史街区与骑楼小吧）；五公祠与海口钟楼（千年史迹）；火山口地质公园（世界地质公园，火山遗迹）；东寨港红树林（国家级湿地）；假日海滩与云洞港。海口清补鸭、文昌鸡、椰子鸡饭与老城酒糕是必尝。']
+          : key === 'puer'
+          ? ['普洱地处云南省西南部、澜沧江中下游，因普洱茶而得名，是世界茶树原产地的核心区、「茶马古道」的重要源头。这里北回归线穿城而过，森林覆盖率超七成，被誉为「天然氧吧」与「绿海明珠」——气候温润、四季如春，古茶山、热带雨林与多民族风情交织，是数字游民慢下节奏、亲近自然与茶文化的康养山居目的地。',
+             '核心打卡地：景迈山古茶林（世界文化遗产，千年万亩古茶园与布朗族村寨）；中华普洱茶博览苑与茶马古道遗址（品茶研学）；太阳河国家公园·小熊猫庄园（热带雨林与萌宠）；那柯里茶马驿站（古道古村）；澜沧江与糯扎渡（山水与观景）。普洱烤茶、腾冲—普洱风味的傣味手抓饭与野生菌是必尝。']
+          : key === 'sanya'
+          ? ['三亚地处海南岛最南端，是中国唯一的热带滨海旅游城市，三面环山、一面向海。以细软沙滩、清澈海水与全年温暖的热带季风气候闻名，冬季均温在 20℃ 以上，是数字游民「候鸟式」越冬、面海长居的头号目的地，也是海南自由贸易港的重点城市。',
+             '核心打卡地：亚龙湾（「天下第一湾」，细白沙滩与五星度假酒店群）；三亚湾与椰梦长廊（约 20 公里椰林海岸线，看日落）；南山文化旅游区（108 米南海观音与热带海岸）；天涯海角（海边巨石与摩崖石刻）；蜈支洲岛（潜水与珊瑚海域）；海棠湾（度假酒店群与免税购物）。海鲜、椰子鸡与清补凉是必尝。']
+          : key === 'zhongshan'
+          ? ['中山地处广东省中南部、珠江三角洲西岸，古称「香山」，是国父孙中山先生的故乡，也是国家历史文化名城与粤港澳大湾区的重要节点。这里既有岐江河穿城而过的岭南水乡韵味与孙中山故里的人文底蕴，又有灯饰、红木、家电等发达的专业镇产业。气候温润、物价与节奏比广深更从容，深中通道通车后约半小时直达深圳，是数字游民兼顾大湾区机会与宜居生活的低调之选。', '核心打卡地：孙中山故里旅游区（翠享村，国家 5A，故居与辛亥革命纪念馆）；孙文西路步行街与岐江夜游（南洋骑楼与灯光秀）；詹园（岭南园林代表）；中山温泉与泉眼温泉；古镇灯博中心（「中国灯饰之都」）；金钟湖公园与五桂山绿道（骑行徒步）。中山菜以石岐乳鸽、脆肉鲩与杏仁饼闻名。']
+          : key === 'xian'
+          ? ['西安是陕西省省会，地处关中平原中部、渭河之滨，古称「长安」，是丝绸之路的起点与周、秦、汉、唐等十三朝建都之地，中国历史文化底蕴最深厚的古都之一。这里既有城墙、钟鼓楼、大雁塔与兵马俑的千年气象，又有高校云集、硬科技与航天产业崛起的现代活力。生活成本与房租在新一线城市中偏低、美食烟火气十足，是数字游民低成本长住、沉浸历史人文的北方首选之一。', '核心打卡地：秦始皇兵马俑（世界第八大奇迹）；西安城墙与钟鼓楼（现存最完整的古城墙，可骑行环城）；大雁塔与大唐不夜城（唐风夜景与灯光秀）；回民街与永兴坊（市井美食街）；陕西历史博物馆与碑林（十三朝文物）；华清宫与骊山（近郊温泉与唐宫遗址）。肉夹馍、biángbiáng 面、羊肉泡馍与凉皮是必尝。']
+          : key === 'ziyang'
+          ? ['资阳地处四川盆地中部、沱江中游，是成渝地区双城经济圈的几何中心，也是唯一同时连接成都、重庆两个都市圈的城市——「成渝之心」。这里古称「资州」，沱江穿城而过，人文底蕴深厚（苌弘故里、陈毅故乡乐至），气候温润、物价低廉、节奏舒缓；成资同城与成都轨道交通延伸后往返成都日益便捷，是数字游民低成本慢生活的川中据点。', '核心打卡地：安岳石刻（「中国石刻之乡」，紫竹观音、卧佛院与圆觉洞的唐宋摩崖造像）；半月山大佛与毗卢洞；陈毅故里（乐至，红色人文）；字库山公园与沱江夜景；安岳柠檬产业园（「中国柠檬之都」）。资阳美食以临江寺豆瓣、乐至烤肉与安岳坛子肉见长。']
+          : key === 'yaan'
+          ? ['雅安地处四川盆地西缘、青衣江畔，是成都平原到青藏高原的过渡地带与「川藏、川滇门户」，素有「雨城」之称。这里是世界茶文化发源地蒙顶山的所在、大熊猫的故乡（碧峰峡、宝兴），森林覆盖率高、夏季清凉多雨、空气清新，「雅雨、雅鱼、雅女」三雅闻名。物价亲民、康养氛围浓，是数字游民避暑、亲近自然与茶文化的川西慢居目的地，也是川藏线自驾的第一站。', '核心打卡地：蒙顶山（世界茶文化圣山，皇茶园与万亩茶园）；碧峰峡（大熊猫基地与飞瀑峡谷）；上里古镇与望鱼古镇（青衣江畔的川西古镇）；牛背山与达瓦更扎（云海观景与「中国最大观景平台」）；宝兴硗碛藏寨与夹金山（红色与藏地风情）。雅安美食以雅鱼、砂锅雅鱼与蒙顶甘露茶为特色。']
+          : key === 'xinyang'
+          ? ['信阳地处河南省最南端、大别山北麓与淮河上游，是中原通往江南的门户，素有「北国江南、江南北国」之称，豫风楚韵在此交汇。这里是中国十大名茶「信阳毛尖」的故乡，山水温润、森林覆盖率高，夏季比中原腹地清凉。物价与房租亲民、生活节奏舒缓，是数字游民低成本亲近山水茶香、避暑慢居的豫南据点。', '核心打卡地：鸡公山（国家级避暑名山，散落民国别墅群，「云中公园」）；南湾湖（「豫南明珠」，环湖茶岛与鱼鲜）；灵山寺与西九华山（佛缘与茶乡风情）；郝堂村（「画家画出来的村庄」，豫南美丽乡村）；何家冲与大别山红色旧址。信阳美食以信阳毛尖、南湾鱼、炖菜与热干面见长。']
+          : ['（占位）' + base.name + ' 的城市简介待补充——把你 Notion 里的内容发我即可填入。']),
+        costs: (COST[key] ? COST[key].rows
+          : [{ label: '住宿', amount: '¥—', pct: '50%' }, { label: '餐饮', amount: '¥—', pct: '30%' }, { label: '联合办公', amount: '¥—', pct: '12%' }, { label: '交通', amount: '¥—', pct: '8%' }]),
+        costTotal: (COST[key] ? COST[key].total : ''),
+        showBaseCost: (!COST[key]),
+        pros: (key === 'puer'
+          ? ['气候温润、四季如春，冬无严寒夏无酷暑，全年适宜居住办公', '森林覆盖率高、负氧离子充沛，「天然氧吧」适合康养与慢生活', '茶文化深厚，古茶山、茶马古道与多民族风情独具一格', '物价与房租亲民，山居长住性价比高']
+          : key === 'haikou'
+          ? ['冬暖夏长、全年无霜，冬季均温 20℃ 以上，是反季越冬与海边长居的绝佳选择', '海南自贸港政策利好，国际航班与免税购物便利', '椰城骑楼人文与火山、湿地、海滩自然资源丰富', '物价与房租在滨海城市中相对亲民，生活节奏悠闲']
+          : key === 'tianjin'
+          ? ['高铁半小时直达北京，享京津冒双城机会而房租与物价更亲民', '直辖市配套完善，地铁与医疗、商业资源丰富', '五大道洋楼与相声曲艺等人文底蕴深，生活有味', '早点与小吃丰富、物价友好，宜居宜长住']
+          : key === 'kunshan'
+          ? ['沪苏中间点，地铁 11 号线与高铁直达上海 / 苏州，兼顾大城市机会与较低生活成本', '制造与产业发达、就业机会多，基础设施与商业配套完善', '周庄 / 锦溪等江南水乡古韵浓，文艺与慢生活兼具', '百戏之祖昆曲发源地，人文底蕴深厚']
+          : key === 'hangzhou'
+          ? ['数字经济与互联网产业发达，远程就业与创业机会多、同道人密集', '良渚 / 云栖等数字游民社区成熟，城市与乡村据点都丰富', '西湖、2号线沿线与城西山水兼具，生活与自然平衡', '高铁枚纽，到上海 / 宁波 / 莫干山等周边城市极为便利']
+          : key === 'shanghai'
+          ? ['国际化程度高，联合办公、咖啡馆与创意社群密集，活动资源顶级', '交通与基础设施完善，地铁覆盖广、医疗与商业配套一流', '中外文化交融，展览、演出与展会丰富，国际航班便捷', '就业与商务机会多，适合需要高频线下协作的数字游民']
+          : key === 'shenzhen'
+          ? ['科技与创业氛围浓厚，产业链与投融资源密集，适合创业者与开发者', '城市年轻、节奏快，联合办公与数字游民友好空间多', '气候温暖、四季常绿，滨海与郊野徒步资源丰富', '毗邻香港，国际连接与跨境协作便利']
+          : key === 'suzhou'
+          ? ['园林古城与现代科技共存，既有江南水乡的慢，又有工业园区的产业机会', '紧邻上海，高铁半小时直达，共享长三角资源而生活成本更低', '黄里 / 相城等古镇与新型数字游民据点多，文艺氛围浓', '饮食精致、医疗与商业配套完善，宜长住']
+          : key === 'anji'
+          ? ['「两山」理论发源地，竹海与田园风光治愈，DNA 等数字游民社区成熟且氛围友好', '生态与空气极佳，夏季清凉，适合亲近自然的慢节奏办公', '距杭州约 1 小时、上海约 2.5 小时，周末往返长三角便利', '物价与房租在长三角中偏低，含吃住的乡村社区性价比高']
+          : key === 'chengdu'
+          ? ['生活气息浓、节奏松弛，茶馆与咖啡馆文化发达，适合慢生活办公', '美食与娱乐丰富，物价相对一线城市友好，宜居宜长住', '联合办公与青年社群活跃，数字游民与创业氛围浓', '航空与高铁枢纽，通往川西、云贵与东南亚都方便']
+          : key === 'jingdezhen'
+          ? ['千年瓷都，陶艺与手作氛围独特，适合创作者与手艺人长住', '物价与房租亲民，陶溪川等聚落聚集大量青年创客', '生活成本低、创作空间多，容易结识同频伙伴', '距南昌与黄山不远，山水与人文资源可周边延伸']
+          : key === 'moganshan'
+          ? ['民宿产业发源地，山居避暑体验成熟，环境清幽适合专注办公', '竹海云雾与森林覆盖率高，夏季清凉、空气极佳', '距杭州约 1 小时、上海约 2 小时，长三角往返便利', '精品民宿与咖啡聚落多，生活品质高']
+          : key === 'ningbo'
+          ? ['港城商脉深厚，产业与就业机会多，生活配套完善', '山海兼具：既有雁荡余脉的山水，又有滨海渔港与海鲜', '高铁 1 小时到杭州、约 2 小时到上海，长三角通勤便利', '物价与房租较沪杭更从容，宜面海慢住']
+          : key === 'huangshan'
+          ? ['黄山与徽州古村落资源顶级，山水与人文双遗产，适合亲近自然与人文长住', '古称徽州，徽派建筑与徽文化底蕴深厚，写生与摄影胜地', '物价与房租亲民，屯溪老街等生活配套齐全', '高铁通达，到杭州 / 南京与周边古村便利']
+          : key === 'kunming'
+          ? ['四季如春，全年气候宜人，夏可避暑、冬无严寒', '物价与房租在省会城市中相对偏低', '鲜花、咖啡与过桥米线文化发达，生活惬意', '长水机场＋高铁，直达大理 / 丽江 / 西双版纳与东南亚便利']
+          : key === 'lishui'
+          ? ['「中国生态第一市」，森林覆盖率与空气质量常年居浙江前列', '物价与房租亲民，含吃住的数字游民社区性价比高', '古堰画乡、云和梯田、缙云仙都等山水景观密集，周末可短途彫游', '夏日山区清凉，适合避暑与慢节奏居住办公']
+          : key === 'taizhou'
+          ? ['山海兼具：既有神仙居 / 天台山的山水，又能短途到长屿岛赶海，只需一地', '民营经济发达、生活配套齐全，物价与房租在长三角沿海城市中相对亲民', '天台 / 临海一带乡村改造的数字游民社区多，含吃住的长住性价比高', '海鲜与台州小吃丰富，鲜味多、生活有烟火气']
+          : key === 'wenzhou'
+          ? ['民营经济发达、产业与商业氛围浓，创业与副业机会多，“走南闯北”的城市气质', '山海兼具：雁荡山、楠溪的山水与洞头的海岛都在一小时车程内', '气候温润、四季分明，海鲜与温州小吃丰富，生活有烟火气', '苍南 / 乐清等县域乡村改造的数字游民社区多，含吃住的长住性价比高']
+          : key === 'nanping'
+          ? ['世界双遗产武夷山就在门口，山水与茶香资源顶级，适合远离喧嚣、亲近自然的长住', '物价与房租亲民，含吃住的数字游民社区性价比极高，六人间低至 350 元/月', '森林覆盖率高、空气好，气候温润，茶文化与朱子理学底蕴深厚', '武夷山有高铁与机场，直达福州 / 厘门 / 南昌等周边城市便利']
+          : key === 'lingshui'
+          ? ['冬暖夏凉、全年无霜，冬季均温 20℃ 以上，是反季越冬、海边长居的绝佳选择', '清水湾 / 香水湾沙质细白、海水通透，海景与海上运动资源丰富', '属海南自贸港区域，基础设施与度假配套不断升级', '距三亚约 1 小时、高铁直达，共享三亚机场与周边海岸']
+          : key === 'jinggangshan'
+          ? ['“大学城 + 景区”双加持：食堂、外卖、十几个体育馆与健身房齐全，生活与运动配套极丰富', '房价极亲民，六人间床位低至 380 元/月，含水电网络性价比高', '罗霄山下、森林覆盖率高，夏日清凉、空气清新，适合避暑长住', '红色人文与山水资源丰富，周末可逛革命旧址与高山瀑布']
+          : key === 'zhoushan'
+          ? ['海岛风光顶级：普陀山佛教人文、嵊泗金沙、东极岛日出，面海而居的旅居体验独特', '海鲜极其新鲜丰富，沈家门“世界鱼都”带鱼鲞、海鲜面地道', '海洋性气候温润，夏无酷暑、冬无严寒，适合面海慢住', '离岛旅居社区兴起，共建型、高性价比的青年据点逐渐增多']
+          : key === 'yichun'
+          ? ['中国林都，夏季均温 20℃ 左右、凉爽宜人，是避暑与森林康养的绝佳目的地', '森林覆盖率过八成、负氧离子极高，空气与生态环境顶级', '物价与房租亲民，适合低成本慢生活与短期居住', '四季风景分明：秋色五彩林海、冬季冰雪世界']
+          : key === 'sanya'
+          ? ['冬暖夏长、全年无霜，冬季均温 20℃ 以上，是反季越冬、面海长居的头号选择', '沙滩与海水资源顶级，潜水、帆船等海上运动与度假配套成熟', '海南自贸港政策利好，凤凰国际机场航线密集、免税购物便利', '热带水果与海鲜丰富，度假氛围浓、生活节奏悠闲']
+          : key === 'zhongshan'
+          ? ['深中通道通车，约半小时直达深圳，共享大湾区机会而房租与物价更亲民', '孙中山故里人文底蕴深，温泉、绿道与灯饰 / 红木专业镇产业丰富', '气候温润、绿化率高，生活节奏比广深从容，宜居宜长住', '粤菜与糖水文化发达，石岐乳鸽、杏仁饼与凉茶治愈日常']
+          : key === 'xian'
+          ? ['十三朝古都，历史人文资源全国顶级，城墙、兵马俑、博物馆沉浸感强', '生活成本与房租在新一线城市中偏低，美食便宜量大、烟火气足', '高校与硬科技 / 航天产业密集，创业与远程职位机会多、青年氛围浓', '高铁与航空枢纽，通往西北、中原与成渝方便，周边古迹众多']
+          : key === 'ziyang'
+          ? ['成渝双城经济圈几何中心，同城成都、通达重庆，共享两大都市圈机会', '生活成本与房租极低，川中慢生活性价比高，宜低成本长住', '安岳石刻等唐宋摩崖造像人文资源独特，古迹与红色文化丰富', '气候温润、沱江穿城，节奏舒缓、烟火气足']
+          : key === 'yaan'
+          ? ['「雨城」气候凉爽多雨、夏季避暑，森林覆盖率高、空气与生态顶级', '蒙顶山世界茶文化发源地与大熊猫故乡，人文与自然资源独特', '物价与房租亲民，康养慢生活性价比高，适合避暑长住', '川藏 / 川滇门户，自驾进藏与游川西（牛背山、贡嘎）的绝佳起点']
+          : key === 'xinyang'
+          ? ['「北国江南」山水温润，森林覆盖率高，夏季比中原清凉，宜避暑长住', '信阳毛尖故乡，茶文化深厚，南湾湖、鸡公山等山水景观丰富', '物价与房租亲民，豫南慢生活性价比高，烟火气与炖菜美食足', '京广高铁与京港澳高速穿境，北上郑州、南下武汉都便捷']
+          : ['（占位）待补充']),
+        cons: (key === 'puer'
+          ? ['地处滇西南、交通相对偏远，虽有普洱机场但航线有限，抵达需中转', '雨季（6–9 月）多雨潮湿，山路出行需注意', '数字游民专属共居社区尚少，多为茶山民宿与长租公寓', '医疗与商业配套不及省会，深度就医需到昆明']
+          : key === 'haikou'
+          ? ['夏秋（5–10 月）为台风与雨季，潮湿闷热，出行需关注天气', '旺季（12–2 月越冬季）房租与机票明显上涨，需提前预定', '地处海岛，部分物资靠运输、物价偏高，国际商业配套不如一线', '数字游民专属共居社区较少，多为长租公寓与民宿']
+          : key === 'tianjin'
+          ? ['华北冬季寒冷干燥、有采暖季，春秋多风，多尘天需关注空气', '城市以传统工商业为主，互联网 / 数字游民氛围不如杭京浓', '数字游民专属共居社区较少，多为长租公寓', '部分城区节奏与通勤压力较大，夹开发区距离较远']
+          : key === 'kunshan'
+          ? ['作为沪苏都市圈热点，房租与生活成本在县级市中偏高', '梅雨季与夏季潮湿闷热，冬季湿冷', '城市以产业与通勤为主，数字游民专属共居社区较少', '热门古镇节假日游客多、拥挤']
+          : key === 'hangzhou'
+          ? ['一线律城市，房租与生活成本在城市据点偏高', '旺季与高温潮湿的梅雨季明显，夏季闷热', '热门区域与景区人流大，节假日拥挤', '核心城区数字游民共居社区较少，多在郊区与乡村']
+          : key === 'shanghai'
+          ? ['生活与房租成本全国最高，预算有限者压力较大', '节奏快、人口密，高峰拥堵与嗧杂明显', '梅雨季与夏季闷热潮湿，台风季需关注天气', '适合短期高强度协作，长住成本与嗧阀较高']
+          : key === 'shenzhen'
+          ? ['房租与生活成本高，节奏快、工作压力大', '夏季潮湿炎热、多台风雨，回南天明显', '城市大、通勤距离远，纯数字游民慢住氛围较弱', '多为长租公寓与公寓式酒店，乡村型共居据点少']
+          : key === 'suzhou'
+          ? ['城区房租与生活成本在二线中偏高', '梅雨季与夏季潮湿闷热，冬季湿冷', '热门古镇与园林节假日游客多、拥挤', '数字游民专属共居社区较少，多为民宿与公寓']
+          : key === 'anji'
+          ? ['景点与乡村据点分散，市区交通不如大城市密集，自驾更便', '旺季（暑期 / 黄金周）民宿与景区人多、房价上浮', '梅雨季与回潮天潮湿，冬季山区偏凉', '医疗与部分商业配套不如杭州主城']
+          : key === 'chengdu'
+          ? ['夏季闷热潮湿、日照较少，四季多阴雨天', '大城市高峰拥堵与人口密集，生活节奏容易“耗”', '部分区域房租上涨较快，热门地段性价比下降', '距东部沿海较远，面向东南亚以外的国际航班不如沈京']
+          : key === 'jingdezhen'
+          ? ['产业以陶瓷手作为主，远程职位与商业机会相对有限', '城市体量不大，医疗与商业配套不如省会', '夏季炎热、梅雨潮湿，冬季湿冷', '高铁班次与航班不多，远途出行需中转']
+          : key === 'moganshan'
+          ? ['山上景区民宿价格偏高，旺季与周末房价上浮明显', '位于山区，市区与商业配套相对分散，出行以自驾为主', '梅雨季与回潮潮湿，冬季山上偏冷', '数字游民专属共居据点较少，多为精品民宿']
+          : key === 'ningbo'
+          ? ['城区房租与生活成本在浙东偏高', '梅雨季潮湿多雨，夏秋沿海需关注台风', '景点与海岛分散，部分需轮渡或自驾前往', '数字游民专属共居社区较少，多为公寓与民宿']
+          : key === 'huangshan'
+          ? ['景区与古村分散在下辖县市，景点间通勤需自驾或包车', '旺季（节假日 / 看日出）黄山与古村游客多、拥挤', '山区梅雨与回潮潮湿，冬季偏冷', '医疗与商业配套不如杭州 / 南京密集']
+          : key === 'kunming'
+          ? ['海拔约 1,890 米，初到或有轻微高原反应，宜给身体几天适应', '高原紫外线强、昼夜温差大，注意防晒并常备外套', '雨季（6–9 月）多阵雨，出行需带伞', '数字游民专属共居社区较少，多为长租公寓与民宿']
+          : key === 'lishui'
+          ? ['中心城区无高铁站，多经丽水站或缙云站接驳，到杭州 / 上海较杭嘉多区耗时', '优质景点多在下辖县城与乡村，山路较多，自驾或包车更方便', '梅雨季与回潮天潮湿明显，需注意防潮', '山区夜间与冬季偏凉，医疗与商业配套不如大城市密集']
+          : key === 'taizhou'
+          ? ['优质山水景点（神仙居 / 天台山 / 长屿岛）分散在下辖县市，彼此距离较远，自驾或包车更方便', '市区与乡村社区相隔较远，高铁班次不如杭州 / 宁波密集', '梅雨季（6–7 月）潮湿多雨，沿海夏秋需关注台风', '部分乡村据点介于内测 / 公测阶段，入住需提前报名']
+          : key === 'wenzhou'
+          ? ['市域平原与山区 / 海岛分布分散，景点间通勤耗时，自驾或包车更便利', '温州话方言差异大，初来沟通需适应；旺季景区与海鲜价格偏高', '梅雨季（6–7 月）潮湿多雨，沿海夏秋需关注台风', '部分数字游民据点在下辖县市，距中心城区较远，高铁接驳需提前规划']
+          : key === 'nanping'
+          ? ['属山区地级市，城区与武夷山景区 / 五夫镇相隔较远，景点间通勤需自驾或包车', '五夫镇等乡镇商业与医疗配套不如大城市密集，生活节奏偏慢', '回南天与梅雨季潮湿多雨，山区夜间与冬季偏凉', '旺季（春茶与暑期）武夷山景区与住宿较拥挤，需提前安排']
+          : key === 'lingshui'
+          ? ['旺季（12–2 月越冬季）房租与机票明显上涨，需提前预定', '夏秋（6–10 月）为台风与雨季，潮湿闷热，出行需关注天气', '饵食 / 商业配套集中在湾区度假酒店，县城与景区相隔较远，日常代步需自驾', '海岸紫外线强、盐雾大，电子设备与防晒需注意防护']
+          : key === 'jinggangshan'
+          ? ['地处井冈山市大学城，距井冈山核心景区与市区有一定距离，出行以自驾 / 公交为主', '井冈山无机场，多经井冈山站高铁或吉安 / 赣州中转，班次不如大城市密集', '处内测阶段、每月限额 50 人，四 / 六人间需提前 15 天预约且满员后入住', '红色旅游旺季（节假日）游客较多，景区周边会略拥挤']
+          : key === 'zhoushan'
+          ? ['岛屿交通依赖轮渡 / 快艇，遇大风浪或台风可能停航，行程需预留弹性', '黄龙岛 / 嵊泗等离岛物资多靠船运，部分物价偏高、医疗与商业配套有限', '夏秋（6–10 月）为台风与潮湿季，出行需关注天气与舱期', '旺季（暑期 / 节假日）游客多、房价上浮，需提前预定']
+          : key === 'yichun'
+          ? ['地处东北，冬季漫长严寒（最低可至 -30℃），适宜居住季集中在 6–10 月', '地理偏远、行程较长，高铁 / 航班班次有限，抵达需多转', '数字游民专属共居社区较少，多为民宿与长租公寓', '冬季部分景区与乡镇配套休业，出行需提前确认']
+          : key === 'sanya'
+          ? ['旺季（12–2 月越冬季 / 春节）房租与机票大幅上涨，需提前很久预定', '夏秋（5–10 月）为台风与雨季，潮湿闷热，出行需关注天气', '作为热门旅游城市，核心景区与海湾游客多、部分餐饮物价偏高', '数字游民专属共居社区较少，多为长租公寓、酒店与民宿，专业远程办公氛围不如安吉 / 大理浓']
+          : key === 'zhongshan'
+          ? ['城市以专业镇产业与通勤为主，数字游民专属共居社区较少，多为长租公寓', '夏季湿热漫长、多台风雨，回南天潮湿明显', '本地无机场、高铁站点有限，远途出行多经广深中转', '灯饰古镇、红木大涌等专业镇分散，跨镇通勤需自驾，公共交通不如广深密集']
+          : key === 'xian'
+          ? ['夏季炎热、冬季寒冷干燥，采暖季空气质量与雾霾需关注', '热门景区（兵马俑 / 大唐不夜城 / 回民街）旺季游客密集、拥挤', '数字游民专属共居社区较少，多为长租公寓与青旅', '地处内陆，春季多风沙、气候偏干，南方来客需适应']
+          : key === 'ziyang'
+          ? ['城市体量较小，数字游民专属共居社区尚少，多为长租公寓', '夏季闷热潮湿、日照偏少，四川盆地多阴雨', '优质古迹（安岳石刻）多在下辖县，跨县通勤需自驾或客运', '产业以制造与农业为主，本地远程 / 互联网职位机会有限']
+          : key === 'yaan'
+          ? ['「雨城」名副其实，全年降水多、湿度大，需适应潮湿多雨', '数字游民专属共居社区较少，多为民宿、酒店与长租公寓', '优质景点（牛背山、蒙顶山、古镇）分散在山区，通勤多需自驾', '山区雨季地质灾害（塌方）需关注，远途出行多经成都中转']
+          : key === 'xinyang'
+          ? ['数字游民专属共居社区较少，多为民宿、酒店与长租公寓', '夏季闷热多雨、湿度大，冬季湿冷无集中供暖，体感偏冷', '优质景点（鸡公山、南湾湖、古村）较分散，通勤多需自驾', '本地以农业与文旅为主，远程 / 互联网职位机会有限']
+          : ['（占位）待补充']),
+        spaces: (key === 'puer'
+          ? [{ name: '普洱 · 芒芒村 Mountree', type: '茶山旅居 · 过冬', desc: '孟连县娜允镇芒掌村，中缅边境傣寨茶山社区，双/四人间，含食堂与健身房，申请入住制，营业中。', grad: 'linear-gradient(135deg,#2f7a45,#5aa86a)', photo: 'assets/mangmang/aerial.png', href: '基地-芒芒村.dc.html', price: '¥980/月起', live: true, photoPos: 'center 50%' }]
+          : key === 'haikou'
+          ? [{ name: '海口 · Dopamine 数字游民社区', type: '过冬 · 城市周边', desc: '龙华区保明村，蓝楼椰影下的国际数字游民公社，好几栋房子占地大，单/双/三人间+亲子房，含咖啡吧、书墙阅读室、艺术手作厅与共享办公，营业中。', grad: 'linear-gradient(135deg,#1a7fc4,#3fb0e8)', photo: 'assets/dopa/garden-palm.png', href: '基地-Dopamine.dc.html', price: '¥1,880/月起', live: true, photoPos: 'center 55%' }]
+          : key === 'kunshan'
+          ? [{ name: '昆山 · NCC 林克岛', type: '江南水乡 · 田园风光', desc: '锦溪镇乡伴·计家墩理想村，临河水乡村落改造，单/双/四人间+套间+Loft多房型，含河道皮划艇与社区食堂，游牧岛小程序申请，营业中。', grad: 'linear-gradient(135deg,#a5641c,#e0954a)', photo: 'assets/ncc/sunset-village.png', href: '基地-NCC林克岛.dc.html', price: '¥1,050/月起', live: true, photoPos: 'center 50%' }]
+          : key === 'yichun'
+          ? [{ name: '伊春 · FCL 筏喻生态村', type: '森林 · 老林场旅居', desc: '金林区金山屯老林场，小兴安岭红松林海环抱，山野邻居（三人间/大炕房）与松下林居（独卫大床房），含茶室、书墙与老林场大食堂，营业中。', grad: 'linear-gradient(135deg,#2d6a48,#5a9c5f)', photo: 'assets/fcl/village-aerial.png', href: '基地-筏喻生态村.dc.html', price: '¥1,500/月起', live: true, photoPos: 'center 50%' }]
+          : key === 'zhoushan'
+          ? [{ name: '舟山 · 理想岛', type: '海景 · 离岛旅居', desc: '嵊泗黄龙岛的共建型离岛旅居社区，三点位（社区中心海景客房+南港村/大岙村青年旅居），单/双/四人间，含人生学校与产业实验室，营业中。', grad: 'linear-gradient(135deg,#12707a,#38a89d)', photo: 'assets/lxd/aerial-dusk.png', href: '基地-理想岛.dc.html', price: '床位 ¥720/月起', live: true, photoPos: 'center 50%' }]
+          : key === 'jinggangshan'
+          ? [{ name: '井冈山 · DN 支点', type: '大草坪 · 大学城', desc: '江西软件职业技术大学井冈山校区内部，单–六人间多房型，含湖畔大草坪、十几个体育馆、健身房与库庭咖啡，食堂外卖齐全，营业中。', grad: 'linear-gradient(135deg,#1f6f3f,#4aa86a)', photo: 'assets/dnzd/lake-lawn.png', href: '基地-DN支点.dc.html', price: '¥380/月起', live: true, photoPos: 'center 50%' }]
+          : key === 'lingshui'
+          ? [{ name: '陵水 · 海南数字游民国际岛', type: '海景 · 越冬长居', desc: '黎安国际教育创新试验区滨海校区，单/双人间，观海阳台客房+中庭共享客厅+各种运动场，含食堂，营业中。', grad: 'linear-gradient(135deg,#0f7d86,#22b3b0)', photo: 'assets/hndn/facade.png', href: '基地-海南数字游民国际岛.dc.html', price: '¥1,580/月起', live: true, photoPos: 'center 50%' }]
+          : key === 'nanping'
+          ? [{ name: '南平 · DN 武夷山', type: '田园风光 · 茶山双遗', desc: '武夷山市五夫镇，闽北大厙改造的数字游民公社，单/双/四/公人间，六人间床位低至 350 元/月，含健身房与研究所咖啡，营业中。', grad: 'linear-gradient(135deg,#1a7d97,#37b0c4)', photo: 'assets/dnwys/entrance.png', href: '基地-DN武夷山.dc.html', price: '¥350/月起', live: true, photoPos: 'center 60%' }]
+          : key === 'wenzhou'
+          ? [{ name: '温州 · UU 青年集盒', type: '城市周边 · 山海游牧', desc: '乐清市城东街道，乐清首个数字游民社区，9000㎡ 青年共居实验区，单/双人间，含健身房、食堂与创意空间，营业中。', grad: 'linear-gradient(135deg,#b3891a,#f0c020)', photo: 'assets/uu/ext-cafe.png', href: '基地-UU青年集盒.dc.html', price: '¥899/月起', live: true, photoPos: 'center 55%' },
+             { name: '温州 · Fuse 浮思社区', type: '海景 · 高性价比', desc: '苍南农创园，「村里来了年青人」，四人间月租仅 ¥499，含红椅办公区、共享厨房与城市天际线景观，营业中。', grad: 'linear-gradient(135deg,#2f4a63,#5c86a8)', photo: 'assets/fuse/office-desks.png', href: '基地-Fuse浮思社区.dc.html', price: '¥499/月起', live: true, photoPos: 'center 50%' }]
+          : key === 'hangzhou'
+          ? [{ name: '杭州 · 良渚青年公社', type: '创客孵化 · 田园风光', desc: '余杭区长命村良渚暖村二期，单人间，月租/季租两种模式，营业中。', grad: 'linear-gradient(135deg,#30cfd0,#2a7d6e)', photo: 'assets/liangzhu/building.png', href: '基地-良渚青年公社.dc.html', price: '¥1,500/月起', live: true, photoPos: 'center 60%' },
+             { name: '杭州 · 之江数字游民创想地', type: '江景 · 田园风光', desc: '建德市之江村，单/双人间，周租月租，健身房+创客空间+咖啡吧，营业中。', grad: 'linear-gradient(135deg,#45b7d1,#124a63)', photo: 'assets/zhijiang/building.png', href: '基地-之江.dc.html', price: '¥1,200/月起', live: true, photoPos: 'center 50%' },
+             { name: '杭州 · 706 良渚', type: '青年共居 · 良渚文化村', desc: '余杭区良渚文化村白鹭郡南，两栋 8 间，单间月租/床位 ¥98/天，带私家花园，营业中。', grad: 'linear-gradient(135deg,#9d86f0,#3a2668)', photo: 'assets/liangzhu706/garden.png', href: '基地-706良渚.dc.html', price: '¥1,600/月起', live: true, photoPos: 'center 55%' },
+             { name: '杭州 · Q Space', type: '青年共创 · 江景', desc: '萧山区梅林村 Q Space 青年共创社区，单/双/六人间，含台球/阅读/会议空间，营业中。', grad: 'linear-gradient(135deg,#2a91b0,#0e2c3a)', photo: 'assets/qspace/building.png', href: '基地-QSpace.dc.html', price: '¥459/月起', live: true, photoPos: 'center 55%' },
+             { name: '杭州 · 青山青年社 龙坞里', type: '山景 · 森林共居', desc: '黄湖镇青山村，龙坞里+里三畔两处，单/双/四人间，游牧岛小程序申请，营业中。', grad: 'linear-gradient(135deg,#43e97b,#12331f)', photo: 'assets/qingshan/aerial.png', href: '基地-青山青年社.dc.html', price: '¥1,600/月起', live: true, photoPos: 'center 45%' }]
+          : key === 'chengdu'
+          ? [{ name: '成都 · 天星生态村', type: '共居 · 山景田园', desc: '温江区寿安镇，单/双/四人间，营业中。点击查看详情。', grad: 'linear-gradient(135deg,#43e97b,#38a3d7)', photo: 'assets/tianxing/aerial.png', href: '基地.dc.html', price: '¥680/月起', live: true },
+             { name: '成都 · 榜样青年社区', type: '乡村创客 · CSA 共居', desc: '温江区万春镇高山村，MAT 超建设计，标间/床位，孵化「大蒜咖啡」。', grad: 'linear-gradient(135deg,#43e97b,#20603a)', photo: 'assets/bangyang/shingle.png', href: '基地-榜样青年.dc.html', price: '¥800/月起', live: true }]
+          : key === 'anji'
+          ? [{ name: '安吉 · DN 余村', type: '共居 · 山景田园', desc: '天荒坪镇青来集人才社区，余村数字游民公社，单/双/四/六人间，有健身房食堂。', grad: 'linear-gradient(135deg,#43e97b,#238a4e)', photo: 'assets/dncun/aerial.png', href: '基地-DN余村.dc.html', price: '¥300/月起', live: true },
+             { name: '安吉 · DNA', type: '共居 · 田园风光', desc: '溪龙乡横山村 DNA 数字游民社区，单/四/六人间与集装箱房，有食堂运动场。', grad: 'linear-gradient(135deg,#43e97b,#2f8f6b)', photo: 'assets/dna/facade.png', href: '基地-DNA.dc.html', price: '¥440/月起', live: true }]
+          : key === 'huangshan'
+          ? [{ name: '黄山 · NCC 黑多岛二期', type: '共居 · 江南水乡', desc: '黟县黟川两岸黑多岛二期，单/双/四人间与套间，Co-Living/Learning/Creating，有健身房，营业中。', grad: 'linear-gradient(135deg,#2a9d94,#0e3333)', photo: 'assets/ncchd/aerial.png', href: '基地-NCC黑多岛.dc.html', price: '¥600/月起', live: true, photoPos: 'center 55%' },
+             { name: '黄山 · 祁民公社', type: '共居 · 乡村振兴', desc: '祁门县平里镇，Fermentation Plan 发酵计划，单/双/四人间，有泳池食堂，月租赠 1000 酵母，营业中。', grad: 'linear-gradient(135deg,#4a9d5c,#14331d)', photo: 'assets/qimin/facade.png', href: '基地-祁民公社.dc.html', price: '¥796/月起', live: true, photoPos: 'center 45%' },
+             { name: '黄山 · DN 黄山', type: '数字游民公社 · 江景', desc: '屯溪区 S103 黄山数字游民公社，6 种房型含 Loft/无障碍，有健身房与放映厅，营业中。', grad: 'linear-gradient(135deg,#3a94b0,#0f2b3a)', photo: 'assets/dnhs/riverside.png', href: '基地-DN黄山.dc.html', price: '¥350/月起', live: true, photoPos: 'center 50%' }]
+          : key === 'shanghai'
+          ? [{ name: '上海 · 张江数字游民 OPC 国际社区', type: '林下营地 · 森林共居', desc: '浦东新区新丰村金家宅张江人才公寓，林下集装箱居舱，单人间，含众木堂/启明台/造物间等空间，内测/公测中。', grad: 'linear-gradient(135deg,#2b854e,#0d2417)', photo: 'assets/zhangjiang/villa.png', href: '基地-张江OPC.dc.html', price: '¥2,000/月', live: true, photoPos: 'center 55%' },
+             { name: '上海 · 漕泾数字游民国际村', type: '大草坪 · 城市周边', desc: '金山区漕泾郊野公园水窠景区，白色主楼＋大草坪，单/双人间，图书/会议/路演空间齐全，营业中。', grad: 'linear-gradient(135deg,#2979db,#0a1e3d)', photo: 'assets/caojing/facade.png', href: '基地-漕泾国际村.dc.html', price: '¥1,100/月起', live: true, photoPos: 'center 55%' }]
+          : key === 'shenzhen'
+          ? [{ name: '深圳 · 跳海 Living', type: '城市周边 · 生活便利', desc: '南山区南头古城南门跳海 Living 酒店，单/双/四/六人间，有食堂、烘焙与酒吧，DNCN 会员 9 折，营业中。', grad: 'linear-gradient(135deg,#2a6fdb,#0a1730)', photo: 'assets/tiaohai/single2.png', href: '基地-跳海Living.dc.html', price: '¥2,500/月起', live: true, photoPos: 'center 60%' },
+             { name: '深圳 · 我们的客厅 Space', type: '共居 · 生活便利', desc: '南山区五处地址 35 间房，含世界花园/深圳湾臻湾汇/前海月亮湾等，单人间，入住需面试，营业中。', grad: 'linear-gradient(135deg,#c57a2a,#2a1c0f)', photo: 'assets/keting/loft.png', href: '基地-我们的客厅Space.dc.html', price: '¥3,500/月左右', live: true, photoPos: 'center 55%' }]
+          : key === 'suzhou'
+          ? [{ name: '苏州 · 黎里数字游民 OPC 国际驿站', type: '江南水乡 · 古镇驿站', desc: '吴江区黎里古镇临河老宅改造，单人间，含共享办公、通高书墙阅读空间与中式茶室，填表申请，内测/公测中。', grad: 'linear-gradient(135deg,#6f5334,#b0844b)', photo: 'assets/lili/facade.png', href: '基地-黎里OPC.dc.html', price: '¥300/天起', live: true, photoPos: 'center 40%' },
+             { name: '苏州 · 四百盒子', type: '大草坪 · 城市周边', desc: '相城区青苔国际工业设计村，可移动 6㎡ 桦木盒子作单人间，含砖墙工作舱、红凳小酒吧与书墙，营业中。', grad: 'linear-gradient(135deg,#b23b2e,#e46a52)', photo: 'assets/400box/box-exterior.png', href: '基地-四百盒子.dc.html', price: '¥128/天起', live: true, photoPos: 'center 45%' }]
+          : key === 'lishui'
+          ? [{ name: '丽水 · DN 云栖', type: '湖畔水乡 · 含吃住水电', desc: '缙云县云栖湖旅游度假区，彩色民居临湖而建，单/双人间可周租/月租，含吃住水电与湖景工位、月洞门茶室，营业中。', grad: 'linear-gradient(135deg,#0f8a7e,#38ef7d)', photo: 'assets/dnyunxi/aerial.png', href: '基地-DN云栖.dc.html', price: '¥1,500/月起', live: true, photoPos: 'center 50%' },
+             { name: '丽水 · 52 赫兹', type: '古堰画乡 · 生活便利', desc: '莲都区大港头镇古堰画乡 4A 景区，包豪斯/榻榻米/套间/四人共享多房型，住宿免费进景区和艺术馆，营业中。', grad: 'linear-gradient(135deg,#1f4e5f,#4a90a4)', photo: 'assets/52hz/nat-boats.png', href: '基地-52赫兹.dc.html', price: '¥800/月起', live: true, photoPos: 'center 45%' }]
+          : key === 'ningbo'
+          ? [{ name: '宁波 · ANCUN', type: '海景社区 · 村民制', desc: '梅山湾畔海景数字游民社区，单/双人间可拼可整租，含海湾工位、共享厨房、健身房与多功能厅，村民凭证自由通行，营业中。', grad: 'linear-gradient(135deg,#1a5f9e,#3aa0d8)', photo: 'assets/ancun/bay-desk.png', href: '基地-ANCUN.dc.html', price: '¥1,499/月起', live: true, photoPos: 'center 45%' }]
+          : key === 'kunming'
+          ? [{ name: '昆明 · 千院数字游民社区', type: '文化艺术旅居 · 山景避暑', desc: '五华区保利春湖，约 20,000 ㎡ 园区，单/双人间，含森系共享办公、室外舞台与商业街，支持技能换住，营业中。', grad: 'linear-gradient(135deg,#1f5048,#3f7a5e)', photo: 'assets/qianyuan/courtyard.png', href: '基地-千院.dc.html', price: '¥1,000/月起', live: true, photoPos: 'center 55%' },
+             { name: '昆明 · BCC 美丽龙山', type: '乡村振兴 · 山景避暑', desc: '安宁市温泉街道龙山村，明黄数字游民中心，四/六/十人间与胶囊床位，日租 ¥80 起，含共享厨房与山顶露台，营业中。', grad: 'linear-gradient(135deg,#c9971f,#f0c33e)', photo: 'assets/bcc/facade.png', href: '基地-BCC美丽龙山.dc.html', price: '¥80/天起', live: true, photoPos: 'center 45%' }]
+          : key === 'moganshan'
+          ? [{ name: '莫干山 · 木可合作社', type: '共居 · 山景森林', desc: '德清县莫干山镇计庙坞，红陶老楼改造，单/双人间，含壁炉客厅、树屋工位与楼顶露台，通过游牧岛小程序申请，营业中。', grad: 'linear-gradient(135deg,#2f5c39,#5c8a3f)', photo: 'assets/mooke/facade.png', href: '基地-木可合作社.dc.html', price: '¥480/天起', live: true, photoPos: 'center 40%' }]
+          : key === 'taizhou'
+          ? [{ name: '台州 · 乡野宇宙', type: '田园风光 · 后岸青年空间站', desc: '天台县街头镇后岸村，丹霞赤壁下的乡村据点，单/双人间，含健身房与运动场，营业中。', grad: 'linear-gradient(135deg,#9c4a2f,#e07a5f)', photo: 'assets/xiangye/sunset-village.png', href: '基地-乡野宇宙.dc.html', price: '¥1,040/月起', live: true, photoPos: 'center 55%' },
+             { name: '台州 · Cohere', type: '江南水乡 · 溪望谷', desc: '临海峥底罗村溪望谷溪山咖啡旁，单/双/四人间，首月测试价，内测/公测招募 30 人。', grad: 'linear-gradient(135deg,#1f6f48,#43b06a)', photo: 'assets/cohere/riverside-house.png', href: '基地-Cohere.dc.html', price: '首月 ¥0–500', live: true, photoPos: 'center 50%' }]
+          : key === 'sanya'
+          ? [{ name: '三亚 · NCC唯吾岛', type: '海景 · 共居共创（疑似关闭）', desc: '崖州区镇海村滨海岸线，海滨大草坪＋泳池＋内卷室 Focus Room 独立办公，单/双/四/六人间，可订饭与线上买菜，游牧岛小程序申请。', grad: 'linear-gradient(135deg,#0f7d86,#22b3b0)', photo: 'assets/sanyancc/hero.png', href: '基地-三亚NCC唯吾岛.dc.html', price: '¥1,350/月起', live: false, photoPos: 'center 45%' },
+             { name: '陵水黎安 · 海南数字游民国际岛', type: '三亚近郊 · 海景越冬', desc: '距三亚约 1 小时车程，黎安国际教育创新试验区滨海校区，观海阳台客房＋中庭共享客厅与运动场，含食堂，营业中。', grad: 'linear-gradient(135deg,#0f7d86,#22b3b0)', photo: 'assets/hndn/facade.png', href: '基地-海南数字游民国际岛.dc.html', price: '¥1,580/月起', live: true, photoPos: 'center 50%' }]
+          : key === 'zhongshan'
+          ? [{ name: '中山 · DNC旗溪数字游民社区', type: '江景山景 · 田园自享社区', desc: '五桂山街道桂南旗溪 96 号楼，「自雇自足」发起的自享社区，群山田园里带秋千泡池的庭院，单/双人间（公共卫浴），游牧岛小程序申请，营业中。', grad: 'linear-gradient(135deg,#3a7d3f,#6aae55)', photo: 'assets/dncqx/exterior.png', href: '基地-中山DNC旗溪.dc.html', price: '¥1,500/月起', live: true, photoPos: 'center 55%' }]
+          : key === 'xian'
+          ? [{ name: '西安 · 秦托邦数字游民社区', type: '山景 · 秦岭北麓青年社区', desc: '鄠邑区石井街道栗峪口村，秦岭北麓唐风院落，单/双/四人间（独卫/公卫/上下铺），含健身房、屋顶露台与办公位，价格含水电网燃气，游牧岛小程序申请，营业中。', grad: 'linear-gradient(135deg,#a05c1e,#c9871f)', photo: 'assets/qintopia/exterior.png', href: '基地-西安秦托邦.dc.html', price: '¥600/月起', live: true, photoPos: 'center 55%' }]
+          : key === 'ziyang'
+          ? [{ name: '资阳 · DNβ社区', type: '山景田园 · 云起山丘', desc: '雁江区童家沟云起山丘，弧形木构长廊＋观景塔＋艺术园，单/双人间与 Loft，有食堂，云起山丘小程序申请（客服微信 DNbeta），营业中。', grad: 'linear-gradient(135deg,#2f7d52,#63a86a)', photo: 'assets/dnbeta/exterior.png', href: '基地-资阳DNβ.dc.html', price: '¥1,500/月起', live: true, photoPos: 'center 50%' }]
+          : key === 'xinyang'
+          ? [{ name: '信阳 · 光山数字游民基地', type: '田园湖景 · 乡村会客厅', desc: '光山县文殊乡南王岗乡村会客厅，荷塘湖景玻璃大厅＋咖啡共享空间＋屋顶露台，单/双人间、Loft 与套间，公众号加客服企业微信预定，营业中。', grad: 'linear-gradient(135deg,#2f7d6a,#5bb39a)', photo: 'assets/gsdn/hero.png', href: '基地-信阳光山数字游民基地.dc.html', price: '¥1,250/月起', live: true, photoPos: 'center 45%' }]
+          : key === 'yaan'
+          ? [{ name: '雅安 · 乡建CC共创集社', type: '山景田园 · 稻田营地（已关闭）', desc: '荥经县严道古城村，乡建ZONE 运营的山景田园社区，月洞景墙花园＋稻田星空影院＋原木大厅＋靛蓝染坊，四人间/六人间，「日常办公 + 驻村」套餐（¥15 起 / 月度 ¥588），公众号「探途乡建」——该社区目前已关闭，信息仅供存档。', grad: 'linear-gradient(135deg,#c85f1c,#7a3411)', photo: 'assets/xjcc/hero.png', href: '基地-雅安乡建CC共创集社.dc.html', price: '¥588/月', live: false, liveLabel: '已关闭', photoPos: 'center 55%' }]
+          : key === 'tianjin'
+          ? [{ name: '天津 · 京津冀数字游民国际港', type: '共享办公 · CBD 甲级写字楼', desc: '滨海新区泰达 MSD-B1 座 29F，ROCKCHECK 运营的数字游民国际人才港，开放工位＋四人间办公室＋会议室＋沙发/吧台/大屏路演区，落地窗俯瞰滨海 CBD，随租随用弹性入驻，价格咨询客服，暂停招募中。', grad: 'linear-gradient(135deg,#2a6fdb,#4f97e0)', photo: 'assets/tjncc/hero.png', href: '基地-天津京津冀国际港.dc.html', price: '弹性入驻', live: false, liveLabel: '暂停招募', photoPos: 'center 45%' }]
+          : [{ name: '（占位）待补充', type: '空间', desc: '把 Notion 内容发我填入。', grad: 'linear-gradient(135deg,#667eea,#764ba2)', href: '#' }]),
+        facts: [{ k: '最佳季节', v: base.best }, { k: '平均气温', v: '—' }, { k: '到达方式', v: '—' }],
+        events: [{ day: '—', mon: '7', title: '近期活动待补充', meta: '—', grad: 'linear-gradient(135deg,#667eea,#764ba2)' }]
+      };
+    }
+
+    const stats = [
+      { icon: '#st-cost', color: 'var(--mp-purple-500)', label: '月均花费', value: '¥' + c.cost, unit: '/月' },
+      { icon: '#st-wifi', color: 'var(--mp-teal)', label: '网速', value: c.wifi, unit: 'Mbps' },
+      { icon: '#st-sun', color: '#f5a623', label: '气候', value: c.climate, unit: '' },
+      { icon: '#st-cal', color: 'var(--mp-sage)', label: '最佳时间', value: c.best, unit: '' }
+    ];
+
+    const allCities = { ...BASE, dali: { name: '大理', region: '云南 · 苍洱', score: '9.2', cost: '2,200', grad: 'linear-gradient(135deg,#f6a96b,#ee6c8f)' } };
+    const related = Object.keys(allCities).filter(k => k !== key).slice(0, 4).map(k => ({
+      name: allCities[k].name, region: allCities[k].region, score: allCities[k].score, cost: allCities[k].cost, grad: allCities[k].grad, href: '城市.dc.html#' + k
+    }));
+
+    const communityMap = { chengdu: '社群-成都.dc.html' };
+    const communityHref = communityMap[key] || null;
+    const communityGo = () => { if (communityHref) window.location.href = communityHref; else this.setState({ noComm: true }); };
+
+    return { c, stats, related, communityGo };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="assets/mycelium-tokens.css">
+<script src="auth-nav.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: var(--mp-font-sans); color: var(--mp-fg-1); background: var(--mp-gray-50); -webkit-font-smoothing: antialiased; }
+  ::selection { background: rgba(47,125,82,0.22); }
+  @keyframes mp-blink { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
+  .mp-blink { animation: mp-blink 1.8s ease-in-out infinite; }
+  .nav-link:hover { color: #fff !important; }
+  .nav-logo:hover { opacity: .82; }
+  .crumb:hover { color: #c9eecf !important; }
+  .cta-btn:hover { transform: translateY(-2px); box-shadow: var(--mp-shadow-button); }
+  .link-row:hover { background: var(--mp-gray-50) !important; }
+  .price-row:hover { background: #eef8f1 !important; }
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:var(--mp-gray-50);">
+
+  <nav style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px clamp(20px,5vw,60px);background:rgba(18,14,43,0.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.12);">
+    <a href="数字游民社区集合网.dc.html" class="nav-logo" style="display:flex;align-items:center;gap:11px;text-decoration:none;transition:opacity var(--mp-dur-base) var(--mp-ease);">
+      <img src="assets/mushroom-logo.png" alt="" style="width:34px;height:34px;object-fit:contain;filter:drop-shadow(0 4px 8px rgba(0,0,0,0.3));">
+      <div style="font-size:18px;font-weight:800;color:#fff;letter-spacing:0.2px;">Next Stop</div>
+    </a>
+    <div style="display:flex;align-items:center;gap:28px;">
+      <a href="数字游民社区集合网.dc.html" class="nav-link" style="color:#fff;text-decoration:none;font-size:14px;font-weight:600;transition:color var(--mp-dur-base) var(--mp-ease);">发现社区</a>
+      <a href="数字游民社区集合网.dc.html" class="nav-link" style="color:rgba(255,255,255,0.82);text-decoration:none;font-size:14px;font-weight:500;transition:color var(--mp-dur-base) var(--mp-ease);">城市榜单</a>
+      <a href="活动.dc.html" class="nav-link" style="color:rgba(255,255,255,0.82);text-decoration:none;font-size:14px;font-weight:500;transition:color var(--mp-dur-base) var(--mp-ease);">活动</a>
+      <a href="指南.dc.html" class="nav-link" style="color:rgba(255,255,255,0.82);text-decoration:none;font-size:14px;font-weight:500;transition:color var(--mp-dur-base) var(--mp-ease);">指南</a>
+    </div>
+  </nav>
+
+  <header style="position:relative;background:linear-gradient(158deg,#1b3a24 0%,#2f7d52 52%,#63a86a 118%);padding:clamp(22px,3vw,30px) clamp(20px,5vw,60px) clamp(30px,4vw,42px);overflow:hidden;">
+    <div style="position:absolute;top:-30%;right:2%;width:52%;height:170%;background:radial-gradient(circle,rgba(190,240,200,0.28) 0%,transparent 62%);pointer-events:none;"></div>
+    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(205,240,210,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(205,240,210,0.06) 1px,transparent 1px);background-size:42px 42px;-webkit-mask-image:radial-gradient(ellipse 70% 90% at 80% 40%,#000 10%,transparent 80%);mask-image:radial-gradient(ellipse 70% 90% at 80% 40%,#000 10%,transparent 80%);pointer-events:none;"></div>
+    <div style="position:relative;max-width:1120px;margin:0 auto;">
+      <div style="display:flex;align-items:center;gap:8px;font-family:var(--mp-font-mono);font-size:12.5px;color:rgba(255,255,255,0.64);margin-bottom:20px;flex-wrap:wrap;">
+        <a href="数字游民社区集合网.dc.html" class="crumb" style="color:rgba(255,255,255,0.64);text-decoration:none;transition:color var(--mp-dur-base) var(--mp-ease);">首页</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
+        <a href="城市.dc.html#ziyang" class="crumb" style="color:rgba(255,255,255,0.64);text-decoration:none;transition:color var(--mp-dur-base) var(--mp-ease);">资阳</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
+        <span style="color:#c9eecf;">DNβ 社区</span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 340px;gap:32px;align-items:center;">
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
+            <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 13px;background:rgba(99,168,106,0.24);border:1px solid rgba(130,205,120,0.5);border-radius:var(--mp-radius-pill);font-size:12.5px;font-weight:700;color:#c7ecb4;"><span class="mp-blink" style="width:7px;height:7px;border-radius:50%;background:#7fd45b;box-shadow:0 0 8px #7fd45b;"></span>营业中</span>
+            <span style="padding:4px 12px;background:rgba(205,240,210,0.16);border:1px solid rgba(205,240,210,0.34);border-radius:var(--mp-radius-pill);font-size:12px;font-weight:600;color:#dcefd3;">山景</span>
+            <span style="padding:4px 12px;background:rgba(205,240,210,0.16);border:1px solid rgba(205,240,210,0.34);border-radius:var(--mp-radius-pill);font-size:12px;font-weight:600;color:#dcefd3;">田园风光</span>
+          </div>
+          <h1 style="font-family:var(--mp-font-display);font-size:clamp(30px,4.4vw,48px);font-weight:800;color:#fff;line-height:1.05;letter-spacing:-1px;margin:0;text-shadow:0 3px 22px rgba(27,58,36,0.5);">资阳 · DNβ社区</h1>
+          <div style="font-size:13px;color:rgba(255,255,255,0.7);margin-top:6px;font-family:var(--mp-font-mono);letter-spacing:1px;">资阳国际数字游民社区 · 云起山丘</div>
+          <div style="display:flex;align-items:center;gap:8px;margin-top:12px;font-size:14px;color:rgba(255,255,255,0.82);">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#aee49a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            四川省资阳市雁江区童家沟云起山丘
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;margin-top:22px;flex-wrap:wrap;">
+            <div style="display:flex;align-items:baseline;gap:6px;">
+              <span style="font-family:var(--mp-font-mono);font-size:28px;font-weight:800;color:#fff;">¥1,500–2,200</span>
+              <span style="font-size:13px;color:rgba(255,255,255,0.72);">/ 月 · 按房型分级</span>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <span style="padding:5px 12px;background:rgba(255,255,255,0.16);border:1px solid rgba(255,255,255,0.32);border-radius:var(--mp-radius-pill);font-size:12px;font-weight:600;color:#fff;">单人间</span>
+              <span style="padding:5px 12px;background:rgba(255,255,255,0.16);border:1px solid rgba(255,255,255,0.32);border-radius:var(--mp-radius-pill);font-size:12px;font-weight:600;color:#fff;">双人间</span>
+              <span style="padding:5px 12px;background:rgba(255,255,255,0.16);border:1px solid rgba(255,255,255,0.32);border-radius:var(--mp-radius-pill);font-size:12px;font-weight:600;color:#fff;">Loft</span>
+            </div>
+          </div>
+        </div>
+        <div style="position:relative;width:100%;height:224px;border-radius:16px;overflow:hidden;box-shadow:0 12px 30px rgba(0,0,0,0.4);">
+          <img src="assets/dnbeta/exterior.png" alt="DNβ社区弧形木构外观" style="width:100%;height:100%;object-fit:cover;object-position:center 50%;">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div style="max-width:1120px;margin:0 auto;padding:clamp(28px,4vw,40px) clamp(20px,5vw,60px) clamp(48px,6vw,80px);display:grid;grid-template-columns:1fr 320px;gap:32px;align-items:start;">
+
+    <div style="min-width:0;display:flex;flex-direction:column;gap:28px;">
+
+      <section>
+        <h2 style="font-size:22px;font-weight:800;color:var(--mp-gray-900);margin:0 0 6px;letter-spacing:-0.3px;border:0;padding:0;">资阳 · DNβ社区</h2>
+        <p style="font-size:14.5px;line-height:1.7;color:var(--mp-gray-700);margin:0 0 16px;">DNβ社区（资阳国际数字游民社区）坐落于资阳雁江区童家沟的「云起山丘」——山景田园环抱，一栋弧形木瓦长廊建筑串起共享大厅、观景塔与花园庭院。房型有单人间、双人间与 Loft，配社区食堂，气候温润、绿意盎然，地处成渝之心，可通过「云起山丘」小程序或客服微信 DNbeta 申请入住，营业中。</p>
+        <div style="background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:8px 24px;">
+          <sc-for list="{{ info }}" as="it" hint-placeholder-count="10">
+            <div style="display:flex;align-items:flex-start;gap:16px;padding:15px 0;border-bottom:1px solid var(--mp-border-soft);">
+              <div style="display:flex;align-items:center;gap:10px;width:120px;flex-shrink:0;color:var(--mp-gray-500);">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2f7d52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="{{ it.icon }}"></use></svg>
+                <span style="font-size:13.5px;font-weight:600;">{{ it.k }}</span>
+              </div>
+              <span style="font-size:14px;line-height:1.6;color:var(--mp-gray-800);font-weight:500;">{{ it.v }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px;font-weight:800;color:var(--mp-gray-900);margin:0 0 6px;letter-spacing:-0.3px;border:0;padding:0;">价格 · 房型</h2>
+        <p style="font-size:13px;color:var(--mp-gray-400);margin:0 0 16px;font-family:var(--mp-font-mono);">周 / 月 · 双人间与 Loft 双人间按床位计价</p>
+        <div style="background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);overflow:hidden;">
+          <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr;background:linear-gradient(90deg,#2f7d52,#63a86a);color:#fff;">
+            <div style="padding:12px 16px;font-size:12.5px;font-weight:700;">房型</div>
+            <div style="padding:12px 8px;font-size:12.5px;font-weight:700;text-align:right;">周</div>
+            <div style="padding:12px 16px 12px 8px;font-size:12.5px;font-weight:700;text-align:right;">月</div>
+          </div>
+          <sc-for list="{{ prices }}" as="p" hint-placeholder-count="4">
+            <div class="price-row" style="display:grid;grid-template-columns:1.6fr 1fr 1fr;border-top:1px solid var(--mp-border-soft);transition:background var(--mp-dur-base) var(--mp-ease);">
+              <div style="padding:14px 16px;display:flex;flex-direction:column;gap:2px;">
+                <span style="font-size:13.5px;font-weight:700;color:var(--mp-gray-900);">{{ p.name }}</span>
+                <span style="font-size:11.5px;color:var(--mp-gray-400);">{{ p.extra }}</span>
+              </div>
+              <div style="padding:14px 8px;font-family:var(--mp-font-mono);font-size:13px;color:var(--mp-gray-600);text-align:right;align-self:center;">{{ p.w1 }}</div>
+              <div style="padding:14px 16px 14px 8px;font-family:var(--mp-font-mono);font-size:13.5px;font-weight:800;color:#2f7d52;text-align:right;align-self:center;">{{ p.m1 }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px;font-weight:800;color:var(--mp-gray-900);margin:0 0 16px;letter-spacing:-0.3px;border:0;padding:0;">入住须知与在地服务</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          <sc-for list="{{ rules }}" as="r" hint-placeholder-count="4">
+            <div style="background:#fff;border-radius:16px;box-shadow:var(--mp-shadow-card);padding:18px 20px;">
+              <div style="display:flex;align-items:center;gap:9px;margin-bottom:10px;">
+                <div style="width:32px;height:32px;border-radius:9px;background:{{ r.bg }};display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="{{ r.color }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="{{ r.icon }}"></use></svg>
+                </div>
+                <div style="font-size:14px;font-weight:800;color:var(--mp-gray-900);">{{ r.title }}</div>
+              </div>
+              <div style="font-size:12.5px;line-height:1.6;color:var(--mp-gray-600);">{{ r.body }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px;font-weight:800;color:var(--mp-gray-900);margin:0 0 16px;letter-spacing:-0.3px;border:0;padding:0;">实景相册</h2>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:128px;gap:12px;">
+          <div style="grid-column:span 2;grid-row:span 2;position:relative;border-radius:16px;overflow:hidden;box-shadow:var(--mp-shadow-card);">
+            <img src="assets/dnbeta/exterior.png" alt="弧形木构长廊外观" style="width:100%;height:100%;object-fit:cover;object-position:center 50%;">
+            <span style="position:absolute;left:12px;bottom:12px;padding:4px 11px;background:rgba(20,40,22,0.55);border-radius:var(--mp-radius-pill);font-size:12px;font-weight:600;color:#fff;backdrop-filter:blur(4px);">弧形木构长廊 · 花园庭院</span>
+          </div>
+          <div style="grid-column:span 2;grid-row:span 2;position:relative;border-radius:16px;overflow:hidden;box-shadow:var(--mp-shadow-card);">
+            <img src="assets/dnbeta/tower.png" alt="观景塔艺术园" style="width:100%;height:100%;object-fit:cover;">
+            <span style="position:absolute;left:12px;bottom:12px;padding:4px 11px;background:rgba(20,40,22,0.55);border-radius:var(--mp-radius-pill);font-size:12px;font-weight:600;color:#fff;backdrop-filter:blur(4px);">观景塔 · 艺术雕塑园</span>
+          </div>
+          <div style="grid-column:span 2;grid-row:span 2;position:relative;border-radius:16px;overflow:hidden;box-shadow:var(--mp-shadow-card);">
+            <img src="assets/dnbeta/loft.png" alt="Loft 下沉式客厅" style="width:100%;height:100%;object-fit:cover;object-position:center 50%;">
+            <span style="position:absolute;left:12px;bottom:12px;padding:4px 11px;background:rgba(20,40,22,0.55);border-radius:var(--mp-radius-pill);font-size:12px;font-weight:600;color:#fff;backdrop-filter:blur(4px);">Loft 复式 · 下沉式客厅</span>
+          </div>
+          <div style="grid-column:span 2;position:relative;border-radius:14px;overflow:hidden;box-shadow:var(--mp-shadow-card);">
+            <img src="assets/dnbeta/lounge.png" alt="共享大厅绿植" style="width:100%;height:100%;object-fit:cover;object-position:center 55%;">
+            <span style="position:absolute;left:12px;bottom:11px;padding:4px 11px;background:rgba(20,40,22,0.55);border-radius:var(--mp-radius-pill);font-size:12px;font-weight:600;color:#fff;backdrop-filter:blur(4px);">共享大厅 · 雨林绿植</span>
+          </div>
+          <div style="grid-column:span 2;position:relative;border-radius:14px;overflow:hidden;box-shadow:var(--mp-shadow-card);">
+            <img src="assets/dnbeta/twin.png" alt="双人间客房" style="width:100%;height:100%;object-fit:cover;object-position:center 55%;">
+            <span style="position:absolute;left:12px;bottom:11px;padding:4px 11px;background:rgba(20,40,22,0.55);border-radius:var(--mp-radius-pill);font-size:12px;font-weight:600;color:#fff;backdrop-filter:blur(4px);">双人间 · 落地窗山景</span>
+          </div>
+          <div style="grid-column:span 2;position:relative;border-radius:14px;overflow:hidden;box-shadow:var(--mp-shadow-card);">
+            <img src="assets/dnbeta/event.png" alt="启动仪式活动" style="width:100%;height:100%;object-fit:cover;object-position:center 45%;">
+            <span style="position:absolute;left:12px;bottom:11px;padding:4px 11px;background:rgba(20,40,22,0.55);border-radius:var(--mp-radius-pill);font-size:12px;font-weight:600;color:#fff;backdrop-filter:blur(4px);">社区舞台 · 启动仪式</span>
+          </div>
+          <div style="grid-column:span 2;position:relative;border-radius:14px;overflow:hidden;box-shadow:var(--mp-shadow-card);">
+            <img src="assets/dnbeta/terrace.png" alt="屋顶露台山景" style="width:100%;height:100%;object-fit:cover;object-position:center 55%;">
+            <span style="position:absolute;left:12px;bottom:11px;padding:4px 11px;background:rgba(20,40,22,0.55);border-radius:var(--mp-radius-pill);font-size:12px;font-weight:600;color:#fff;backdrop-filter:blur(4px);">屋顶露台 · 远山田园</span>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px;font-weight:800;color:var(--mp-gray-900);margin:0 0 16px;letter-spacing:-0.3px;border:0;padding:0;">配套场景</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;">
+          <sc-for list="{{ amenities }}" as="a" hint-placeholder-count="6">
+            <div style="display:flex;align-items:center;gap:11px;background:#fff;border-radius:14px;box-shadow:var(--mp-shadow-card);padding:16px 18px;">
+              <div style="width:38px;height:38px;border-radius:11px;background:{{ a.bg }};display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{ a.color }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="{{ a.icon }}"></use></svg>
+              </div>
+              <div style="font-size:13.5px;font-weight:700;color:var(--mp-gray-900);">{{ a.name }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+    </div>
+
+    <aside style="display:flex;flex-direction:column;gap:20px;position:sticky;top:82px;">
+      <div style="position:relative;border-radius:var(--mp-radius-lg);overflow:hidden;background:linear-gradient(150deg,#2f7d52,#63a86a);box-shadow:var(--mp-shadow-card);padding:22px;">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--mp-grad-spore);"></div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.78);margin-bottom:4px;">参考价</div>
+        <div style="font-family:var(--mp-font-mono);font-size:22px;font-weight:800;color:#fff;margin-bottom:16px;">¥1,500–2,200<span style="font-size:13px;font-weight:500;color:rgba(255,255,255,0.78);"> / 月 · 按房型分级</span></div>
+        <div style="display:flex;align-items:flex-start;gap:9px;padding:12px 14px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:12px;margin-bottom:12px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c9eecf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><path d="M9 9a3 3 0 1 1 5 2.24"></path><path d="m9 12 3 3 8-8"></path><path d="M12 22a10 10 0 1 1 8-16"></path></svg>
+          <div style="font-size:12.5px;line-height:1.55;color:rgba(255,255,255,0.9);">预定方式：「云起山丘」小程序申请，客服微信 DNbeta。</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;padding:9px 13px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:10px;margin-bottom:12px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c9eecf" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M8 2v4M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path></svg>
+          <div style="font-size:12.5px;font-weight:600;color:#eafaf0;">开业于 2024.04.12 · 营业中</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;padding:9px 13px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:10px;margin-bottom:14px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c9eecf" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M3 2v7c0 1.1.9 2 2 2a2 2 0 0 0 2-2V2M7 2v20M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg>
+          <div style="font-size:12.5px;font-weight:600;color:#eafaf0;">有食堂 · 健身房暂无</div>
+        </div>
+        <button class="cta-btn" onclick="window.location.href='入住登记.dc.html'" style="display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:13px;background:#fff;border:0;border-radius:var(--mp-radius-pill);color:#2f7d52;font-family:inherit;font-size:14.5px;font-weight:700;cursor:pointer;transition:all var(--mp-dur-base) var(--mp-ease);">
+          申请入住
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </button>
+      </div>
+
+      <div style="background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:20px 12px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mp-gray-900);margin:0 12px 8px;">关注与了解</div>
+        <sc-for list="{{ links }}" as="l" hint-placeholder-count="3">
+          <a href="{{ l.href }}" target="_blank" rel="noopener" class="link-row" style="display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:11px;text-decoration:none;transition:background var(--mp-dur-base) var(--mp-ease);">
+            <div style="width:34px;height:34px;border-radius:10px;background:{{ l.bg }};display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="{{ l.color }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="{{ l.icon }}"></use></svg>
+            </div>
+            <div style="flex:1;min-width:0;"><div style="font-size:13px;font-weight:600;color:var(--mp-gray-800);">{{ l.k }}</div><div style="font-size:12px;color:var(--mp-gray-400);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{ l.v }}</div></div>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--mp-gray-300)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M9 18l6-6-6-6"></path></svg>
+          </a>
+        </sc-for>
+      </div>
+
+      <div style="background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:20px 22px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mp-gray-900);margin-bottom:12px;">速览</div>
+        <div style="display:flex;flex-direction:column;">
+          <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--mp-border-soft);"><span style="font-size:13px;color:var(--mp-gray-500);">开业时间</span><span style="font-size:13px;font-weight:600;color:var(--mp-gray-800);">2024.04.12</span></div>
+          <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--mp-border-soft);"><span style="font-size:13px;color:var(--mp-gray-500);">状态</span><span style="font-size:13px;font-weight:700;color:#15915a;">营业中</span></div>
+          <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--mp-border-soft);"><span style="font-size:13px;color:var(--mp-gray-500);">省份</span><span style="font-size:13px;font-weight:600;color:var(--mp-gray-800);">四川 · 资阳雁江</span></div>
+          <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--mp-border-soft);"><span style="font-size:13px;color:var(--mp-gray-500);">健身房</span><span style="font-size:13px;font-weight:600;color:var(--mp-gray-800);">无</span></div>
+          <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--mp-border-soft);"><span style="font-size:13px;color:var(--mp-gray-500);">吃饭相关</span><span style="font-size:13px;font-weight:600;color:var(--mp-gray-800);">有食堂 · 其他待确认</span></div>
+          <div style="display:flex;justify-content:space-between;padding:8px 0;"><span style="font-size:13px;color:var(--mp-gray-500);">房型</span><span style="font-size:13px;font-weight:600;color:var(--mp-gray-800);">单 / 双人间 · Loft</span></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <svg width="0" height="0" style="position:absolute;" aria-hidden="true"><defs>
+    <symbol id="bi-cal" viewBox="0 0 24 24"><path d="M8 2v4M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path></symbol>
+    <symbol id="bi-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></symbol>
+    <symbol id="bi-money" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></symbol>
+    <symbol id="bi-click" viewBox="0 0 24 24"><path d="M9 9a3 3 0 1 1 5 2.24"></path><path d="m9 12 3 3 8-8"></path><path d="M12 22a10 10 0 1 1 8-16"></path></symbol>
+    <symbol id="bi-bed" viewBox="0 0 24 24"><path d="M2 9V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v3"></path><path d="M2 11v5a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"></path></symbol>
+    <symbol id="bi-wechat" viewBox="0 0 24 24"><path d="M8 3C4.7 3 2 5.4 2 8.3c0 1.6.8 3 2.1 4L3 15l2.8-1.3c.7.2 1.4.3 2.2.3M16 8c-3.3 0-6 2.4-6 5.3S12.7 18.6 16 18.6c.7 0 1.4-.1 2-.3L20.5 20l-.9-2.2c1.3-1 2.4-2.4 2.4-4C22 10.4 19.3 8 16 8Z"></path></symbol>
+    <symbol id="bi-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></symbol>
+    <symbol id="bi-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path><path d="M2 12h20"></path></symbol>
+    <symbol id="bi-form" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6M9 13h6M9 17h4"></path></symbol>
+    <symbol id="bi-food" viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2h0a2 2 0 0 0 2-2V2M7 2v20M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></symbol>
+    <symbol id="bi-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6"></path></symbol>
+    <symbol id="bi-mountain" viewBox="0 0 24 24"><path d="m8 3 4 8 5-5 5 15H2L8 3z"></path></symbol>
+    <symbol id="bi-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path></symbol>
+    <symbol id="bi-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"></path></symbol>
+  </defs></svg>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const info = [
+      { icon: '#bi-cal', k: '开业时间', v: 'April 12, 2024（营业中）' },
+      { icon: '#bi-pin', k: '详细地址', v: '四川省资阳市雁江区童家沟云起山丘' },
+      { icon: '#bi-money', k: '参考价', v: '¥1,500 / 月 – ¥2,200 / 月（按房型分级）' },
+      { icon: '#bi-click', k: '预定方式', v: '「云起山丘」小程序申请 · 客服微信 DNbeta' },
+      { icon: '#bi-bed', k: '可订房型', v: '单人间 / 双人间 / Loft' },
+      { icon: '#bi-wechat', k: '公众号', v: '资阳国际数字游民社区' },
+      { icon: '#bi-book', k: '小红书', v: '资阳国际数字游民社区' },
+      { icon: '#bi-globe', k: '省份', v: '四川' },
+      { icon: '#bi-form', k: '健身房', v: '无' },
+      { icon: '#bi-food', k: '吃饭相关', v: '有食堂 · 其他待确认' }
+    ];
+    const prices = [
+      { name: '单人间', extra: '整间', w1: '¥500/周', m1: '¥1,800/月' },
+      { name: '双人间', extra: '按床位', w1: '¥400/周/床位', m1: '¥1,500/月/床位' },
+      { name: 'Loft 单人间', extra: '整间 · 复式', w1: '¥600/周', m1: '¥2,200/月' },
+      { name: 'Loft 双人间', extra: '按床位 · 复式', w1: '¥500/周/床位', m1: '¥1,800/月/床位' }
+    ];
+    const rules = [
+      { icon: '#bi-shield', title: '申请入住制', body: '通过「云起山丘」小程序填写信息申请，或添加客服微信 DNbeta 咨询；社区审核后安排意向房型。', bg: 'rgba(47,125,82,0.1)', color: '#2f7d52' },
+      { icon: '#bi-bed', title: '房型与计价', body: '提供单人间、双人间与 Loft；双人间与 Loft 双人间按床位计价，单人间与 Loft 单人间为整间。健身房暂未配备。', bg: 'rgba(42,111,219,0.1)', color: 'var(--mp-action)' },
+      { icon: '#bi-food', title: '餐饮服务', body: '社区设有食堂，其他餐饮细节暂为待确认，长住三餐建议提前与社区沟通。', bg: 'rgba(245,87,108,0.12)', color: '#e0344f' },
+      { icon: '#bi-leaf', title: '社区定位', body: '「资阳国际数字游民社区」，雁江区童家沟云起山丘，山景田园，配弧形木构长廊、观景塔、艺术雕塑园与花园庭院。', bg: 'rgba(99,168,106,0.16)', color: '#57893f' }
+    ];
+    const amenities = [
+      { icon: '#bi-mountain', name: '山景 · 云起山丘', bg: 'rgba(47,125,82,0.12)', color: '#2f7d52' },
+      { icon: '#bi-leaf', name: '田园风光', bg: 'rgba(67,233,123,0.14)', color: '#15915a' },
+      { icon: '#bi-form', name: '观景塔 · 艺术园', bg: 'rgba(118,75,162,0.1)', color: 'var(--mp-purple-700)' },
+      { icon: '#bi-food', name: '社区食堂', bg: 'rgba(245,87,108,0.12)', color: '#e0344f' },
+      { icon: '#bi-book', name: '共享大厅', bg: 'rgba(42,111,219,0.1)', color: 'var(--mp-action)' },
+      { icon: '#bi-users', name: '花园庭院 · 共居', bg: 'rgba(240,195,62,0.16)', color: '#c9971f' }
+    ];
+    const links = [
+      { icon: '#bi-wechat', k: '公众号', v: '资阳国际数字游民社区', bg: 'rgba(67,233,123,0.14)', color: '#15915a', href: '#' },
+      { icon: '#bi-book', k: '小红书', v: '资阳国际数字游民社区', bg: 'rgba(245,87,108,0.12)', color: '#e0344f', href: '#' },
+      { icon: '#bi-globe', k: '官方介绍', v: 'mp.weixin.qq.com', bg: 'rgba(47,125,82,0.12)', color: '#2f7d52', href: 'https://mp.weixin.qq.com/s/5zKlDNVxAo2lJzYcOD5pUA' }
+    ];
+    return { info, prices, rules, amenities, links };
+  }
+}
+</script>
+</body>
+</html>

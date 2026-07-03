@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="assets/mycelium-tokens.css">
+<script src="auth-nav.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: var(--mp-font-sans); color: var(--mp-fg-1); background: #fff; -webkit-font-smoothing: antialiased; }
+  ::selection { background: rgba(118,75,162,0.22); }
+  @keyframes mp-float { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-22px) rotate(6deg); } }
+  @keyframes mp-rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .mp-link:hover { color: #fff !important; }
+  .mp-card-x:hover { transform: translateY(-10px); box-shadow: var(--mp-shadow-card-hover); }
+  .mp-card-x:hover .mp-cover-img { transform: scale(1.06); }
+  .mp-metrics { opacity: 0; transform: translateY(8px); transition: opacity var(--mp-dur-base) var(--mp-ease), transform var(--mp-dur-base) var(--mp-ease); pointer-events: none; }
+  .mp-card-x:hover .mp-metrics { opacity: 1; transform: translateY(0); }
+  .mp-metrics .mp-bar-fill { transform: scaleX(0); transform-origin: left; transition: transform var(--mp-dur-slow) var(--mp-ease); }
+  .mp-card-x:hover .mp-metrics .mp-bar-fill { transform: scaleX(1); }
+  .mp-btn-x:hover { transform: translateY(-2px); box-shadow: var(--mp-shadow-button); }
+  .mp-ghost:hover { background: rgba(255,255,255,0.16) !important; }
+  .mp-foot-link:hover { color: #fff !important; }
+  .mp-detail:hover { gap: 10px !important; color: var(--mp-purple-700) !important; }
+  @keyframes mp-reg-fade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes mp-reg-pop { from { opacity: 0; transform: translateY(14px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+  .reg-bd { animation: mp-reg-fade .2s ease; }
+  .reg-cd { animation: mp-reg-pop .28s var(--mp-ease); }
+  .reg-in2:focus { border-color: var(--mp-purple-500) !important; background: #fff !important; box-shadow: 0 0 0 4px rgba(118,75,162,0.10) !important; }
+  .reg-b2:hover { transform: translateY(-2px); box-shadow: var(--mp-shadow-button); }
+  .reg-x:hover { background: var(--mp-gray-100) !important; color: var(--mp-gray-800) !important; }
+  .reg-eye:hover { color: var(--mp-purple-700) !important; }
+  .reg-a:hover { color: var(--mp-purple-700) !important; }
+  @keyframes mp-dash { to { stroke-dashoffset: -16; } }
+  @keyframes mp-blink { 0%,100% { opacity: 1; } 50% { opacity: .2; } }
+  @keyframes mp-pulse { 0%,100% { opacity: .45; transform: scale(1); } 50% { opacity: .08; transform: scale(1.9); } }
+  .mp-halo { transform-box: fill-box; transform-origin: center; animation: mp-pulse 3.4s ease-in-out infinite; }
+  .mp-flow { animation: mp-dash 1.1s linear infinite; }
+  .mp-blink { animation: mp-blink 1.6s ease-in-out infinite; }
+  .u-search:focus-within { border-color: #5fe0c8 !important; }
+  .bd-card:hover { background: var(--mp-gray-50) !important; }
+  .bd-card:hover .bd-med { transform: scale(1.08) rotate(4deg); }
+  .bd-card:hover .bd-arrow { transform: translateX(3px); stroke: var(--mp-purple-500); }
+  @keyframes mp-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .mp-mq-wrap:hover .mp-mq-track { animation-play-state: paused; }
+  .mp-ev:hover { color: var(--mp-purple-700) !important; }
+  .mp-ev:hover .mp-ev-city { background: var(--mp-purple-500) !important; color:#fff !important; }
+  .mp-chip:hover { border-width: 2px !important; transform: translateY(-1px); box-shadow: 0 0 0 3px rgba(159,233,220,0.12), 0 0 16px rgba(159,233,220,0.55); border-color: rgba(159,233,220,0.75) !important; }
+  .mp-pager { transition: transform var(--mp-dur-base) var(--mp-ease), box-shadow var(--mp-dur-base) var(--mp-ease), background var(--mp-dur-base) var(--mp-ease); }
+  .mp-pager:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(102,126,234,0.4); }
+  .mp-pager:hover .mp-pager-arrow { transform: translateX(3px); }
+  .mp-pager-arrow { transition: transform var(--mp-dur-base) var(--mp-ease); }
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:#fff;overflow-x:hidden;">
+
+  <!-- ===== NAV ===== -->
+  <nav style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:10px clamp(20px,5vw,60px);background:rgba(18,14,43,0.82);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.12);">
+    <div style="display:flex;align-items:center;gap:11px;">
+      <img src="assets/mushroom-logo.png" alt="" style="width:38px;height:38px;object-fit:contain;filter:drop-shadow(0 4px 8px rgba(0,0,0,0.3));">
+      <div style="line-height:1.05;">
+        <div style="font-size:19px;font-weight:800;color:#fff;letter-spacing:0.2px;">{{ t.brand }}</div>
+        <div style="font-size:11px;font-weight:500;color:rgba(255,255,255,0.62);letter-spacing:1.5px;">{{ t.brandSub }}</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:30px;">
+      <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="4">
+        <a href="{{ link.href }}" class="mp-link" style="color:rgba(255,255,255,0.82);text-decoration:none;font-size:15px;font-weight:500;transition:color var(--mp-dur-base) var(--mp-ease);">{{ link.label }}</a>
+      </sc-for>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;">
+      <button onClick="{{ toggle }}" class="mp-ghost" style="display:flex;align-items:center;gap:6px;padding:7px 14px;background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.22);border-radius:var(--mp-radius-pill);color:#fff;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;transition:background var(--mp-dur-base) var(--mp-ease);">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20"></path><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        {{ langLabel }}
+      </button>
+      <a href="#" onClick="{{ openLogin }}" class="mp-link" style="color:rgba(255,255,255,0.82);text-decoration:none;font-size:15px;font-weight:500;cursor:pointer;">{{ t.login }}</a>
+      <a href="社区入驻.dc.html" class="mp-btn-x" style="padding:7px 14px;background:#fff;color:var(--mp-purple-700);text-decoration:none;border-radius:var(--mp-radius-pill);font-size:13px;font-weight:600;box-shadow:0 4px 14px rgba(0,0,0,0.18);transition:all var(--mp-dur-base) var(--mp-ease);">{{ t.submit }}</a>
+      <a href="我的主页.dc.html" data-home-avatar title="李漫游 · 我的主页" class="avatar-nav" style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:800;text-decoration:none;border:2px solid rgba(255,255,255,0.45);transition:transform var(--mp-dur-base) var(--mp-ease),box-shadow var(--mp-dur-base) var(--mp-ease);">李</a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <header style="position:relative;background:linear-gradient(160deg,#120e2b 0%,#1b1440 46%,#2c2060 100%);padding:clamp(34px,4.5vw,60px) clamp(20px,5vw,60px) clamp(20px,2.5vw,32px);overflow:hidden;">
+    <!-- violet glow -->
+    <div style="position:absolute;top:-20%;right:-8%;width:65%;height:140%;background:radial-gradient(circle,rgba(123,95,224,0.45) 0%,transparent 60%);pointer-events:none;"></div>
+    <!-- blueprint grid -->
+    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(150,140,230,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(150,140,230,0.06) 1px,transparent 1px);background-size:46px 46px;-webkit-mask-image:radial-gradient(ellipse 75% 80% at 72% 45%,#000 10%,transparent 78%);mask-image:radial-gradient(ellipse 75% 80% at 72% 45%,#000 10%,transparent 78%);pointer-events:none;"></div>
+    <!-- filament network -->
+    <svg viewBox="0 0 120 70" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;">
+      <defs>
+        <radialGradient id="glowN" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#7b5fe0" stop-opacity="0.5"></stop><stop offset="100%" stop-color="#7b5fe0" stop-opacity="0"></stop></radialGradient>
+        <linearGradient id="sporeN" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff6b6b"></stop><stop offset="50%" stop-color="#4ecdc4"></stop><stop offset="100%" stop-color="#45b7d1"></stop></linearGradient>
+      </defs>
+      <circle cx="70" cy="34" r="32" fill="url(#glowN)"></circle>
+      <sc-for list="{{ edges }}" as="e" hint-placeholder-count="16">
+        <line x1="{{ e.x1 }}" y1="{{ e.y1 }}" x2="{{ e.x2 }}" y2="{{ e.y2 }}" stroke="rgba(160,150,220,0.20)" stroke-width="0.3"></line>
+      </sc-for>
+      <sc-if value="{{ motion }}" hint-placeholder-val="{{ true }}">
+        <line x1="16" y1="20" x2="50" y2="16" stroke="rgba(95,224,200,0.5)" stroke-width="0.4" stroke-dasharray="2 3" class="mp-flow"></line>
+        <line x1="50" y1="16" x2="64" y2="36" stroke="rgba(95,224,200,0.5)" stroke-width="0.4" stroke-dasharray="2 3" class="mp-flow"></line>
+        <line x1="64" y1="36" x2="90" y2="50" stroke="rgba(95,224,200,0.5)" stroke-width="0.4" stroke-dasharray="2 3" class="mp-flow"></line>
+        <line x1="34" y1="44" x2="56" y2="58" stroke="rgba(123,95,224,0.6)" stroke-width="0.4" stroke-dasharray="2 3" class="mp-flow"></line>
+      </sc-if>
+      <sc-for list="{{ nodes }}" as="n" hint-placeholder-count="11">
+        <circle cx="{{ n.cx }}" cy="{{ n.cy }}" r="{{ n.halo }}" fill="{{ n.haloFill }}" class="mp-halo"></circle>
+        <circle cx="{{ n.cx }}" cy="{{ n.cy }}" r="{{ n.r }}" fill="{{ n.fill }}" stroke="rgba(255,255,255,0.4)" stroke-width="0.18"></circle>
+      </sc-for>
+      <sc-for list="{{ hotLabels }}" as="hl" hint-placeholder-count="3">
+        <text x="{{ hl.x }}" y="{{ hl.y }}" fill="rgba(255,255,255,0.82)" font-size="2" font-family="monospace" text-anchor="{{ hl.anchor }}">{{ hl.t }}</text>
+      </sc-for>
+      <sc-if value="{{ motion }}" hint-placeholder-val="{{ true }}">
+        <circle r="0.7" fill="#aef3e7"><animateMotion dur="6s" repeatCount="indefinite" path="M16 20 L50 16 L64 36 L90 50"></animateMotion></circle>
+        <circle r="0.6" fill="#c5b6ff"><animateMotion dur="5s" repeatCount="indefinite" path="M34 44 L56 58 L90 50"></animateMotion></circle>
+        <circle r="0.6" fill="#aef3e7"><animateMotion dur="7s" repeatCount="indefinite" path="M10 40 L34 44 L64 36 L104 30"></animateMotion></circle>
+      </sc-if>
+    </svg>
+    <!-- left mute for legibility -->
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(16,12,38,0.92) 0%,rgba(16,12,38,0.55) 42%,rgba(16,12,38,0) 70%);pointer-events:none;"></div>
+    <!-- HUD corner ticks -->
+    <div style="position:absolute;top:16px;left:16px;width:16px;height:16px;border-top:1.5px solid rgba(95,224,200,0.45);border-left:1.5px solid rgba(95,224,200,0.45);pointer-events:none;"></div>
+    <div style="position:absolute;top:16px;right:16px;width:16px;height:16px;border-top:1.5px solid rgba(95,224,200,0.45);border-right:1.5px solid rgba(95,224,200,0.45);pointer-events:none;"></div>
+    <div style="position:absolute;bottom:16px;left:16px;width:16px;height:16px;border-bottom:1.5px solid rgba(95,224,200,0.45);border-left:1.5px solid rgba(95,224,200,0.45);pointer-events:none;"></div>
+    <div style="position:absolute;bottom:16px;right:16px;width:16px;height:16px;border-bottom:1.5px solid rgba(95,224,200,0.45);border-right:1.5px solid rgba(95,224,200,0.45);pointer-events:none;"></div>
+    <div style="position:absolute;top:20px;right:44px;font-family:monospace;font-size:11px;letter-spacing:1px;color:rgba(159,233,220,0.55);pointer-events:none;">NET 0xMYC · NODES 128 · SYNC 99.2%</div>
+
+    <div style="position:relative;max-width:1200px;margin:0 auto;">
+      <div style="display:inline-flex;align-items:center;gap:11px;padding:7px 16px;background:rgba(95,224,200,0.08);border:1px solid rgba(95,224,200,0.30);border-radius:var(--mp-radius-pill);backdrop-filter:blur(10px);margin-bottom:18px;font-family:monospace;">
+        <span class="mp-blink" style="width:7px;height:7px;border-radius:50%;background:#5fe0c8;box-shadow:0 0 10px #5fe0c8;"></span>
+        <span style="color:#9fe9dc;font-size:12px;letter-spacing:2px;">LIVE</span>
+        <span style="width:1px;height:11px;background:rgba(255,255,255,0.2);"></span>
+        <span style="color:rgba(255,255,255,0.72);font-size:12px;letter-spacing:1px;">{{ t.kicker }}</span>
+      </div>
+      <h1 style="font-family:var(--mp-font-display);font-size:clamp(40px,6vw,76px);font-weight:800;line-height:1.08;letter-spacing:-1.5px;color:#fff;margin:0 0 14px 0;min-height:2.16em;white-space:pre-line;text-shadow:0 0 44px rgba(123,95,224,0.55);transition:opacity 0.5s var(--mp-ease);opacity:{{ headlineOpacity }};">{{ headlineText }}</h1>
+      <p style="max-width:600px;font-size:clamp(16px,1.6vw,20px);font-weight:300;line-height:1.6;color:rgba(255,255,255,0.9);margin:0 0 22px 0;">{{ t.sub }}</p>
+
+      <!-- search -->
+      <div class="u-search" style="display:flex;align-items:center;gap:12px;max-width:660px;padding:9px 9px 9px 18px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.18);border-radius:var(--mp-radius-pill);backdrop-filter:blur(12px);box-shadow:0 14px 44px rgba(0,0,0,0.35);transition:border-color var(--mp-dur-base) var(--mp-ease);">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5fe0c8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+        <input type="text" placeholder="{{ t.searchPh }}" style="flex:1;border:0;outline:none;background:transparent;font-family:inherit;font-size:16px;color:#fff;">
+        <span style="font-family:monospace;font-size:11px;color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.2);border-radius:6px;padding:3px 7px;letter-spacing:0.5px;">⌘K</span>
+        <a href="#" class="mp-btn-x" style="padding:13px 26px;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;text-decoration:none;border-radius:var(--mp-radius-pill);font-size:15px;font-weight:600;white-space:nowrap;box-shadow:0 6px 18px rgba(102,126,234,0.5);transition:all var(--mp-dur-base) var(--mp-ease);">{{ t.cta }}</a>
+      </div>
+
+      <!-- filter chips -->
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;">
+        <sc-for list="{{ chips }}" as="chip" hint-placeholder-count="6">
+          <span class="mp-chip" style="padding:7px 15px;border-radius:var(--mp-radius-pill);font-family:monospace;font-size:13px;font-weight:600;letter-spacing:0.5px;cursor:pointer;background:{{ chip.bg }};color:{{ chip.color }};border:{{ chip.border }};transition:all var(--mp-dur-base) var(--mp-ease);">{{ chip.label }}</span>
+        </sc-for>
+      </div>
+
+      <!-- stats band -->
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(28px,5vw,64px);margin-top:30px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.18);">
+        <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+          <div>
+            <div style="font-family:monospace;font-size:clamp(26px,3vw,38px);font-weight:800;color:#fff;line-height:1;letter-spacing:-0.5px;">{{ s.n }}</div>
+            <div style="font-size:13px;font-weight:500;color:rgba(255,255,255,0.72);margin-top:6px;letter-spacing:0.5px;">{{ s.l }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <!-- ===== INTERACTIVE NODES: hover -> cartoon landscape ===== -->
+    <svg viewBox="0 0 120 70" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%;z-index:6;pointer-events:none;overflow:visible;">
+      <defs>
+        <symbol id="scn-anji" viewBox="0 0 100 50">
+          <path d="M0 50 Q26 42 52 48 T100 45" fill="none" stroke="#bfe6c4" stroke-width="3"></path>
+          <g fill="none" stroke="#2f9152" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="48" x2="22" y2="8"></line><line x1="40" y1="49" x2="41" y2="5"></line><line x1="61" y1="48" x2="60" y2="10"></line><line x1="79" y1="49" x2="80" y2="7"></line>
+            <path d="M19 40 h6 M19 28 h6 M19 16 h6 M38 38 h6 M38 26 h6 M38 14 h6 M58 41 h6 M58 29 h6 M58 18 h6 M77 37 h6 M77 25 h6 M77 13 h6" stroke-width="1.5"></path>
+            <path d="M22 12 q10 -2 16 -8 M22 16 q-9 -3 -15 -8 M41 8 q10 -1 15 -6 M41 12 q-9 -2 -14 -7 M80 10 q9 -2 14 -7 M80 14 q-8 -2 -13 -6" stroke-width="1.7"></path>
+          </g>
+        </symbol>
+        <symbol id="scn-dali" viewBox="0 0 100 50">
+          <circle cx="80" cy="12" r="7" fill="#ffd28a"></circle>
+          <path d="M0 40 L16 18 L28 32 L44 12 L60 34 L76 20 L100 40 Z" fill="#cfe0f5" stroke="#5b86c9" stroke-width="1.5" stroke-linejoin="round"></path>
+          <path d="M41 14 L44 12 L47 17" fill="none" stroke="#ffffff" stroke-width="1.4"></path>
+          <g fill="none" stroke="#4aa3c9" stroke-width="1.8" stroke-linecap="round">
+            <path d="M6 45 q8 -3 16 0 t16 0 t16 0 t16 0"></path><path d="M2 48 q8 -3 16 0 t16 0 t16 0 t16 0 t16 0"></path>
+          </g>
+        </symbol>
+        <symbol id="scn-chengdu" viewBox="0 0 100 50">
+          <circle cx="33" cy="14" r="8" fill="#2b2b33"></circle><circle cx="67" cy="14" r="8" fill="#2b2b33"></circle>
+          <circle cx="50" cy="28" r="19" fill="#ffffff" stroke="#2b2b33" stroke-width="2"></circle>
+          <ellipse cx="42" cy="26" rx="5" ry="7" fill="#2b2b33"></ellipse><ellipse cx="58" cy="26" rx="5" ry="7" fill="#2b2b33"></ellipse>
+          <circle cx="42.5" cy="25" r="1.6" fill="#ffffff"></circle><circle cx="57.5" cy="25" r="1.6" fill="#ffffff"></circle>
+          <ellipse cx="50" cy="31" rx="2" ry="1.3" fill="#2b2b33"></ellipse>
+          <line x1="70" y1="40" x2="80" y2="26" stroke="#3a9d5d" stroke-width="2"></line>
+          <path d="M80 26 q5 -2 8 -6 M80 30 q5 -1 9 -3" fill="none" stroke="#3a9d5d" stroke-width="1.6"></path>
+        </symbol>
+        <symbol id="scn-banna" viewBox="0 0 100 50">
+          <circle cx="20" cy="14" r="6" fill="#ffd28a"></circle>
+          <path d="M58 48 q-6 -16 2 -30" fill="none" stroke="#9a6b3f" stroke-width="2.6" stroke-linecap="round"></path>
+          <g fill="none" stroke="#2f9152" stroke-width="2" stroke-linecap="round">
+            <path d="M60 18 q-14 -6 -24 -2"></path><path d="M60 18 q-8 -14 -20 -16"></path><path d="M60 18 q14 -8 26 -4"></path><path d="M60 18 q8 -14 20 -16"></path>
+          </g>
+          <path d="M14 48 q-2 -14 10 -18 q12 4 8 18 Z" fill="#cdeccd" stroke="#2f9152" stroke-width="1.5"></path>
+          <path d="M22 32 v14 M18 36 h8 M18 41 h9" fill="none" stroke="#2f9152" stroke-width="1.2"></path>
+        </symbol>
+        <symbol id="scn-moganshan" viewBox="0 0 100 50">
+          <path d="M0 42 L24 14 L44 42 Z" fill="#d7e4f0" stroke="#5b86c9" stroke-width="1.5" stroke-linejoin="round"></path>
+          <path d="M40 42 L62 20 L84 42 Z" fill="#cfe0f5" stroke="#5b86c9" stroke-width="1.5" stroke-linejoin="round"></path>
+          <g fill="#2f9152" stroke="#2f9152" stroke-width="1"><path d="M70 44 L75 30 L80 44 Z"></path><path d="M71 38 L75 28 L79 38 Z"></path></g>
+          <rect x="16" y="36" width="12" height="9" fill="#ffffff" stroke="#9a6b3f" stroke-width="1.4"></rect>
+          <path d="M15 36 L22 29 L29 36 Z" fill="#e1564f" stroke="#9a6b3f" stroke-width="1.2" stroke-linejoin="round"></path>
+          <rect x="20" y="39" width="4" height="6" fill="#9a6b3f"></rect>
+          <line x1="0" y1="45" x2="100" y2="45" stroke="#bfe6c4" stroke-width="2"></line>
+        </symbol>
+        <symbol id="scn-jingdezhen" viewBox="0 0 100 50">
+          <path d="M44 6 h12 v4 q8 6 8 18 q0 12 -14 14 q-14 -2 -14 -14 q0 -12 8 -18 Z" fill="#ffffff" stroke="#2f6cc0" stroke-width="1.8" stroke-linejoin="round"></path>
+          <path d="M42 24 q8 4 16 0 M40 30 q10 5 20 0" fill="none" stroke="#2f6cc0" stroke-width="1.4"></path>
+          <circle cx="50" cy="20" r="3" fill="none" stroke="#2f6cc0" stroke-width="1.2"></circle>
+          <ellipse cx="50" cy="46" rx="12" ry="2.4" fill="#e6eefb" stroke="#2f6cc0" stroke-width="1"></ellipse>
+        </symbol>
+      </defs>
+      <sc-for list="{{ hoverNodes }}" as="hn" hint-placeholder-count="7">
+        <circle cx="{{ hn.cx }}" cy="{{ hn.cy }}" r="3.8" fill="transparent" style="cursor:pointer;pointer-events:all;" onMouseEnter="{{ hn.onEnter }}" onMouseLeave="{{ hn.onLeave }}" onClick="{{ hn.onClick }}"></circle>
+      </sc-for>
+      <sc-if value="{{ pop }}" hint-placeholder-val="{{ false }}">
+        <circle cx="{{ pop.vx }}" cy="{{ pop.vy }}" r="2.4" fill="none" stroke="#5fe0c8" stroke-width="0.6"></circle>
+      </sc-if>
+    </svg>
+    <sc-if value="{{ pop }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;left:{{ pop.left }}px;top:{{ pop.top }}px;transform:{{ pop.transform }};z-index:8;pointer-events:none;width:252px;display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:rgba(18,13,40,0.94);backdrop-filter:blur(14px);border:1px solid rgba(95,224,200,0.32);border-radius:14px;box-shadow:0 18px 44px rgba(0,0,0,0.5);">
+        <div style="font-size:24px;line-height:1.1;flex-shrink:0;">{{ pop.emoji }}</div>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:#ffffff;line-height:1.4;"><span style="border-bottom:2px solid #5fe0c8;padding-bottom:1px;">{{ pop.lead }}</span></div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.72);line-height:1.5;margin-top:5px;">{{ pop.rest }}</div>
+        </div>
+      </div>
+    </sc-if>
+  </header>
+
+  <!-- ===== COMMUNITY LIST ===== -->
+  <main style="max-width:1200px;margin:0 auto;padding:clamp(14px,2vw,22px) clamp(20px,5vw,60px) clamp(28px,3.5vw,44px);">
+    <!-- ===== EVENT TICKER ===== -->
+    <div class="mp-mq-wrap" style="position:relative;z-index:5;margin-top:0;display:flex;align-items:stretch;margin-bottom:18px;background:#fff;border:1px solid var(--mp-border-soft);border-radius:var(--mp-radius-pill);box-shadow:0 12px 30px rgba(18,12,38,0.18);overflow:hidden;">
+      <div style="flex-shrink:0;display:flex;align-items:center;gap:8px;padding:12px 18px;background:linear-gradient(135deg,#120e2b,#2c2060);color:#fff;font-family:var(--mp-font-mono);">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5fe0c8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.9 16.1C1 12.2 1 5.8 4.9 1.9"></path><path d="M7.8 4.7a6.14 6.14 0 0 0 0 8.6"></path><circle cx="12" cy="9" r="2"></circle><path d="M16.2 4.7a6.14 6.14 0 0 1 0 8.6"></path><path d="M19.1 1.9a8.4 8.4 0 0 1 0 14.2"></path><path d="M12 11v10"></path></svg>
+        <span class="mp-blink" style="font-size:12px;font-weight:700;letter-spacing:1.5px;">{{ t.tickerLabel }}</span>
+      </div>
+      <div style="position:relative;flex:1;min-width:0;overflow:hidden;display:flex;align-items:center;">
+        <div class="mp-mq-track" style="display:flex;align-items:center;gap:38px;white-space:nowrap;padding-left:38px;animation:mp-marquee 38s linear infinite;will-change:transform;">
+          <sc-for list="{{ tickerEvents }}" as="ev" hint-placeholder-count="10">
+            <a href="活动.dc.html" class="mp-ev" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--mp-gray-700);font-size:14px;transition:color var(--mp-dur-base) var(--mp-ease);">
+              <span class="mp-ev-city" style="flex-shrink:0;padding:3px 10px;border-radius:var(--mp-radius-pill);background:var(--mp-gray-100);color:var(--mp-purple-700);font-size:12px;font-weight:700;transition:all var(--mp-dur-base) var(--mp-ease);">{{ ev.city }}</span>
+              <span style="font-weight:600;">{{ ev.title }}</span>
+              <span style="font-family:var(--mp-font-mono);font-size:12.5px;color:var(--mp-gray-500);">{{ ev.date }}</span>
+              <span style="width:5px;height:5px;border-radius:50%;background:var(--mp-grad-spore);background:var(--mp-coral);opacity:0.5;"></span>
+            </a>
+          </sc-for>
+        </div>
+        <div style="position:absolute;right:0;top:0;bottom:0;width:48px;background:linear-gradient(90deg,transparent,#fff);pointer-events:none;"></div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:22px;">
+      <div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 14px;">
+        <h2 style="font-size:clamp(26px,3.2vw,34px);font-weight:800;color:var(--mp-gray-900);margin:0;letter-spacing:-0.5px;border:0;padding:0;">{{ t.listTitle }}</h2>
+        <p style="font-size:15px;color:var(--mp-fg-3);margin:0;">{{ t.listSub }}</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="display:flex;align-items:center;gap:8px;padding:9px 16px;border:1px solid var(--mp-border);border-radius:var(--mp-radius-pill);font-size:14px;font-weight:500;color:var(--mp-gray-600);cursor:pointer;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path><path d="m3 16 4 4 4-4"></path><path d="M7 20V4"></path><path d="M11 4h10"></path><path d="M11 8h7"></path></svg>
+          {{ t.cityCount }}
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;padding:9px 16px;border:1px solid var(--mp-border);border-radius:var(--mp-radius-pill);font-size:14px;font-weight:500;color:var(--mp-gray-600);cursor:pointer;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 16 4 4 4-4"></path><path d="M7 20V4"></path><path d="M11 4h10"></path><path d="M11 8h7"></path><path d="M11 12h4"></path></svg>
+          {{ t.sort }}
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:22px;">
+      <sc-for list="{{ communities }}" as="item" hint-placeholder-count="8">
+        <div class="mp-card-x" onClick="{{ item.go }}" style="background:#fff;border-radius:var(--mp-radius-lg);overflow:hidden;box-shadow:var(--mp-shadow-card);transition:transform var(--mp-dur-base) var(--mp-ease),box-shadow var(--mp-dur-base) var(--mp-ease);cursor:pointer;">
+          <!-- cover -->
+          <div style="position:relative;height:178px;overflow:hidden;">
+            <div class="mp-cover-img" style="position:absolute;inset:0;background:{{ item.grad }};transition:transform var(--mp-dur-slow) var(--mp-ease);"></div>
+            <sc-if value="{{ item.photo }}" hint-placeholder-val="{{ false }}">
+              <img src="{{ item.photo }}" alt="{{ item.city }}" class="mp-cover-img" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform var(--mp-dur-slow) var(--mp-ease);">
+            </sc-if>
+            <sc-if value="{{ item.noPhoto }}" hint-placeholder-val="{{ true }}">
+              <svg viewBox="0 0 400 120" preserveAspectRatio="none" style="position:absolute;left:0;right:0;bottom:0;width:100%;height:64%;">
+                <path d="{{ item.path }}" fill="rgba(255,255,255,0.17)"></path>
+              </svg>
+            </sc-if>
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(0,0,0,0.28) 100%);"></div>
+            <sc-if value="{{ item.blurCorner }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;right:0;bottom:0;width:64%;height:30px;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);pointer-events:none;"></div>
+            </sc-if>
+            <!-- rank -->
+            <div style="position:absolute;top:14px;left:14px;display:flex;align-items:center;gap:5px;padding:5px 11px;background:rgba(20,12,40,0.4);border:1px solid rgba(255,255,255,0.25);border-radius:var(--mp-radius-pill);backdrop-filter:blur(6px);">
+              <span style="font-size:12px;font-weight:700;color:#fff;">#{{ item.rank }}</span>
+            </div>
+            <!-- score -->
+            <sc-if value="{{ item.notPaused }}" hint-placeholder-val="{{ true }}">
+            <div style="position:absolute;top:14px;right:14px;display:flex;align-items:center;gap:5px;padding:5px 11px;background:rgba(255,255,255,0.95);border-radius:var(--mp-radius-pill);box-shadow:0 4px 12px rgba(0,0,0,0.18);">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="#f5a623" stroke="none"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 7.1-1.01L12 2z"></path></svg>
+              <span style="font-size:13px;font-weight:800;color:var(--mp-gray-900);">{{ item.score }}</span>
+            </div>
+            </sc-if>
+            <!-- members -->
+            <div style="position:absolute;bottom:14px;right:14px;display:flex;align-items:center;gap:5px;padding:4px 10px;background:rgba(20,12,40,0.32);border:1px solid rgba(255,255,255,0.25);border-radius:var(--mp-radius-pill);backdrop-filter:blur(6px);">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              <span style="font-size:12px;font-weight:600;color:#fff;">{{ item.members }}</span>
+            </div>
+            <sc-if value="{{ item.paused }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;top:14px;right:14px;display:inline-flex;align-items:center;gap:5px;padding:5px 12px;background:#8a8a92;border-radius:var(--mp-radius-pill);box-shadow:0 4px 14px rgba(90,90,100,0.45);">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#fff" stroke="none"><rect x="6" y="5" width="4" height="14" rx="1"></rect><rect x="14" y="5" width="4" height="14" rx="1"></rect></svg>
+                <span style="font-size:12px;font-weight:800;color:#fff;letter-spacing:0.4px;">{{ item.pausedLabel }}</span>
+              </div>
+            </sc-if>
+            <sc-if value="{{ item.closed }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;top:14px;right:14px;display:inline-flex;align-items:center;gap:5px;padding:5px 12px;background:#8a8a92;border-radius:var(--mp-radius-pill);box-shadow:0 4px 14px rgba(90,90,100,0.45);">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M15 9l-6 6M9 9l6 6"></path></svg>
+                <span style="font-size:12px;font-weight:800;color:#fff;letter-spacing:0.4px;">{{ item.closedLabel }}</span>
+              </div>
+            </sc-if>
+            <!-- name -->
+            <div style="position:absolute;left:16px;bottom:13px;">
+              <div style="font-family:var(--mp-font-display);font-size:26px;font-weight:800;color:#fff;line-height:1;letter-spacing:-0.5px;text-shadow:0 2px 8px rgba(0,0,0,0.3);">{{ item.city }}</div>
+              <div style="font-size:12px;font-weight:500;color:rgba(255,255,255,0.88);margin-top:4px;letter-spacing:0.4px;">{{ item.region }}</div>
+            </div>
+            <sc-if value="{{ item.metrics }}" hint-placeholder-val="{{ false }}">
+              <div class="mp-metrics" style="position:absolute;left:0;right:0;bottom:0;padding:14px 16px 15px;display:flex;flex-direction:column;gap:8px;background:linear-gradient(180deg,rgba(10,14,20,0) 0%,rgba(10,14,20,0.62) 30%,rgba(10,14,20,0.82) 100%);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);">
+                <sc-for list="{{ item.metrics }}" as="m" hint-placeholder-count="5">
+                  <div style="display:flex;align-items:center;gap:9px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="{{ m.icon }}"></path></svg>
+                    <span style="flex-shrink:0;width:34px;font-size:11px;font-weight:600;color:rgba(255,255,255,0.95);letter-spacing:0.2px;">{{ m.label }}</span>
+                    <div style="flex:1;height:7px;border-radius:4px;background:rgba(255,255,255,0.18);overflow:hidden;">
+                      <div class="mp-bar-fill" style="height:100%;width:{{ m.pct }};border-radius:4px;background:{{ m.color }};"></div>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+          <!-- body -->
+          <div style="padding:16px 18px 18px;">
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:15px;">
+              <sc-for list="{{ item.tags }}" as="tag" hint-placeholder-count="3">
+                <span style="padding:4px 10px;background:var(--mp-gray-100);color:var(--mp-gray-600);border-radius:var(--mp-radius-pill);font-size:11.5px;font-weight:600;">{{ tag }}</span>
+              </sc-for>
+            </div>
+            <div style="display:flex;justify-content:space-between;gap:8px;padding:14px 0 0;border-top:1px solid var(--mp-border-soft);">
+              <div style="display:flex;flex-direction:column;gap:4px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--mp-purple-700)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="12" cy="12" r="2.5"></circle><path d="M6 12h.01M18 12h.01"></path></svg>
+                <div style="font-size:14px;font-weight:700;color:var(--mp-gray-900);">{{ item.cur }}{{ item.minCost }}<span style="font-size:11px;font-weight:500;color:var(--mp-fg-3);">{{ t.minSuffix }}</span></div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:4px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--mp-teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13a10 10 0 0 1 14 0"></path><path d="M8.5 16.5a5 5 0 0 1 7 0"></path><path d="M2 8.82a15 15 0 0 1 20 0"></path><path d="M12 20h.01"></path></svg>
+                <div style="font-size:14px;font-weight:700;color:var(--mp-gray-900);">{{ item.wifi }}<span style="font-size:11px;font-weight:500;color:var(--mp-fg-3);">M</span></div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:4px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path></svg>
+                <div style="font-size:14px;font-weight:700;color:var(--mp-gray-900);">{{ item.climate }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{ dShowPager }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;align-items:center;justify-content:flex-end;gap:14px;margin-top:30px;">
+      <div style="display:flex;align-items:center;gap:7px;">
+        <sc-for list="{{ dDots }}" as="dot" hint-placeholder-count="2">
+          <span onClick="{{ dot.on }}" style="cursor:pointer;height:6px;width:{{ dot.w }};border-radius:{{ dot.radius }};background:{{ dot.bg }};transition:all var(--mp-dur-base) var(--mp-ease);"></span>
+        </sc-for>
+      </div>
+      <sc-if value="{{ dShowPrev }}" hint-placeholder-val="{{ true }}">
+        <a href="#" onClick="{{ dPrev }}" class="mp-pager" style="display:inline-flex;align-items:center;gap:7px;padding:11px 22px;background:#fff;color:var(--mp-purple-700);text-decoration:none;border:1px solid var(--mp-border);border-radius:var(--mp-radius-pill);font-size:14px;font-weight:600;box-shadow:var(--mp-shadow-pill);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="m12 19-7-7 7-7"></path></svg>
+          {{ prevPage }}
+        </a>
+      </sc-if>
+      <span style="font-family:var(--mp-font-mono);font-size:12.5px;color:var(--mp-gray-500);">{{ dLabel }}</span>
+      <a href="#" onClick="{{ dNext }}" class="mp-pager" style="display:inline-flex;align-items:center;gap:7px;padding:11px 22px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;text-decoration:none;border-radius:var(--mp-radius-pill);font-size:14px;font-weight:600;box-shadow:0 4px 14px rgba(102,126,234,0.28);">
+        {{ t.nextPage }}
+        <svg class="mp-pager-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+      </a>
+    </div>
+    </sc-if>
+  </main>
+
+  <!-- ===== INTERNATIONAL COMMUNITIES ===== -->
+  <section id="international" style="border-top:1px solid var(--mp-border-soft);background-color:#fafafb;background-image:repeating-linear-gradient(45deg,rgba(100,95,120,0.045) 0,rgba(100,95,120,0.045) 1px,transparent 1px,transparent 9px);">
+  <div style="max-width:1200px;margin:0 auto;padding:clamp(26px,3vw,40px) clamp(20px,5vw,60px) clamp(20px,3vw,32px);">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:34px;">
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;font-family:var(--mp-font-mono);font-size:12px;letter-spacing:2.5px;color:var(--mp-teal);text-transform:uppercase;margin-bottom:10px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path><path d="M2 12h20"></path></svg>
+          {{ t.intlKicker }}
+        </div>
+        <div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 14px;">
+          <h2 style="font-size:clamp(26px,3.2vw,34px);font-weight:800;color:var(--mp-gray-900);margin:0;letter-spacing:-0.5px;border:0;padding:0;">{{ t.intlTitle }}</h2>
+          <p style="font-size:15px;color:var(--mp-fg-3);margin:0;">{{ t.intlSub }}</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;padding:9px 16px;border:1px solid var(--mp-border);border-radius:var(--mp-radius-pill);font-size:14px;font-weight:500;color:var(--mp-gray-600);">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        {{ t.intlChip }}
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:22px;">
+      <sc-for list="{{ intlCommunities }}" as="item" hint-placeholder-count="8">
+        <div class="mp-card-x" onClick="{{ item.go }}" style="background:#fff;border-radius:var(--mp-radius-lg);overflow:hidden;box-shadow:var(--mp-shadow-card);transition:transform var(--mp-dur-base) var(--mp-ease),box-shadow var(--mp-dur-base) var(--mp-ease);cursor:pointer;">
+          <div style="position:relative;height:178px;overflow:hidden;">
+            <div class="mp-cover-img" style="position:absolute;inset:0;background:{{ item.grad }};transition:transform var(--mp-dur-slow) var(--mp-ease);"></div>
+            <sc-if value="{{ item.photo }}" hint-placeholder-val="{{ false }}">
+              <img src="{{ item.photo }}" alt="{{ item.city }}" class="mp-cover-img" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform var(--mp-dur-slow) var(--mp-ease);">
+            </sc-if>
+            <sc-if value="{{ item.noPhoto }}" hint-placeholder-val="{{ true }}">
+              <svg viewBox="0 0 400 120" preserveAspectRatio="none" style="position:absolute;left:0;right:0;bottom:0;width:100%;height:64%;">
+                <path d="{{ item.path }}" fill="rgba(255,255,255,0.17)"></path>
+              </svg>
+            </sc-if>
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(0,0,0,0.28) 100%);"></div>
+            <sc-if value="{{ item.blurCorner }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;right:0;bottom:0;width:64%;height:30px;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);pointer-events:none;"></div>
+            </sc-if>
+            <div style="position:absolute;top:14px;left:14px;display:flex;align-items:center;gap:5px;padding:5px 11px;background:rgba(20,12,40,0.4);border:1px solid rgba(255,255,255,0.25);border-radius:var(--mp-radius-pill);backdrop-filter:blur(6px);">
+              <span style="font-size:12px;font-weight:700;color:#fff;">#{{ item.rank }}</span>
+            </div>
+            <div style="position:absolute;top:14px;right:14px;display:flex;align-items:center;gap:5px;padding:5px 11px;background:rgba(255,255,255,0.95);border-radius:var(--mp-radius-pill);box-shadow:0 4px 12px rgba(0,0,0,0.18);">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="#f5a623" stroke="none"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 7.1-1.01L12 2z"></path></svg>
+              <span style="font-size:13px;font-weight:800;color:var(--mp-gray-900);">{{ item.score }}</span>
+            </div>
+            <div style="position:absolute;bottom:14px;right:14px;display:flex;align-items:center;gap:5px;padding:4px 10px;background:rgba(20,12,40,0.32);border:1px solid rgba(255,255,255,0.25);border-radius:var(--mp-radius-pill);backdrop-filter:blur(6px);">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              <span style="font-size:12px;font-weight:600;color:#fff;">{{ item.members }}</span>
+            </div>
+            <div style="position:absolute;left:16px;bottom:13px;">
+              <div style="font-family:var(--mp-font-display);font-size:26px;font-weight:800;color:#fff;line-height:1;letter-spacing:-0.5px;text-shadow:0 2px 8px rgba(0,0,0,0.3);">{{ item.city }}</div>
+              <div style="font-size:12px;font-weight:500;color:rgba(255,255,255,0.88);margin-top:4px;letter-spacing:0.4px;">{{ item.region }}</div>
+            </div>
+            <sc-if value="{{ item.metrics }}" hint-placeholder-val="{{ false }}">
+              <div class="mp-metrics" style="position:absolute;left:0;right:0;bottom:0;padding:14px 16px 15px;display:flex;flex-direction:column;gap:8px;background:linear-gradient(180deg,rgba(10,14,20,0) 0%,rgba(10,14,20,0.62) 30%,rgba(10,14,20,0.82) 100%);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);">
+                <sc-for list="{{ item.metrics }}" as="m" hint-placeholder-count="5">
+                  <div style="display:flex;align-items:center;gap:9px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="{{ m.icon }}"></path></svg>
+                    <span style="flex-shrink:0;width:34px;font-size:11px;font-weight:600;color:rgba(255,255,255,0.95);letter-spacing:0.2px;">{{ m.label }}</span>
+                    <div style="flex:1;height:7px;border-radius:4px;background:rgba(255,255,255,0.18);overflow:hidden;">
+                      <div class="mp-bar-fill" style="height:100%;width:{{ m.pct }};border-radius:4px;background:{{ m.color }};"></div>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+          <div style="padding:16px 18px 18px;">
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:15px;">
+              <sc-for list="{{ item.tags }}" as="tag" hint-placeholder-count="3">
+                <span style="padding:4px 10px;background:var(--mp-gray-100);color:var(--mp-gray-600);border-radius:var(--mp-radius-pill);font-size:11.5px;font-weight:600;">{{ tag }}</span>
+              </sc-for>
+            </div>
+            <div style="display:flex;justify-content:space-between;gap:8px;padding:14px 0 0;border-top:1px solid var(--mp-border-soft);">
+              <div style="display:flex;flex-direction:column;gap:4px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--mp-purple-700)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="12" cy="12" r="2.5"></circle><path d="M6 12h.01M18 12h.01"></path></svg>
+                <div style="font-size:14px;font-weight:700;color:var(--mp-gray-900);">{{ item.cur }}{{ item.minCost }}<span style="font-size:11px;font-weight:500;color:var(--mp-fg-3);">{{ t.minSuffix }}</span></div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:4px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--mp-teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13a10 10 0 0 1 14 0"></path><path d="M8.5 16.5a5 5 0 0 1 7 0"></path><path d="M2 8.82a15 15 0 0 1 20 0"></path><path d="M12 20h.01"></path></svg>
+                <div style="font-size:14px;font-weight:700;color:var(--mp-gray-900);">{{ item.wifi }}<span style="font-size:11px;font-weight:500;color:var(--mp-fg-3);">M</span></div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:4px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path></svg>
+                <div style="font-size:14px;font-weight:700;color:var(--mp-gray-900);">{{ item.climate }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display:flex;align-items:center;justify-content:flex-end;gap:14px;margin-top:30px;">
+      <div style="display:flex;align-items:center;gap:7px;">
+        <sc-for list="{{ iDots }}" as="dot" hint-placeholder-count="2">
+          <span onClick="{{ dot.on }}" style="cursor:pointer;height:6px;width:{{ dot.w }};border-radius:{{ dot.radius }};background:{{ dot.bg }};transition:all var(--mp-dur-base) var(--mp-ease);"></span>
+        </sc-for>
+      </div>
+      <sc-if value="{{ iShowPrev }}" hint-placeholder-val="{{ true }}">
+        <a href="#" onClick="{{ iPrev }}" class="mp-pager" style="display:inline-flex;align-items:center;gap:7px;padding:11px 22px;background:#fff;color:var(--mp-purple-700);text-decoration:none;border:1px solid var(--mp-border);border-radius:var(--mp-radius-pill);font-size:14px;font-weight:600;box-shadow:var(--mp-shadow-pill);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="m12 19-7-7 7-7"></path></svg>
+          {{ prevPage }}
+        </a>
+      </sc-if>
+      <span style="font-family:var(--mp-font-mono);font-size:12.5px;color:var(--mp-gray-500);">{{ iLabel }}</span>
+      <a href="#" onClick="{{ iNext }}" class="mp-pager" style="display:inline-flex;align-items:center;gap:7px;padding:11px 22px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;text-decoration:none;border-radius:var(--mp-radius-pill);font-size:14px;font-weight:600;box-shadow:0 4px 14px rgba(102,126,234,0.28);">
+        {{ t.nextPage }}
+        <svg class="mp-pager-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+      </a>
+    </div>
+  </div>
+  </section>
+
+  <!-- ===== COMMUNITY BOARDS ===== -->
+  <section style="background:var(--mp-gray-50);padding:clamp(28px,3.2vw,44px) clamp(20px,5vw,60px) clamp(48px,6vw,80px);">
+    <!-- icon sprite -->
+    <svg width="0" height="0" style="position:absolute;" aria-hidden="true">
+      <defs>
+        <symbol id="bd-info" viewBox="0 0 24 24"><g fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></g></symbol>
+        <symbol id="bd-trade" viewBox="0 0 24 24"><g fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 3 4 4-4 4"></path><path d="M20 7H4"></path><path d="m8 21-4-4 4-4"></path><path d="M4 17h16"></path></g></symbol>
+        <symbol id="bd-car" viewBox="0 0 24 24"><g fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"></path><circle cx="7" cy="17" r="2"></circle><path d="M9 17h6"></path><circle cx="17" cy="17" r="2"></circle></g></symbol>
+        <symbol id="bd-promo" viewBox="0 0 24 24"><g fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"></path><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path></g></symbol>
+        <symbol id="bd-meetup" viewBox="0 0 24 24"><g fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></g></symbol>
+        <symbol id="bd-jobs" viewBox="0 0 24 24"><g fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></g></symbol>
+        <symbol id="bd-qa" viewBox="0 0 24 24"><g fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></g></symbol>
+        <symbol id="bd-chat" viewBox="0 0 24 24"><g fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></g></symbol>
+      </defs>
+    </svg>
+
+    <div style="max-width:1200px;margin:0 auto;">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:34px;">
+        <div>
+          <div style="font-family:var(--mp-font-mono);font-size:12px;letter-spacing:2.5px;color:var(--mp-purple-700);text-transform:uppercase;margin-bottom:10px;">{{ t.boardKicker }}</div>
+          <h2 style="font-size:clamp(26px,3.2vw,34px);font-weight:800;color:var(--mp-gray-900);margin:0;letter-spacing:-0.5px;border:0;padding:0;">{{ t.boardTitle }}</h2>
+          <p style="font-size:15px;color:var(--mp-fg-3);margin:8px 0 0 0;">{{ t.boardSub }}</p>
+        </div>
+        <div style="display:flex;align-items:center;gap:7px;font-family:var(--mp-font-mono);font-size:12.5px;color:var(--mp-gray-600);">
+          <span class="mp-blink" style="width:8px;height:8px;border-radius:50%;background:#43e97b;box-shadow:0 0 8px #43e97b;"></span>
+          {{ t.boardOnline }}
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:26px;">
+        <sc-for list="{{ boardGroups }}" as="g" hint-placeholder-count="2">
+          <div style="position:relative;background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);overflow:hidden;">
+            <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--mp-grad-spore);"></div>
+            <!-- group header -->
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:22px 26px 18px;border-bottom:1px solid var(--mp-border-soft);background:linear-gradient(180deg,rgba(118,75,162,0.05),transparent);">
+              <div>
+                <div style="display:flex;align-items:baseline;gap:10px;">
+                  <span style="font-size:21px;font-weight:800;color:var(--mp-purple-700);letter-spacing:-0.3px;">{{ g.zh }}</span>
+                  <span style="font-family:var(--mp-font-mono);font-size:13px;font-weight:600;color:var(--mp-gray-500);letter-spacing:1px;">{{ g.en }}</span>
+                </div>
+                <sc-if value="{{ g.note }}" hint-placeholder-val="">
+                  <div style="display:flex;align-items:center;gap:6px;margin-top:7px;font-size:12.5px;color:var(--mp-gray-500);">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--mp-coral)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+                    {{ g.note }}
+                  </div>
+                </sc-if>
+              </div>
+              <span style="font-family:var(--mp-font-mono);font-size:12px;color:var(--mp-gray-400);letter-spacing:0.5px;">{{ g.count }}</span>
+            </div>
+            <!-- boards grid -->
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:1px;background:var(--mp-border-soft);">
+              <sc-for list="{{ g.items }}" as="b" hint-placeholder-count="4">
+                <a href="{{ b.href }}" class="bd-card" style="display:flex;align-items:center;gap:15px;padding:18px 22px;background:#fff;text-decoration:none;transition:background var(--mp-dur-base) var(--mp-ease);">
+                  <span class="bd-med" style="flex-shrink:0;width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:{{ b.grad }};box-shadow:0 6px 16px rgba(102,126,234,0.22);transition:transform var(--mp-dur-base) var(--mp-ease);">
+                    <svg width="23" height="23" viewBox="0 0 24 24"><use href="{{ b.icon }}"></use></svg>
+                  </span>
+                  <div style="flex:1;min-width:0;">
+                    <div style="display:flex;align-items:baseline;gap:8px;">
+                      <span style="font-size:16px;font-weight:700;color:var(--mp-gray-900);">{{ b.zh }}</span>
+                      <span style="font-family:var(--mp-font-mono);font-size:12.5px;color:var(--mp-gray-400);">{{ b.en }}</span>
+                    </div>
+                    <div style="font-size:13px;color:var(--mp-fg-3);margin-top:3px;">{{ b.desc }}</div>
+                    <div style="display:flex;align-items:center;gap:12px;margin-top:9px;font-family:var(--mp-font-mono);font-size:12px;color:var(--mp-gray-500);">
+                      <span>{{ b.threadsLabel }} <b style="color:var(--mp-gray-700);">{{ b.threads }}</b></span>
+                      <span style="width:1px;height:11px;background:var(--mp-border);"></span>
+                      <span>{{ b.postsLabel }} <b style="color:var(--mp-gray-700);">{{ b.posts }}</b></span>
+                      <span style="display:inline-flex;align-items:center;gap:4px;color:var(--mp-sage);"><span style="width:5px;height:5px;border-radius:50%;background:#43e97b;"></span>{{ b.fresh }}</span>
+                    </div>
+                  </div>
+                  <svg class="bd-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--mp-gray-300)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;transition:transform var(--mp-dur-base) var(--mp-ease),stroke var(--mp-dur-base) var(--mp-ease);"><path d="M9 18l6-6-6-6"></path></svg>
+                </a>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY ===== -->
+  <section style="background:#fff;padding:clamp(36px,4.5vw,60px) clamp(20px,5vw,60px);">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:32px;">
+        <div style="font-size:13px;font-weight:700;letter-spacing:2px;color:var(--mp-purple-500);text-transform:uppercase;margin-bottom:8px;">{{ t.whyKicker }}</div>
+        <h2 style="font-size:clamp(28px,3.4vw,38px);font-weight:800;color:var(--mp-gray-900);margin:0;border:0;padding:0;letter-spacing:-0.5px;">{{ t.whyTitle }}</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px;">
+        <div style="position:relative;background:#fff;border-radius:var(--mp-radius-lg);padding:28px 30px;box-shadow:var(--mp-shadow-card);overflow:hidden;">
+          <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--mp-grad-spore);"></div>
+          <div style="width:60px;height:60px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:var(--mp-grad-whitepaper);margin-bottom:16px;box-shadow:0 8px 20px rgba(102,126,234,0.3);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"></path><rect x="7" y="11" width="3" height="7" rx="1"></rect><rect x="12" y="7" width="3" height="11" rx="1"></rect><rect x="17" y="13" width="3" height="5" rx="1"></rect></svg>
+          </div>
+          <h3 style="font-size:20px;font-weight:700;color:var(--mp-gray-800);margin:0 0 9px 0;">{{ vp0.t }}</h3>
+          <p style="font-size:15px;line-height:1.65;color:var(--mp-slate-body);margin:0;">{{ vp0.b }}</p>
+        </div>
+        <div style="position:relative;background:#fff;border-radius:var(--mp-radius-lg);padding:28px 30px;border:1.5px solid rgba(123,95,224,0.55);box-shadow:0 0 0 1px rgba(157,134,240,0.35),0 0 28px rgba(123,95,224,0.35),var(--mp-shadow-card);overflow:hidden;">
+          <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#764ba2,#9d86f0,#764ba2);"></div>
+          <div style="width:60px;height:60px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:var(--mp-grad-dao);margin-bottom:16px;box-shadow:0 8px 20px rgba(67,233,123,0.3);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"></path></svg>
+          </div>
+          <h3 style="font-size:20px;font-weight:700;color:var(--mp-gray-800);margin:0 0 9px 0;">{{ vp1.t }}</h3>
+          <p style="font-size:15px;line-height:1.65;color:var(--mp-slate-body);margin:0;">{{ vp1.b }}</p>
+        </div>
+        <div style="position:relative;background:#fff;border-radius:var(--mp-radius-lg);padding:28px 30px;box-shadow:var(--mp-shadow-card);overflow:hidden;">
+          <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--mp-grad-spore);"></div>
+          <div style="width:60px;height:60px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:var(--mp-grad-demo);margin-bottom:16px;box-shadow:0 8px 20px rgba(250,112,154,0.3);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"></path></svg>
+          </div>
+          <h3 style="font-size:20px;font-weight:700;color:var(--mp-gray-800);margin:0 0 9px 0;">{{ vp2.t }}</h3>
+          <p style="font-size:15px;line-height:1.65;color:var(--mp-slate-body);margin:0;">{{ vp2.b }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section style="padding:clamp(40px,5vw,72px) clamp(20px,5vw,60px);">
+    <div style="position:relative;max-width:1200px;margin:0 auto;border-radius:var(--mp-radius-lg);overflow:hidden;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);padding:clamp(40px,5vw,64px) clamp(28px,5vw,60px);">
+      <span style="position:absolute;right:6%;top:18%;font-size:64px;opacity:0.12;animation:mp-float 7s ease-in-out infinite;">🍄</span>
+      <span style="position:absolute;right:20%;bottom:12%;font-size:34px;opacity:0.10;animation:mp-float 8s ease-in-out 1s infinite;">🍄</span>
+      <div style="position:relative;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:26px;">
+        <div style="max-width:560px;">
+          <h2 style="font-size:clamp(24px,3vw,34px);font-weight:800;color:#fff;margin:0 0 12px 0;border:0;padding:0;letter-spacing:-0.5px;">{{ t.ctaTitle }}</h2>
+          <p style="font-size:17px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.9);margin:0;">{{ t.ctaSub }}</p>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+          <a href="社区入驻.dc.html" class="mp-btn-x" style="padding:15px 34px;background:#fff;color:var(--mp-purple-700);text-decoration:none;border-radius:var(--mp-radius-pill);font-size:16px;font-weight:700;white-space:nowrap;box-shadow:0 10px 30px rgba(0,0,0,0.2);transition:all var(--mp-dur-base) var(--mp-ease);">{{ t.ctaBtn }}</a>
+          <a href="提交社区活动.dc.html" class="mp-btn-ghost" style="display:inline-flex;align-items:center;gap:8px;padding:15px 30px;background:rgba(255,255,255,0.12);color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,0.4);border-radius:var(--mp-radius-pill);font-size:16px;font-weight:700;white-space:nowrap;transition:all var(--mp-dur-base) var(--mp-ease);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18M12 14v4M10 16h4"></path></svg>
+            {{ t.ctaBtn2 }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer style="background:#1c1530;padding:clamp(48px,6vw,72px) clamp(20px,5vw,60px) 40px;">
+    <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:40px;">
+      <div>
+        <div style="display:flex;align-items:center;gap:11px;margin-bottom:18px;">
+          <img src="assets/mushroom-logo.png" alt="" style="width:36px;height:36px;object-fit:contain;">
+          <div style="line-height:1.05;">
+            <div style="font-size:18px;font-weight:800;color:#fff;">{{ t.brand }}</div>
+            <div style="font-size:10.5px;font-weight:500;color:rgba(255,255,255,0.5);letter-spacing:1.5px;">{{ t.brandSub }}</div>
+          </div>
+        </div>
+        <p style="font-size:14px;line-height:1.7;color:rgba(255,255,255,0.6);max-width:300px;margin:0 0 18px 0;">{{ t.footTagline }}</p>
+        <div style="display:flex;gap:12px;">
+          <a href="#" class="mp-foot-link" style="width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);transition:all var(--mp-dur-base) var(--mp-ease);"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.4-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.8 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"></path></svg></a>
+          <a href="#" class="mp-foot-link" style="width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);transition:all var(--mp-dur-base) var(--mp-ease);"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2H21l-6.6 7.6L22 22h-6.1l-4.8-6.3L5.6 22H2.8l7.1-8.1L2 2h6.2l4.3 5.7L18.2 2zm-2.1 18h1.7L7.9 3.8H6.1L16.1 20z"></path></svg></a>
+          <a href="#" class="mp-foot-link" style="width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);transition:all var(--mp-dur-base) var(--mp-ease);"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8.7 13.6c.4-.4.9-.4 1.4 0l1.6 1.5c.3.3.6.3.9 0l4.3-4c.6-.5 1.2-.2 1 .6l-1.7 8.2c-.1.6-.5.7-1 .5l-2.8-2.1-1.4 1.3c-.2.2-.4.3-.7.3l.3-2.9 5-4.5c.2-.2-.1-.3-.3-.1L9 16.6l-2.7-.8c-.6-.2-.6-.6.1-.9l11-4.2c.5-.2 1 .1.8.9z"></path><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="0"></circle></svg></a>
+        </div>
+      </div>
+      <sc-for list="{{ t.footCols }}" as="col" hint-placeholder-count="3">
+        <div>
+          <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:16px;">{{ col.h }}</div>
+          <div style="display:flex;flex-direction:column;gap:11px;">
+            <sc-for list="{{ col.links }}" as="l" hint-placeholder-count="4">
+              <a href="{{ l.href }}" class="mp-foot-link" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none;transition:color var(--mp-dur-base) var(--mp-ease);">{{ l.t }}</a>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="max-width:1200px;margin:36px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,0.1);font-size:13px;color:rgba(255,255,255,0.4);">{{ t.copyright }}</div>
+  </footer>
+
+  <!-- ===== REGISTER MODAL ===== -->
+  <sc-if value="{{ regOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="reg-bd" onClick="{{ closeReg }}" style="position:fixed;inset:0;z-index:200;background:rgba(12,8,30,0.66);backdrop-filter:blur(7px);display:flex;align-items:center;justify-content:center;padding:24px 20px;overflow:auto;">
+      <div class="reg-cd" onClick="{{ stopProp }}" style="position:relative;width:100%;max-width:430px;background:#fff;border-radius:20px;box-shadow:0 30px 80px rgba(0,0,0,0.5);overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--mp-grad-spore);"></div>
+        <div onClick="{{ closeReg }}" class="reg-x" style="position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;color:var(--mp-gray-400);cursor:pointer;transition:all var(--mp-dur-base) var(--mp-ease);z-index:2;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+        </div>
+
+        <!-- REGISTER FORM -->
+        <sc-if value="{{ modeRegForm }}" hint-placeholder-val="{{ true }}">
+          <div style="padding:30px 30px 26px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:22px;">
+              <img src="assets/mushroom-logo.png" alt="" style="width:34px;height:34px;object-fit:contain;">
+              <div style="font-size:16px;font-weight:800;color:var(--mp-gray-900);">Next Stop</div>
+            </div>
+            <h2 style="font-size:23px;font-weight:800;color:var(--mp-gray-900);margin:0 0 6px;letter-spacing:-0.3px;border:0;padding:0;">{{ reg.title }}</h2>
+            <p style="font-size:13.5px;color:var(--mp-gray-500);margin:0 0 22px;">{{ reg.sub }}</p>
+
+            <label style="display:block;font-size:12.5px;font-weight:700;color:var(--mp-gray-800);margin-bottom:7px;">{{ reg.emailL }}</label>
+            <div style="position:relative;margin-bottom:5px;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--mp-gray-400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;left:13px;top:50%;transform:translateY(-50%);"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+              <input type="email" value="{{ rEmail }}" onInput="{{ rSetEmail }}" placeholder="{{ reg.emailPh }}" class="reg-in2" style="width:100%;padding:12px 42px 12px 40px;border:1px solid {{ rEmailBorder }};border-radius:11px;font-family:inherit;font-size:14.5px;color:var(--mp-gray-900);outline:none;background:var(--mp-gray-50);transition:all var(--mp-dur-base) var(--mp-ease);">
+              <sc-if value="{{ rEmailValid }}" hint-placeholder-val="{{ false }}">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--mp-sage)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:13px;top:50%;transform:translateY(-50%);"><path d="m5 12 5 5L20 7"></path></svg>
+              </sc-if>
+            </div>
+            <div style="min-height:16px;margin-bottom:10px;">
+              <sc-if value="{{ rEmailError }}" hint-placeholder-val="{{ false }}">
+                <span style="font-size:11.5px;color:var(--mp-coral);">{{ reg.emailErr }}</span>
+              </sc-if>
+            </div>
+
+            <label style="display:block;font-size:12.5px;font-weight:700;color:var(--mp-gray-800);margin-bottom:7px;">{{ reg.pwL }}</label>
+            <div style="position:relative;margin-bottom:9px;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--mp-gray-400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;left:13px;top:50%;transform:translateY(-50%);"><rect width="18" height="11" x="3" y="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              <input type="{{ rPwType }}" value="{{ rPw }}" onInput="{{ rSetPw }}" placeholder="{{ reg.pwPh }}" class="reg-in2" style="width:100%;padding:12px 42px 12px 40px;border:1px solid var(--mp-border);border-radius:11px;font-family:inherit;font-size:14.5px;color:var(--mp-gray-900);outline:none;background:var(--mp-gray-50);transition:all var(--mp-dur-base) var(--mp-ease);">
+              <span onClick="{{ rTogglePw }}" class="reg-eye" style="position:absolute;right:11px;top:50%;transform:translateY(-50%);color:var(--mp-gray-400);cursor:pointer;display:flex;transition:color var(--mp-dur-base) var(--mp-ease);">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:{{ rEye }};"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:{{ rEyeOff }};"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"></path><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path><line x1="2" x2="22" y1="2" y2="22"></line></svg>
+              </span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;min-height:15px;margin-bottom:18px;">
+              <div style="display:flex;gap:5px;flex:1;">
+                <span style="height:5px;flex:1;border-radius:3px;background:{{ rStr0 }};transition:background var(--mp-dur-base) var(--mp-ease);"></span>
+                <span style="height:5px;flex:1;border-radius:3px;background:{{ rStr1 }};transition:background var(--mp-dur-base) var(--mp-ease);"></span>
+                <span style="height:5px;flex:1;border-radius:3px;background:{{ rStr2 }};transition:background var(--mp-dur-base) var(--mp-ease);"></span>
+              </div>
+              <span style="font-size:11px;font-weight:600;color:{{ rStrColor }};min-width:22px;">{{ rStrLabel }}</span>
+            </div>
+
+            <div style="display:flex;align-items:flex-start;gap:9px;margin-bottom:20px;cursor:pointer;" onClick="{{ rToggleAgree }}">
+              <div style="flex-shrink:0;width:19px;height:19px;border-radius:6px;border:1.5px solid {{ rAgreeBorder }};background:{{ rAgreeBg }};display:flex;align-items:center;justify-content:center;transition:all var(--mp-dur-base) var(--mp-ease);margin-top:1px;">
+                <sc-if value="{{ rAgree }}" hint-placeholder-val="{{ false }}">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"></path></svg>
+                </sc-if>
+              </div>
+              <div style="font-size:12px;line-height:1.5;color:var(--mp-gray-600);">{{ reg.agreePre }} <a href="#" style="color:var(--mp-purple-700);font-weight:600;text-decoration:none;">{{ reg.terms }}</a> {{ reg.and }} <a href="#" style="color:var(--mp-purple-700);font-weight:600;text-decoration:none;">{{ reg.privacy }}</a></div>
+            </div>
+
+            <button onClick="{{ rSubmit }}" class="reg-b2" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px;background:{{ rSubmitBg }};border:0;border-radius:11px;color:{{ rSubmitColor }};font-family:inherit;font-size:14.5px;font-weight:700;cursor:{{ rSubmitCursor }};box-shadow:0 6px 18px rgba(102,126,234,0.26);transition:all var(--mp-dur-base) var(--mp-ease);">
+              {{ reg.create }}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            </button>
+
+            <div style="display:flex;align-items:center;gap:12px;margin:18px 0;">
+              <span style="flex:1;height:1px;background:var(--mp-border-soft);"></span>
+              <span style="font-size:11.5px;color:var(--mp-gray-400);">{{ reg.or }}</span>
+              <span style="flex:1;height:1px;background:var(--mp-border-soft);"></span>
+            </div>
+            <div style="display:flex;gap:10px;">
+              <button class="reg-b2" style="flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:10px;background:#fff;border:1px solid var(--mp-border);border-radius:11px;color:var(--mp-gray-700);font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:all var(--mp-dur-base) var(--mp-ease);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3C4.7 3 2 5.4 2 8.3c0 1.6.8 3 2.1 4L3 15l2.8-1.3c.7.2 1.4.3 2.2.3M16 8c-3.3 0-6 2.4-6 5.3S12.7 18.6 16 18.6c.7 0 1.4-.1 2-.3L20.5 20l-.9-2.2c1.3-1 2.4-2.4 2.4-4C22 10.4 19.3 8 16 8Z"></path></svg>
+                {{ reg.wechat }}
+              </button>
+              <button class="reg-b2" style="flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:10px;background:#fff;border:1px solid var(--mp-border);border-radius:11px;color:var(--mp-gray-700);font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:all var(--mp-dur-base) var(--mp-ease);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2"></rect><path d="M12 18h.01"></path></svg>
+                {{ reg.phone }}
+              </button>
+            </div>
+
+            <div style="text-align:center;margin-top:20px;font-size:13px;color:var(--mp-gray-500);">
+              {{ reg.haveAcc }}<span onClick="{{ switchToLogin }}" class="reg-a" style="color:var(--mp-purple-700);font-weight:700;cursor:pointer;transition:color var(--mp-dur-base) var(--mp-ease);">{{ reg.login }}</span>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- LOGIN FORM -->
+        <sc-if value="{{ modeLogin }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:30px 30px 26px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:22px;">
+              <img src="assets/mushroom-logo.png" alt="" style="width:34px;height:34px;object-fit:contain;">
+              <div style="font-size:16px;font-weight:800;color:var(--mp-gray-900);">Next Stop</div>
+            </div>
+            <h2 style="font-size:23px;font-weight:800;color:var(--mp-gray-900);margin:0 0 6px;letter-spacing:-0.3px;border:0;padding:0;">{{ reg.lgTitle }}</h2>
+            <p style="font-size:13.5px;color:var(--mp-gray-500);margin:0 0 22px;">{{ reg.lgSub }}</p>
+
+            <label style="display:block;font-size:12.5px;font-weight:700;color:var(--mp-gray-800);margin-bottom:7px;">{{ reg.emailL }}</label>
+            <div style="position:relative;margin-bottom:5px;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--mp-gray-400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;left:13px;top:50%;transform:translateY(-50%);"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+              <input type="email" value="{{ lEmail }}" onInput="{{ lSetEmail }}" placeholder="{{ reg.emailPh }}" class="reg-in2" style="width:100%;padding:12px 42px 12px 40px;border:1px solid {{ lEmailBorder }};border-radius:11px;font-family:inherit;font-size:14.5px;color:var(--mp-gray-900);outline:none;background:var(--mp-gray-50);transition:all var(--mp-dur-base) var(--mp-ease);">
+              <sc-if value="{{ lEmailValid }}" hint-placeholder-val="{{ false }}">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--mp-sage)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:13px;top:50%;transform:translateY(-50%);"><path d="m5 12 5 5L20 7"></path></svg>
+              </sc-if>
+            </div>
+            <div style="min-height:16px;margin-bottom:10px;">
+              <sc-if value="{{ lEmailError }}" hint-placeholder-val="{{ false }}">
+                <span style="font-size:11.5px;color:var(--mp-coral);">{{ reg.emailErr }}</span>
+              </sc-if>
+            </div>
+
+            <label style="display:block;font-size:12.5px;font-weight:700;color:var(--mp-gray-800);margin-bottom:7px;">{{ reg.pwL }}</label>
+            <div style="position:relative;margin-bottom:16px;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--mp-gray-400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;left:13px;top:50%;transform:translateY(-50%);"><rect width="18" height="11" x="3" y="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              <input type="{{ lPwType }}" value="{{ lPw }}" onInput="{{ lSetPw }}" placeholder="{{ reg.lgPwPh }}" class="reg-in2" style="width:100%;padding:12px 42px 12px 40px;border:1px solid var(--mp-border);border-radius:11px;font-family:inherit;font-size:14.5px;color:var(--mp-gray-900);outline:none;background:var(--mp-gray-50);transition:all var(--mp-dur-base) var(--mp-ease);">
+              <span onClick="{{ lTogglePw }}" class="reg-eye" style="position:absolute;right:11px;top:50%;transform:translateY(-50%);color:var(--mp-gray-400);cursor:pointer;display:flex;transition:color var(--mp-dur-base) var(--mp-ease);">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:{{ lEye }};"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:{{ lEyeOff }};"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"></path><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path><line x1="2" x2="22" y1="2" y2="22"></line></svg>
+              </span>
+            </div>
+
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+              <div style="display:flex;align-items:center;gap:8px;cursor:pointer;" onClick="{{ lToggleRemember }}">
+                <div style="flex-shrink:0;width:18px;height:18px;border-radius:5px;border:1.5px solid {{ lRememberBorder }};background:{{ lRememberBg }};display:flex;align-items:center;justify-content:center;transition:all var(--mp-dur-base) var(--mp-ease);">
+                  <sc-if value="{{ lRemember }}" hint-placeholder-val="{{ true }}">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"></path></svg>
+                  </sc-if>
+                </div>
+                <span style="font-size:12.5px;color:var(--mp-gray-600);">{{ reg.remember }}</span>
+              </div>
+              <a href="#" class="reg-a" style="font-size:12.5px;font-weight:600;color:var(--mp-purple-700);text-decoration:none;transition:color var(--mp-dur-base) var(--mp-ease);">{{ reg.forgot }}</a>
+            </div>
+
+            <button onClick="{{ lSubmit }}" class="reg-b2" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px;background:{{ lSubmitBg }};border:0;border-radius:11px;color:{{ lSubmitColor }};font-family:inherit;font-size:14.5px;font-weight:700;cursor:{{ lSubmitCursor }};box-shadow:0 6px 18px rgba(102,126,234,0.26);transition:all var(--mp-dur-base) var(--mp-ease);">
+              {{ reg.lgBtn }}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><path d="m10 17 5-5-5-5"></path><path d="M15 12H3"></path></svg>
+            </button>
+
+            <div style="display:flex;align-items:center;gap:12px;margin:18px 0;">
+              <span style="flex:1;height:1px;background:var(--mp-border-soft);"></span>
+              <span style="font-size:11.5px;color:var(--mp-gray-400);">{{ reg.or }}</span>
+              <span style="flex:1;height:1px;background:var(--mp-border-soft);"></span>
+            </div>
+            <div style="display:flex;gap:10px;">
+              <button class="reg-b2" style="flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:10px;background:#fff;border:1px solid var(--mp-border);border-radius:11px;color:var(--mp-gray-700);font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:all var(--mp-dur-base) var(--mp-ease);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3C4.7 3 2 5.4 2 8.3c0 1.6.8 3 2.1 4L3 15l2.8-1.3c.7.2 1.4.3 2.2.3M16 8c-3.3 0-6 2.4-6 5.3S12.7 18.6 16 18.6c.7 0 1.4-.1 2-.3L20.5 20l-.9-2.2c1.3-1 2.4-2.4 2.4-4C22 10.4 19.3 8 16 8Z"></path></svg>
+                {{ reg.wechat }}
+              </button>
+              <button class="reg-b2" style="flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:10px;background:#fff;border:1px solid var(--mp-border);border-radius:11px;color:var(--mp-gray-700);font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:all var(--mp-dur-base) var(--mp-ease);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2"></rect><path d="M12 18h.01"></path></svg>
+                {{ reg.phone }}
+              </button>
+            </div>
+
+            <div style="text-align:center;margin-top:20px;font-size:13px;color:var(--mp-gray-500);">
+              {{ reg.noAcc }}<span onClick="{{ switchToReg }}" class="reg-a" style="color:var(--mp-purple-700);font-weight:700;cursor:pointer;transition:color var(--mp-dur-base) var(--mp-ease);">{{ reg.signup }}</span>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- SUCCESS -->
+        <sc-if value="{{ rSent }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:44px 34px 40px;text-align:center;">
+            <div style="width:76px;height:76px;border-radius:50%;background:var(--mp-grad-dao);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(67,233,123,0.4);margin:0 auto 24px;">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+            </div>
+            <h2 style="font-size:22px;font-weight:800;color:var(--mp-gray-900);margin:0 0 12px;letter-spacing:-0.3px;border:0;padding:0;">{{ reg.sentTitle }}</h2>
+            <p style="font-size:13.5px;line-height:1.7;color:var(--mp-gray-600);margin:0 0 6px;">{{ reg.sentA }} <span style="color:var(--mp-purple-700);font-weight:700;">{{ rEmail }}</span> {{ reg.sentB }}</p>
+            <p style="font-size:12px;color:var(--mp-gray-400);margin:0 0 26px;">{{ reg.sentHint }}</p>
+            <div style="display:flex;align-items:center;justify-content:center;gap:14px;">
+              <button class="reg-b2" style="display:flex;align-items:center;gap:7px;padding:11px 20px;background:linear-gradient(135deg,#667eea,#764ba2);border:0;border-radius:11px;color:#fff;font-family:inherit;font-size:13.5px;font-weight:700;cursor:pointer;box-shadow:0 6px 18px rgba(102,126,234,0.26);transition:all var(--mp-dur-base) var(--mp-ease);">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+                {{ reg.resend }}
+              </button>
+              <span onClick="{{ rBack }}" class="reg-a" style="font-size:13.5px;font-weight:600;color:var(--mp-gray-600);cursor:pointer;transition:color var(--mp-dur-base) var(--mp-ease);">{{ reg.backEmail }}</span>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- login toast -->
+  <sc-if value="{{ authToast }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;left:50%;bottom:34px;transform:translateX(-50%);z-index:210;display:flex;align-items:center;gap:10px;padding:13px 22px;background:rgba(18,13,40,0.95);backdrop-filter:blur(10px);border:1px solid rgba(95,224,200,0.35);border-radius:var(--mp-radius-pill);box-shadow:0 16px 40px rgba(0,0,0,0.4);">
+      <span style="width:22px;height:22px;border-radius:50%;background:var(--mp-grad-dao);display:flex;align-items:center;justify-content:center;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"></path></svg>
+      </span>
+      <span style="color:#fff;font-size:14px;font-weight:600;">{{ authToastMsg }}</span>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;zh&quot;,&quot;en&quot;],&quot;default&quot;:&quot;zh&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;内容&quot;},&quot;motion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;页头&quot;},&quot;showTrend&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;卡片&quot;}}">
+class Component extends DCLogic {
+  state = { lang: null, hover: null, hx: 0, hy: 0, hlIndex: 0, hlVisible: true, dPage: 0, iPage: 0, regOpen: false, authMode: 'reg', rEmail: '', rPw: '', rShowPw: false, rAgree: false, rTouched: false, rSent: false, lEmail: '', lPw: '', lShowPw: false, lRemember: true, lTouched: false, authToast: false };
+
+  toggle = () => this.setState(s => ({
+    lang: (s.lang ?? (this.props.defaultLang || 'zh')) === 'zh' ? 'en' : 'zh'
+  }));
+
+  openReg = () => this.setState({ regOpen: true, authMode: 'reg' });
+  openLogin = () => this.setState({ regOpen: true, authMode: 'login' });
+  switchToLogin = () => this.setState({ authMode: 'login', rSent: false });
+  switchToReg = () => this.setState({ authMode: 'reg', rSent: false });
+  closeReg = () => this.setState({ regOpen: false });
+  stopProp = (e) => e.stopPropagation();
+  rSetEmail = (e) => this.setState({ rEmail: e.target.value.trim(), rTouched: true });
+  rSetPw = (e) => this.setState({ rPw: e.target.value });
+  rTogglePw = () => this.setState({ rShowPw: !this.state.rShowPw });
+  rToggleAgree = () => this.setState({ rAgree: !this.state.rAgree });
+  rBack = () => this.setState({ rSent: false });
+  rSubmit = () => {
+    const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.state.rEmail);
+    if (ok && this.state.rPw.length >= 8 && this.state.rAgree) this.setState({ rSent: true });
+    else this.setState({ rTouched: true });
+  };
+  lSetEmail = (e) => this.setState({ lEmail: e.target.value.trim(), lTouched: true });
+  lSetPw = (e) => this.setState({ lPw: e.target.value });
+  lTogglePw = () => this.setState({ lShowPw: !this.state.lShowPw });
+  lToggleRemember = () => this.setState({ lRemember: !this.state.lRemember });
+  lSubmit = () => {
+    const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.state.lEmail);
+    if (ok && this.state.lPw.length > 0) {
+      if (window.NextStopAuth) window.NextStopAuth.login();
+      this.setState({ regOpen: false, authToast: true, lPw: '' });
+      clearTimeout(this._authT);
+      this._authT = setTimeout(() => this.setState({ authToast: false }), 2600);
+    } else this.setState({ lTouched: true });
+  };
+
+  componentDidMount() {
+    this._hlTimer = setInterval(() => {
+      this.setState({ hlVisible: false });
+      this._hlSwap = setTimeout(() => this.setState(s => ({ hlIndex: (s.hlIndex + 1) % 2, hlVisible: true })), 480);
+    }, 4400);
+  }
+  componentWillUnmount() {
+    clearInterval(this._hlTimer);
+    clearTimeout(this._hlSwap);
+  }
+
+  renderVals() {
+    const lang = this.state.lang ?? (this.props.defaultLang || 'zh');
+    const showTrend = this.props.showTrend ?? true;
+    const motion = this.props.motion ?? true;
+
+    // mycelium filament network (viewBox 120x70)
+    const NN = [
+      { x: 16, y: 20, r: 1.7, hot: true }, { x: 34, y: 44, r: 1.0 },
+      { x: 50, y: 16, r: 1.3 }, { x: 64, y: 36, r: 1.9, hot: true },
+      { x: 80, y: 18, r: 1.0 }, { x: 90, y: 50, r: 1.4, hot: true },
+      { x: 104, y: 30, r: 1.1 }, { x: 28, y: 60, r: 1.0 },
+      { x: 56, y: 58, r: 1.3 }, { x: 108, y: 58, r: 1.0 }, { x: 10, y: 40, r: 0.9 }
+    ];
+    const pairs = [[0,1],[0,2],[1,3],[2,3],[3,4],[4,6],[3,5],[5,6],[1,7],[7,8],[8,5],[8,9],[6,9],[0,10],[10,1],[2,4],[1,8]];
+    const edges = pairs.map(([a, b]) => ({ x1: NN[a].x, y1: NN[a].y, x2: NN[b].x, y2: NN[b].y }));
+    const nodes = NN.map(n => ({
+      cx: n.x, cy: n.y, r: n.r,
+      fill: n.hot ? 'url(#sporeN)' : 'rgba(157,134,240,0.85)',
+      halo: n.r * 2.4,
+      haloFill: n.hot ? 'rgba(255,107,107,0.5)' : 'rgba(120,200,200,0.26)'
+    }));
+    const hotLabels = [
+      { x: 67, y: 36.6, t: '安吉 · 9.0', anchor: 'start' },
+      { x: 53, y: 15.2, t: '成都 · 8.8', anchor: 'start' }
+    ];
+
+    const zh = {
+      brand: 'Next Stop', brandSub: '',
+      nav: ['发现社区', '城市榜单', '活动', '指南'],
+      login: '登录', submit: '提交社区',
+      kicker: '数字游民 · 社区集合网',
+      headline: '找到下一个落脚点',
+      headline2: '把分散各地的社区\n连成一张网',
+      features: [
+        { emoji: '🍹', lead: '每年 223 场聚会', rest: '覆盖全国 100+ 城市' },
+        { emoji: '❤️', lead: '结识新朋友', rest: '约会、同好与社交' },
+        { emoji: '🧪', lead: '研究目的地', rest: '找到最适合生活与工作的地方' },
+        { emoji: '🌍', lead: '记录你的旅程', rest: '标记每一个到过的地方' },
+        { emoji: '💬', lead: '加入 Next Stop 聊天', rest: '在路上找到你的同伴' }
+      ],
+      netIntro: { emoji: '🍄', lead: 'Next Stop', rest: '把散落各地的社区连成一张活的网络——每个亮点是一座城市的社区枢纽，节点间流动的是真实的人与信息。' },
+      tickerLabel: '活动预报',
+      events: [
+        { city: '大理', title: '苍山观星 · 数字游民露营', date: '07/05 周六' },
+        { city: '安吉', title: '余村共创周 · 开放工位', date: '07/08 周二' },
+        { city: '成都', title: '玉林路 Coffee & Code', date: '07/11 周五' },
+        { city: '景德镇', title: '陶溪川手作市集', date: '07/15 周二' },
+        { city: '莫干山', title: '竹林徒步 + 共居体验', date: '07/19 周六' },
+        { city: '宁波', title: '老外滩港城骑行局', date: '07/22 周二' }
+      ],
+      boardKicker: '社区版块 · Community Boards',
+      boardTitle: '在版块里，找到同频的人',
+      boardSub: '从签证到拼车，从招聘到职场闲聊——所有日常都在这里发生。',
+      boardOnline: '1,284 人在线',
+      boards: [
+        { zh: '会员区', en: 'Member', note: null, items: [
+          { icon: '#bd-info', zh: '信息', en: 'Info', desc: '政策、签证、城市生活资讯', threads: '1,280', posts: '9.4k', fresh: '刚刚', grad: 'var(--mp-grad-whitepaper)' },
+          { icon: '#bd-trade', zh: '交易', en: 'Trade', desc: '二手闲置、租房转让', threads: '860', posts: '5.2k', fresh: '3 分钟前', grad: 'var(--mp-grad-gtoken)' },
+          { icon: '#bd-car', zh: '拼车', en: 'Carpool', desc: '同城拼车、跨城结伴', threads: '430', posts: '2.1k', fresh: '12 分钟前', grad: 'var(--mp-grad-dao)' },
+          { icon: '#bd-promo', zh: '推广', en: 'Promotion', desc: '项目自荐、好物分享', threads: '320', posts: '1.6k', fresh: '28 分钟前', grad: 'var(--mp-grad-demo)' },
+          { icon: '#bd-meetup', zh: '见面会', en: 'Meetup', desc: '线下活动、城市聚会', threads: '540', posts: '3.8k', fresh: '1 小时前', grad: 'var(--mp-grad-milestone)' },
+          { icon: '#bd-qa', zh: '问答', en: 'Q&A', desc: '提问求助、经验互答', threads: '720', posts: '6.1k', fresh: '2 分钟前', grad: 'var(--mp-grad-more)' }
+        ] },
+        { zh: '工作区', en: 'Worklife', note: '非招聘求职请到「职场杂谈」版块', items: [
+          { icon: '#bd-jobs', zh: '求职招聘', en: 'Jobs', desc: '远程岗位、自由职业机会', threads: '670', posts: '4.1k', fresh: '6 分钟前', grad: 'var(--mp-grad-whitepaper)' },
+          { icon: '#bd-chat', zh: '职场杂谈', en: 'Career Chat', desc: '经验、副业、行业吐槽', threads: '910', posts: '7.3k', fresh: '刚刚', grad: 'var(--mp-grad-more)' }
+        ] }
+      ],
+      threadsLabel: '主题', postsLabel: '帖子',
+      sub: '收录中国各地的数字游民社区与线下基地，用真实数据，帮你选择下一站。',
+      searchPh: '搜索城市、社区或标签…',
+      cta: '开始探索',
+      chips: ['全部', '山系', '海边', '城市', '越冬避暑', '联合办公', '会员折扣'],
+      statL: ['收录社区', '覆盖城市', '链接游民', '本周新增'],
+      listTitle: '热门数字游民社区',
+      listSub: '按社区活跃度排序 · 本月更新',
+      intlKicker: '全球 · Worldwide',
+      intlTitle: '国际数字游民社区',
+      intlSub: '海外热门目的地 陆续更新',
+      intlChip: '全球 16 城',
+      sort: '活跃度', cityCount: '全国 29 城',
+      perMonth: '/月', minSuffix: '/月起', weekNew: '本周', detail: '查看社区', hubUnit: '个社区',
+      nextPage: '下一页',      prevPage: '上一页',      whyKicker: '为什么是 Next Stop',
+      whyTitle: '选择下一站，不该靠运气',
+      vp: [
+        { t: '真实数据', b: '生活成本、网速、气候、社区活跃度——每个数字都来自一线游民的持续反馈，而不是广告词。' },
+        { t: '像菌丝一样连接', b: '把散落在山野与城市的社区连成一张网络，顺着菌丝，找到下一个落脚点与同行的人。' },
+        { t: '线下真实基地', b: '每个社区都对应可入住的线下空间——联合办公、共居、长租，线上看清楚，线下住进去。' }
+      ],
+      ctaTitle: '在运营一个数字游民社区？',
+      ctaSub: '把它接入菌丝网络，让正在路上的人找到你。',
+      ctaBtn: '提交你的社区',
+      ctaBtn2: '提交你的社区活动',
+      footTagline: '像菌丝网络一样，连接每一个数字游民社区。',
+      footCols: [
+        { h: '探索', links: [{ t: '发现社区', href: '数字游民社区集合网.dc.html' }, { t: '城市榜单', href: '数字游民社区集合网.dc.html' }, { t: '活动日历', href: '活动.dc.html' }, { t: '社区地图', href: '#' }] },
+        { h: '资源', links: [{ t: '游民指南', href: '指南.dc.html' }, { t: '费用计算器', href: '#' }, { t: '签证与社保', href: '指南.dc.html' }, { t: '博客', href: '#' }] },
+        { h: '关于', links: [{ t: '关于我们', href: '加入我们.dc.html' }, { t: '加入我们', href: '加入我们.dc.html' }, { t: '联系我们', href: '联系我们.dc.html' }, { t: '隐私政策', href: '隐私政策.dc.html' }] }
+      ],
+      copyright: '© 2026 菌丝 Mycelium · 数字游民社区集合网'
+    };
+
+    const en = {
+      brand: 'Next Stop', brandSub: '',
+      nav: ['Communities', 'Rankings', 'Events', 'Guides'],
+      login: 'Log in', submit: 'Submit a hub',
+      kicker: 'Digital Nomads · Community Atlas',
+      headline: 'Follow the mycelium\nto your next basecamp',
+      headline2: 'Weave scattered hubs\ninto one network',
+      features: [
+        { emoji: '🍹', lead: '223 meetups a year', rest: 'across 100+ cities' },
+        { emoji: '❤️', lead: 'Meet new people', rest: 'for dating and friends' },
+        { emoji: '🧪', lead: 'Research destinations', rest: 'find your best place to live & work' },
+        { emoji: '🌍', lead: 'Track your travels', rest: "record everywhere you've been" },
+        { emoji: '💬', lead: 'Join the chat', rest: 'find your community on the road' }
+      ],
+      netIntro: { emoji: '🍄', lead: 'Mycelium network', rest: 'A living web that links scattered communities — each glowing node is a city hub, and what flows between them is real people and information.' },
+      tickerLabel: 'WHAT\u2019S ON',
+      events: [
+        { city: 'Dali', title: 'Cangshan stargazing · nomad camp', date: 'Jul 5 Sat' },
+        { city: 'Anji', title: 'Yucun co-creation week · open desks', date: 'Jul 8 Tue' },
+        { city: 'Chengdu', title: 'Yulin Rd · Coffee & Code', date: 'Jul 11 Fri' },
+        { city: 'Jingdezhen', title: 'Taoxichuan craft market', date: 'Jul 15 Tue' },
+        { city: 'Moganshan', title: 'Bamboo hike + co-living', date: 'Jul 19 Sat' },
+        { city: 'Ningbo', title: 'Old Bund riverside ride', date: 'Jul 22 Tue' }
+      ],
+      boardKicker: 'Community Boards',
+      boardTitle: 'Find your people in the boards',
+      boardSub: 'From visas to carpools, jobs to water-cooler talk — daily life happens here.',
+      boardOnline: '1,284 online',
+      boards: [
+        { zh: 'Member', en: '会员区', note: null, items: [
+          { icon: '#bd-info', zh: 'Info', en: '信息', desc: 'Policy, visa & city living tips', threads: '1,280', posts: '9.4k', fresh: 'just now', grad: 'var(--mp-grad-whitepaper)' },
+          { icon: '#bd-trade', zh: 'Trade', en: '交易', desc: 'Secondhand goods & sublets', threads: '860', posts: '5.2k', fresh: '3m ago', grad: 'var(--mp-grad-gtoken)' },
+          { icon: '#bd-car', zh: 'Carpool', en: '拼车', desc: 'Rideshares & travel buddies', threads: '430', posts: '2.1k', fresh: '12m ago', grad: 'var(--mp-grad-dao)' },
+          { icon: '#bd-promo', zh: 'Promotion', en: '推广', desc: 'Pitch projects & share finds', threads: '320', posts: '1.6k', fresh: '28m ago', grad: 'var(--mp-grad-demo)' },
+          { icon: '#bd-meetup', zh: 'Meetup', en: '见面会', desc: 'Offline events & city gatherings', threads: '540', posts: '3.8k', fresh: '1h ago', grad: 'var(--mp-grad-milestone)' },
+          { icon: '#bd-qa', zh: 'Q&A', en: '问答', desc: 'Ask, help & share know-how', threads: '720', posts: '6.1k', fresh: '2m ago', grad: 'var(--mp-grad-more)' }
+        ] },
+        { zh: 'Worklife', en: '工作区', note: 'Not hiring/job posts? Head to Career Chat', items: [
+          { icon: '#bd-jobs', zh: 'Jobs', en: '求职招聘', desc: 'Remote roles & freelance gigs', threads: '670', posts: '4.1k', fresh: '6m ago', grad: 'var(--mp-grad-whitepaper)' },
+          { icon: '#bd-chat', zh: 'Career Chat', en: '职场杂谈', desc: 'Tips, side hustles & venting', threads: '910', posts: '7.3k', fresh: 'just now', grad: 'var(--mp-grad-more)' }
+        ] }
+      ],
+      threadsLabel: 'Threads', postsLabel: 'Posts',
+      sub: 'A living map of China\u2019s digital-nomad communities and on-the-ground hubs — real data to pick your next stop.',
+      searchPh: 'Search a city, community or tag…',
+      cta: 'Explore',
+      chips: ['All', 'Mountains', 'Coast', 'City', 'Winter', 'Co-working', 'Members'],
+      statL: ['Communities', 'Cities', 'Nomads linked', 'New this week'],
+      listTitle: 'Trending nomad communities',
+      listSub: 'Ranked by activity · updated monthly',
+      intlKicker: 'Worldwide',
+      intlTitle: 'International nomad hubs',
+      intlSub: 'Popular hubs worldwide · live',
+      intlChip: '16 cities',
+      sort: 'Activity', cityCount: '29 cities',
+      perMonth: '/mo', minSuffix: '/mo', weekNew: 'wk', detail: 'View hub', hubUnit: ' hubs',
+      nextPage: 'Next',
+      prevPage: 'Prev',
+      whyKicker: 'Why Mycelium',
+      whyTitle: 'Your next stop shouldn\u2019t be a gamble',
+      vp: [
+        { t: 'Real data', b: 'Cost of living, internet, climate, community activity — every number comes from nomads on the ground, not ad copy.' },
+        { t: 'Connected like mycelium', b: 'We thread scattered hubs across mountains and cities into one network — follow the filament to your next stop and your next people.' },
+        { t: 'Real on-the-ground hubs', b: 'Every community maps to a real space you can move into — co-working, co-living, long stays. Check it online, live in it offline.' }
+      ],
+      ctaTitle: 'Running a nomad community?',
+      ctaSub: 'Plug it into the mycelium network and let people on the road find you.',
+      ctaBtn: 'Submit your hub',
+      ctaBtn2: 'Submit an event',
+      footTagline: 'Connecting every digital-nomad community, like a mycelial network.',
+      footCols: [
+        { h: 'Explore', links: [{ t: 'Communities', href: '数字游民社区集合网.dc.html' }, { t: 'Rankings', href: '数字游民社区集合网.dc.html' }, { t: 'Event calendar', href: '活动.dc.html' }, { t: 'Community map', href: '#' }] },
+        { h: 'Resources', links: [{ t: 'Nomad guide', href: '指南.dc.html' }, { t: 'Cost calculator', href: '#' }, { t: 'Visa & insurance', href: '指南.dc.html' }, { t: 'Blog', href: '#' }] },
+        { h: 'About', links: [{ t: 'About us', href: '加入我们.dc.html' }, { t: 'Join us', href: '加入我们.dc.html' }, { t: 'Contact', href: '联系我们.dc.html' }, { t: 'Privacy', href: '隐私政策.dc.html' }] }
+      ],
+      copyright: '© 2026 Mycelium · Digital-nomad community atlas'
+    };
+
+    const t = lang === 'zh' ? zh : en;
+
+    // interactive nodes -> feature popup
+    const features = t.features;
+    const hoverDefs = [
+      { x: 50, y: 16 }, { x: 64, y: 36 }, { x: 80, y: 18 }, { x: 90, y: 50 },
+      { x: 104, y: 30 }, { x: 56, y: 58 }, { x: 108, y: 58 }
+    ];
+    const hoverNodes = hoverDefs.map((h, i) => ({
+      cx: h.x, cy: h.y,
+      onEnter: (e) => {
+        let left = 0, top = 0;
+        try {
+          const cr = e.currentTarget.getBoundingClientRect();
+          const hd = e.currentTarget.ownerSVGElement.closest('header').getBoundingClientRect();
+          left = cr.left + cr.width / 2 - hd.left;
+          top = cr.top + cr.height / 2 - hd.top;
+        } catch (err) {}
+        this.setState({ hover: i, hx: left, hy: top });
+      },
+      onLeave: () => this.setState({ hover: null }),
+      onClick: () => this.setState({ regOpen: true, authMode: 'reg' })
+    }));
+    let pop = null;
+    const hv = this.state.hover;
+    if (hv != null && hoverDefs[hv]) {
+      const h = hoverDefs[hv];
+      const f = hv === 1 ? t.netIntro : features[hv % features.length];
+      const hx = this.state.hx || 0, hy = this.state.hy || 0;
+      const above = hy > 170;
+      const transform = above ? 'translate(-50%, calc(-100% - 14px))' : 'translate(-50%, 16px)';
+      pop = { vx: h.x, vy: h.y, left: hx, top: hy, transform, emoji: f.emoji, lead: f.lead, rest: f.rest };
+    }
+
+    const stats = ['128', '26', '8,400+', '+6'].map((n, i) => ({ n, l: t.statL[i] }));
+
+    const chips = t.chips.map((label, i) => {
+      const isMember = i === t.chips.length - 1;
+      return {
+        label,
+        bg: i === 0 ? '#ffffff' : isMember ? 'rgba(207,152,24,0.16)' : 'rgba(255,255,255,0.10)',
+        color: i === 0 ? '#764ba2' : isMember ? '#f0c674' : 'rgba(255,255,255,0.92)',
+        border: i === 0 ? '1px solid #ffffff' : isMember ? '1px solid rgba(207,152,24,0.5)' : '1px solid rgba(255,255,255,0.24)'
+      };
+    });
+
+    const paths = {
+      mountain: 'M0 120 L70 55 L120 88 L175 35 L225 78 L285 42 L340 82 L400 50 L400 120 Z',
+      coast: 'M0 96 Q50 80 100 96 T200 96 T300 96 T400 96 L400 120 L0 120 Z',
+      city: 'M0 120 L0 86 L26 86 L26 62 L52 62 L52 96 L78 96 L78 50 L104 50 L104 80 L132 80 L132 66 L160 66 L160 92 L190 92 L190 56 L218 56 L218 84 L250 84 L250 70 L280 70 L280 92 L312 92 L312 58 L340 58 L340 84 L370 84 L370 72 L400 72 L400 120 Z'
+    };
+
+    const zhCom = [
+      { rank: 1, city: '杭州', region: '浙江 · 余杭', terrain: 'city', grad: 'linear-gradient(135deg,#30cfd0,#330867)', tags: ['数字经济', '创业', '西湖'] },
+      { rank: 2, city: '大理', region: '云南 · 苍洱', terrain: 'coast', grad: 'linear-gradient(135deg,#f6a96b,#ee6c8f)', tags: ['洱海', '咖啡聚集', '山系'] },
+      { rank: 3, city: '安吉', region: '浙江 · 余村', terrain: 'mountain', grad: 'linear-gradient(135deg,#43e97b,#38a3d7)', tags: ['竹林', '游民公社', '办公'] },
+      { rank: 4, city: '成都', region: '四川 · 天府', terrain: 'city', grad: 'linear-gradient(135deg,#667eea,#764ba2)', tags: ['美食', '包容', '夜生活'] },
+      { rank: 5, city: '上海', region: '上海 · 市区', terrain: 'city', grad: 'linear-gradient(135deg,#fa709a,#fee140)', tags: ['都市', '创业', '联合办公'] },
+      { rank: 6, city: '莫干山', region: '浙江 · 德清', terrain: 'mountain', grad: 'linear-gradient(135deg,#0ba360,#3cba92)', tags: ['民宿', '避暑', '户外'] },
+      { rank: 7, city: '宁波', region: '浙江 · 甬城', terrain: 'coast', grad: 'linear-gradient(135deg,#4facfe,#00f2fe)', tags: ['港城', '商帮', '滨海'] },
+      { rank: 8, city: '丽水', region: '浙江 · 瓯江', terrain: 'mountain', grad: 'linear-gradient(135deg,#11998e,#38ef7d)', tags: ['山水', '古村', '生态'] },
+      { rank: 9, city: '黄山', region: '安徽 · 黟县', terrain: 'mountain', grad: 'linear-gradient(135deg,#6d8bad,#2c3e50)', tags: ['云海', '古村', '山居'] }
+    ];
+    const enCity = ['Hangzhou', 'Dali', 'Anji', 'Chengdu', 'Shanghai', 'Moganshan', 'Ningbo', 'Lishui', 'Huangshan'];
+    const enRegion = ['Zhejiang · Yuhang', 'Yunnan · Erhai', 'Zhejiang · Yucun', 'Sichuan · Tianfu', 'Shanghai · Downtown', 'Zhejiang · Deqing', 'Zhejiang · Yong', 'Zhejiang · Oujiang', 'Anhui · Yixian'];
+    const enTags = [
+      ['Digital economy', 'Startups', 'West Lake'],
+      ['Lakeside', 'Cafés', 'Mountains'], ['Bamboo', 'Nomad commune', 'Co-working'],
+      ['Food', 'Inclusive', 'Nightlife'], ['Metropolis', 'Startups', 'Co-working'],
+      ['Inns', 'Cool summers', 'Outdoors'],
+      ['Port city', 'Merchants', 'Seaside'], ['Landscape', 'Old villages', 'Eco'],
+      ['Sea of clouds', 'Old villages', 'Hill living']
+    ];
+    const metric = [
+      { score: '8.7', cost: '4,800', wifi: '300', members: '1,050', newCount: '+11' },
+      { score: '9.2', cost: '3,500', wifi: '80', members: '1,240', newCount: '+12' },
+      { score: '9.0', cost: '2,800', wifi: '120', members: '860', newCount: '+8' },
+      { score: '8.8', cost: '4,200', wifi: '300', members: '2,130', newCount: '+15' },
+      { score: '8.5', cost: '2,600', wifi: '100', members: '540', newCount: '+5' },
+      { score: '8.4', cost: '3,800', wifi: '80', members: '380', newCount: '+4' },
+      { score: '8.4', cost: '4,200', wifi: '300', members: '780', newCount: '+8' },
+      { score: '8.3', cost: '2,500', wifi: '90', members: '360', newCount: '+6' },
+      { score: '8.4', cost: '2,600', wifi: '80', members: '340', newCount: '+5' }
+    ];
+    const zhClimate = ['多云 33°', '晴 24°', '阵雨 28°', '阴 31°', '多云 34°', '多云 27°', '多云 26°', '多云 25°', '云雾 25°'];
+    const enClimate = ['Cloudy 33°', 'Sunny 24°', 'Showers 28°', 'Overcast 31°', 'Cloudy 34°', 'Cloudy 27°', 'Cloudy 26°', 'Cloudy 25°', 'Misty 25°'];
+
+    const citySlugs = ['hangzhou', 'dali', 'anji', 'chengdu', 'shanghai', 'moganshan', 'ningbo', 'lishui', 'huangshan'];
+    const hubCounts = { dali: 5, anji: 2, chengdu: 2, shanghai: 2, moganshan: 1, ningbo: 1, lishui: 1, hangzhou: 5, huangshan: 3 };
+    const cityPhotos = { dali: 'assets/city/dali.jpg', chengdu: 'assets/city/chengdu.png', anji: 'assets/city/anji.png', hangzhou: 'assets/city/hangzhou.png', shanghai: 'assets/city/shanghai.jpg', huangshan: 'assets/city/huangshan_pine.jpg', shenzhen: 'assets/city/shenzhen.jpg', moganshan: 'assets/city/moganshan.png', ningbo: 'assets/city/ningbo.jpg', lishui: 'assets/city/lishui.png' };
+    const MINCOST = { dali: '2,200', hangzhou: '2,450', anji: '1,850', chengdu: '2,630', jingdezhen: '2,700', shanghai: '3,800', shenzhen: '5,500', suzhou: '4,200', moganshan: '4,500', ningbo: '3,700', lishui: '2,300', huangshan: '1,900', kunming: '2,900', taizhou: '2,800', wenzhou: '2,200', nanping: '1,900', jinggangshan: '1,600', haikou: '3,700', puer: '1,850', tianjin: '3,500', kunshan: '3,050', yichun: '2,200', zhoushan: '2,800', lingshui: '3,580', sanya: '3,350', zhongshan: '3,500', xian: '1,950', ziyang: '2,800', yaan: '2,200', xinyang: '2,100' };
+    const communities = zhCom.map((c, i) => ({
+      rank: c.rank, cur: '¥', hubCount: hubCounts[citySlugs[i]] || 1, minCost: MINCOST[citySlugs[i]] || metric[i].cost, detailHref: '城市.dc.html#' + (citySlugs[i] || 'dali'),
+      go: () => { window.location.href = '城市.dc.html#' + (citySlugs[i] || 'dali'); },
+      photo: cityPhotos[citySlugs[i]] || null,
+      noPhoto: !cityPhotos[citySlugs[i]],
+      blurCorner: false,
+      city: lang === 'zh' ? c.city : enCity[i],
+      region: lang === 'zh' ? c.region : enRegion[i],
+      grad: c.grad,
+      path: paths[c.terrain],
+      tags: lang === 'zh' ? c.tags : enTags[i],
+      climate: lang === 'zh' ? zhClimate[i] : enClimate[i],
+      score: metric[i].score,
+      cost: metric[i].cost,
+      wifi: metric[i].wifi,
+      members: metric[i].members,
+      newCount: metric[i].newCount,
+      notPaused: true
+    }));
+    // 把黄山（末位）移动到第 5 个位置
+    (() => { const hsIdx = communities.findIndex(c => (c.detailHref || '').includes('huangshan')); if (hsIdx > 4) { const [hs] = communities.splice(hsIdx, 1); communities.splice(4, 0, hs); } })();
+
+    // ===== international nomad hubs =====
+    const zhIntl = [
+      { rank: 1, city: '巴厘岛', region: '印尼 · 长谷', terrain: 'coast', grad: 'linear-gradient(135deg,#f6a96b,#ee6c8f)', tags: ['冲浪', '联合办公', '咖啡'], score: '9.4', cost: '1,400', wifi: '60', members: '4,180', newCount: '+22' },
+      { rank: 2, city: '清迈', region: '泰国 · 兰纳', terrain: 'city', grad: 'linear-gradient(135deg,#43e97b,#38a3d7)', tags: ['低成本', '美食', '慢生活'], score: '9.3', cost: '900', wifi: '90', members: '5,240', newCount: '+18' },
+      { rank: 3, city: '里斯本', region: '葡萄牙 · 大西洋岸', terrain: 'coast', grad: 'linear-gradient(135deg,#4facfe,#00f2fe)', tags: ['欧洲', '海滨', '阳光'], score: '9.1', cost: '2,200', wifi: '200', members: '3,860', newCount: '+15' },
+      { rank: 4, city: '麦德林', region: '哥伦比亚 · 安蒂奥基亚', terrain: 'mountain', grad: 'linear-gradient(135deg,#fa709a,#fee140)', tags: ['永春之城', '夜生活', '拉丁'], score: '8.9', cost: '1,300', wifi: '80', members: '2,510', newCount: '+12' },
+      { rank: 5, city: '墨西哥城', region: '墨西哥 · 中部高原', terrain: 'city', grad: 'linear-gradient(135deg,#667eea,#764ba2)', tags: ['文化', '美食', '快网'], score: '8.8', cost: '1,600', wifi: '150', members: '3,120', newCount: '+14' },
+      { rank: 6, city: '曼谷', region: '泰国 · 湄南河', terrain: 'city', grad: 'linear-gradient(135deg,#f093fb,#f5576c)', tags: ['都市', '美食', '交通便利'], score: '8.7', cost: '1,300', wifi: '220', members: '4,020', newCount: '+16' },
+      { rank: 7, city: '第比利斯', region: '格鲁吉亚 · 高加索', terrain: 'mountain', grad: 'linear-gradient(135deg,#0ba360,#3cba92)', tags: ['免签一年', '红酒', '山城'], score: '8.5', cost: '1,100', wifi: '70', members: '1,340', newCount: '+9' },
+      { rank: 8, city: '布达佩斯', region: '匈牙利 · 多瑙河', terrain: 'city', grad: 'linear-gradient(135deg,#c79081,#8a5a44)', tags: ['温泉', '历史', '欧洲'], score: '8.6', cost: '1,500', wifi: '180', members: '1,780', newCount: '+7' },
+      { rank: 9, city: '岘港', region: '越南 · 中部海岸', terrain: 'coast', grad: 'linear-gradient(135deg,#f6d365,#fda085)', tags: ['海滩', '低成本', '美食'], score: '8.7', cost: '1,000', wifi: '110', members: '2,260', newCount: '+13' }
+    ];
+    const enIntlCity = ['Canggu', 'Chiang Mai', 'Lisbon', 'Medellín', 'Mexico City', 'Bangkok', 'Tbilisi', 'Budapest', 'Da Nang'];
+    const enIntlRegion = ['Indonesia · Bali', 'Thailand · Lanna', 'Portugal · Atlantic', 'Colombia · Antioquia', 'Mexico · Central', 'Thailand · Chao Phraya', 'Georgia · Caucasus', 'Hungary · Danube', 'Vietnam · Central Coast'];
+    const enIntlTags = [
+      ['Surf', 'Co-working', 'Cafés'], ['Low cost', 'Food', 'Slow life'],
+      ['Europe', 'Seaside', 'Sunny'], ['Eternal spring', 'Nightlife', 'Latin'],
+      ['Culture', 'Food', 'Fast wifi'], ['Metro', 'Food', 'Transit'],
+      ['1yr visa-free', 'Wine', 'Hill town'], ['Thermal baths', 'History', 'Europe'],
+      ['Beaches', 'Low cost', 'Food']
+    ];
+    const zhIntlClimate = ['阵雨 30°', '多云 33°', '晴 28°', '多云 24°', '阵雨 23°', '雷阵雨 34°', '晴 29°', '晴 30°', '多云 32°'];
+    const enIntlClimate = ['Showers 30°', 'Cloudy 33°', 'Sunny 28°', 'Cloudy 24°', 'Showers 23°', 'T-storm 34°', 'Sunny 29°', 'Sunny 30°', 'Cloudy 32°'];
+
+    const intlHubCounts = [3, 2, 2, 2, 1, 2, 1, 1, 1];
+    const intlDetail = { '巴厘岛': '基地-巴厘岛Outpost.dc.html' };
+    const intlPhotos = { '巴厘岛': 'assets/city/bali.jpg' };
+    const intlRatings = { '巴厘岛': { overall: 88, cost: 100, internet: 25, liked: 100, safety: 78 } };
+    const mLabels = lang === 'zh'
+      ? { overall: '综合', cost: '成本', internet: '网络', liked: '好评', safety: '安全' }
+      : { overall: 'Overall', cost: 'Cost', internet: 'Internet', liked: 'Liked', safety: 'Safety' };
+    const mIcons = {
+      overall: 'M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 7.1-1.01L12 2z',
+      cost: 'M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6',
+      internet: 'M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01',
+      liked: 'M7 10v12M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z',
+      safety: 'M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z'
+    };
+    const buildMetrics = (city) => {
+      const r = intlRatings[city];
+      if (!r) return null;
+      return ['overall', 'cost', 'internet', 'liked', 'safety'].map(k => ({
+        key: k, label: mLabels[k], icon: mIcons[k], value: r[k],
+        pct: r[k] + '%',
+        color: r[k] >= 70 ? '#2fbf6b' : (r[k] >= 50 ? '#f5b829' : '#ef6b5e')
+      }));
+    };
+    const intlCommunities = zhIntl.map((c, i) => ({
+      rank: c.rank, cur: '$', hubCount: intlHubCounts[i] || 1, minCost: c.cost,
+      detailHref: intlDetail[c.city] || '#',
+      go: intlDetail[c.city] ? (() => { window.location.href = intlDetail[c.city]; }) : (() => {}),
+      photo: intlPhotos[c.city] || null,
+      noPhoto: !intlPhotos[c.city],
+      metrics: buildMetrics(c.city),
+      city: lang === 'zh' ? c.city : enIntlCity[i],
+      region: lang === 'zh' ? c.region : enIntlRegion[i],
+      grad: c.grad,
+      path: paths[c.terrain],
+      tags: lang === 'zh' ? c.tags : enIntlTags[i],
+      climate: lang === 'zh' ? zhIntlClimate[i] : enIntlClimate[i],
+      score: c.score,
+      cost: c.cost,
+      wifi: c.wifi,
+      members: c.members,
+      newCount: c.newCount
+    }));
+
+    // ===== page 2 data + pagination =====
+    const mkFinal = (arr, cur) => arr.map(c => ({
+      rank: c.rank, cur,
+      minCost: (cur === '¥' && MINCOST[c.slug]) ? MINCOST[c.slug] : c.cost,
+      photo: c.photo || null, noPhoto: !c.photo,
+      detailHref: c.slug ? ('城市.dc.html#' + c.slug) : null,
+      go: c.slug ? (() => { window.location.href = '城市.dc.html#' + c.slug; }) : undefined,
+      city: lang === 'zh' ? c.zh : c.en,
+      region: lang === 'zh' ? c.rgZh : c.rgEn,
+      grad: c.grad, path: paths[c.terrain],
+      tags: lang === 'zh' ? c.tagsZh : c.tagsEn,
+      climate: lang === 'zh' ? c.climZh : c.climEn,
+      score: c.score, cost: c.cost, wifi: c.wifi, members: c.members, newCount: c.newCount, paused: !!c.paused, notPaused: !c.paused && !c.closed, pausedLabel: (lang === 'zh' ? '暂停招募' : 'Paused'), closed: !!c.closed, closedLabel: (lang === 'zh' ? '关闭' : 'Closed')
+    }));
+
+    const domP2 = [
+      { rank: 9, zh: '昆明', en: 'Kunming', rgZh: '云南 · 滇池', rgEn: 'Yunnan · Dianchi', terrain: 'city', grad: 'linear-gradient(135deg,#43e97b,#38a3d7)', photo: 'https://rs-channel.huanqiucdn.cn/imageDir/42255cfd2754d18f1db44509fd175a06u5.jpg', slug: 'kunming', tagsZh: ['春城', '花市', '慢节奏'], tagsEn: ['Spring city', 'Flowers', 'Slow'], climZh: '阵雨 24°', climEn: 'Showers 24°', score: '8.6', cost: '3,200', wifi: '110', members: '980', newCount: '+7' },
+      { rank: 10, zh: '深圳', en: 'Shenzhen', rgZh: '广东 · 南山', rgEn: 'Guangdong · Nanshan', terrain: 'city', grad: 'linear-gradient(135deg,#2af598,#009efd)', photo: 'https://www.carbonbrief.org/wp-content/uploads/2025/06/2SBH5MN-1550x804.jpg', slug: 'shenzhen', tagsZh: ['科技', '创业', '快节奏'], tagsEn: ['Tech', 'Startups', 'Fast pace'], climZh: '雷阵雨 32°', climEn: 'T-storm 32°', score: '8.6', cost: '5,500', wifi: '300', members: '1,480', newCount: '+16' },
+      { rank: 11, zh: '台州', en: 'Taizhou', rgZh: '浙江 · 椒江', rgEn: 'Zhejiang · Jiaojiang', terrain: 'coast', grad: 'linear-gradient(135deg,#f6d365,#fda085)', photo: 'assets/city/taizhou.png', slug: 'taizhou', tagsZh: ['山海', '府城', '民营'], tagsEn: ['Sea &amp; hills', 'Old town', 'Private economy'], climZh: '多云 29°', climEn: 'Cloudy 29°', score: '8.3', cost: '2,800', wifi: '150', members: '470', newCount: '+7' },
+      { rank: 12, zh: '温州', en: 'Wenzhou', rgZh: '浙江 · 瓯江', rgEn: 'Zhejiang · Oujiang', terrain: 'coast', grad: 'linear-gradient(135deg,#0ba360,#3cba92)', photo: 'assets/city/wenzhou.png', slug: 'wenzhou', tagsZh: ['山水', '商城', '民营'], tagsEn: ['Sea &amp; hills', 'Commerce', 'Private economy'], climZh: '多云 30°', climEn: 'Cloudy 30°', score: '8.3', cost: '3,000', wifi: '150', members: '560', newCount: '+6' },
+      { rank: 13, zh: '南平', en: 'Nanping', rgZh: '福建 · 武夷山', rgEn: 'Fujian · Wuyi', terrain: 'mountain', grad: 'linear-gradient(135deg,#0ba360,#3cba92)', slug: 'nanping', photo: 'https://tse2.mm.bing.net/th/id/OIP.D9da4NHl8w0RhXrEtjMmvgHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3', tagsZh: ['茶乡', '山水', '生态'], tagsEn: ['Tea', 'Landscape', 'Eco'], climZh: '多云 27°', climEn: 'Cloudy 27°', score: '8.2', cost: '2,400', wifi: '80', members: '360', newCount: '+5' },
+      { rank: 14, zh: '陵水', en: 'Lingshui', rgZh: '海南 · 清水湾', rgEn: 'Hainan · Qingshui Bay', terrain: 'coast', grad: 'linear-gradient(135deg,#4facfe,#00f2fe)', slug: 'lingshui', photo: 'https://rs-channel.huanqiucdn.cn/imageDir/6b03116d29955eb3dc71ff734ba0a3f7.jpg', tagsZh: ['海湾', '越冬', '热带'], tagsEn: ['Bay', 'Wintering', 'Tropical'], climZh: '多云 29°', climEn: 'Cloudy 29°', score: '8.3', cost: '3,200', wifi: '120', members: '480', newCount: '+7' },
+      { rank: 15, zh: '中山', en: 'Zhongshan', rgZh: '广东 · 香山', rgEn: 'Guangdong · Xiangshan', terrain: 'city', grad: 'linear-gradient(135deg,#4facfe,#00f2fe)', slug: 'zhongshan', photo: 'assets/city/zhongshan.jpg', tagsZh: ['中山故里', '岭南水乡'], tagsEn: ['Sun Yat-sen', 'Lingnan'], climZh: '多云 28°', climEn: 'Cloudy 28°', score: '8.4', cost: '3,500', wifi: '200', members: '620', newCount: '+7' },
+      { rank: 16, zh: '苏州', en: 'Suzhou', rgZh: '江苏 · 姑苏', rgEn: 'Jiangsu · Gusu', terrain: 'city', grad: 'linear-gradient(135deg,#c79081,#8a5a44)', photo: 'assets/city/suzhou.png', slug: 'suzhou', tagsZh: ['园林', '软件园', '精致'], tagsEn: ['Gardens', 'Tech park', 'Refined'], climZh: '多云 34°', climEn: 'Cloudy 34°', score: '8.5', cost: '4,400', wifi: '300', members: '1,340', newCount: '+10' },
+      { rank: 17, zh: '井冈山', en: 'Jinggangshan', rgZh: '江西 · 吉安', rgEn: 'Jiangxi · Ji\u2019an', terrain: 'mountain', grad: 'linear-gradient(135deg,#0ba360,#3cba92)', slug: 'jinggangshan', photo: 'https://bkimg.cdn.bcebos.com/pic/d01373f082025aaf9b8de9a4f4edab64034f1a25?x-bce-process=image/resize,m_lfit,w_1280,limit_1', tagsZh: ['红色', '山水', '避暑'], tagsEn: ['Red tour', 'Landscape', 'Cool'], climZh: '多云 24°', climEn: 'Cloudy 24°', score: '8.1', cost: '2,200', wifi: '80', members: '260', newCount: '+3' },
+      { rank: 18, zh: '舟山', en: 'Zhoushan', rgZh: '浙江 · 群岛', rgEn: 'Zhejiang · Archipelago', terrain: 'coast', grad: 'linear-gradient(135deg,#4facfe,#00f2fe)', slug: 'zhoushan', photo: 'https://ak-d.tripcdn.com/images/01041120006307lzc919C_D_1180_558.jpg', tagsZh: ['海岛', '渔港', '佛缘'], tagsEn: ['Islands', 'Fishing port', 'Buddhist'], climZh: '多云 28°', climEn: 'Cloudy 28°', score: '8.2', cost: '2,800', wifi: '120', members: '320', newCount: '+4' },
+      { rank: 19, zh: '伊春', en: 'Yichun', rgZh: '黑龙江 · 小兴安岭', rgEn: 'Heilongjiang · Xiao Xing\u2019an', terrain: 'mountain', grad: 'linear-gradient(135deg,#0ba360,#3cba92)', slug: 'yichun', photo: 'assets/city/yichun.jpg', tagsZh: ['森林', '避暑', '康养'], tagsEn: ['Forest', 'Cool summer', 'Wellness'], climZh: '多云 22°', climEn: 'Cloudy 22°', score: '8.0', cost: '2,000', wifi: '70', members: '180', newCount: '+2' },
+      { rank: 20, zh: '昆山', en: 'Kunshan', rgZh: '江苏 · 苏州', rgEn: 'Jiangsu · Suzhou', terrain: 'city', grad: 'linear-gradient(135deg,#4facfe,#2a6fdb)', slug: 'kunshan', photo: 'https://p1.ssl.qhmsg.com/t017b69930e932423a8.jpg', tagsZh: ['水乡', '制造', '沪苏'], tagsEn: ['Water town', 'Industry', 'Hu-Su'], climZh: '多云 31°', climEn: 'Cloudy 31°', score: '8.2', cost: '3,200', wifi: '220', members: '420', newCount: '+5' },
+      { rank: 21, zh: '天津', en: 'Tianjin', rgZh: '天津 · 海河', rgEn: 'Tianjin · Haihe', terrain: 'city', grad: 'linear-gradient(135deg,#f6a552,#c9701f)', slug: 'tianjin', paused: true, photo: 'http://n.sinaimg.cn/sinacn14/211/w2048h1363/20180912/e6fb-hiycyfx7894665.jpg', tagsZh: ['海河', '洋楼', '曲艺'], tagsEn: ['Haihe', 'Old villas', 'Quyi'], climZh: '多云 29°', climEn: 'Cloudy 29°', score: '8.1', cost: '3,000', wifi: '200', members: '390', newCount: '+4' },
+      { rank: 22, zh: '海口', en: 'Haikou', rgZh: '海南 · 琼北', rgEn: 'Hainan · North', terrain: 'coast', grad: 'linear-gradient(135deg,#43e97b,#38a3d7)', slug: 'haikou', photo: 'http://www.hkslww.com/upfile/article/202410/20241021102225999.jpg', tagsZh: ['椰城', '骑楼', '越冬'], tagsEn: ['Coconut city', 'Arcades', 'Wintering'], climZh: '多云 30°', climEn: 'Cloudy 30°', score: '8.2', cost: '2,800', wifi: '150', members: '620', newCount: '+9' },
+      { rank: 23, zh: '普洱', en: 'Pu\u2019er', rgZh: '云南 · 思茅', rgEn: 'Yunnan · Simao', terrain: 'mountain', grad: 'linear-gradient(135deg,#0ba360,#3cba92)', slug: 'puer', photo: 'https://n.sinaimg.cn/spider20230921/625/w2048h977/20230921/7579-b67520e0d92f28354993529f907db187.jpg', tagsZh: ['普洱茶', '雨林', '康养'], tagsEn: ['Pu\u2019er tea', 'Rainforest', 'Wellness'], climZh: '多云 25\u00b0', climEn: 'Cloudy 25\u00b0', score: '8.2', cost: '2,200', wifi: '90', members: '240', newCount: '+4' },
+      { rank: 24, zh: '三亚', en: 'Sanya', rgZh: '海南 · 天涯', rgEn: 'Hainan · Sanya', terrain: 'coast', grad: 'linear-gradient(135deg,#4facfe,#00f2fe)', slug: 'sanya', photo: 'assets/city/sanya.jpg', tagsZh: ['三亚湾', '越冬', '海岛'], tagsEn: ['Sanya Bay', 'Wintering', 'Tropical'], climZh: '晴 30°', climEn: 'Sunny 30°', score: '8.5', cost: '4,500', wifi: '150', members: '820', newCount: '+12' },
+      { rank: 25, zh: '西安', en: "Xi'an", rgZh: '陕西 · 关中', rgEn: 'Shaanxi · Guanzhong', terrain: 'city', grad: 'linear-gradient(135deg,#c9701f,#7a3a12)', slug: 'xian', photo: 'assets/city/xian.jpg', tagsZh: ['古都', '硬科技', '性价比'], tagsEn: ['Ancient capital', 'Hard tech', 'Value'], climZh: '晴 33°', climEn: 'Sunny 33°', score: '8.5', cost: '3,000', wifi: '300', members: '740', newCount: '+9' },
+      { rank: 26, zh: '资阳', en: 'Ziyang', rgZh: '四川 · 沱江', rgEn: 'Sichuan · Tuojiang', terrain: 'city', grad: 'linear-gradient(135deg,#43e97b,#2f8f6b)', slug: 'ziyang', photo: 'assets/city/ziyang.jpg', tagsZh: ['成渝', '安岳石刻', '低成本'], tagsEn: ['Chengdu-Chongqing', 'Anyue carvings', 'Low cost'], climZh: '阵雨 29°', climEn: 'Showers 29°', score: '8.0', cost: '2,400', wifi: '120', members: '220', newCount: '+3' },
+      { rank: 27, zh: '雅安', en: "Ya'an", rgZh: '四川 · 青衣江', rgEn: 'Sichuan · Qingyi', terrain: 'mountain', grad: 'linear-gradient(135deg,#0ba360,#146b42)', slug: 'yaan', closed: true, photo: 'assets/city/yaan.jpg', tagsZh: ['熊猫', '蒙顶茶', '康养'], tagsEn: ['Panda home', 'Mengding tea', 'Cool summer'], climZh: '阵雨 26°', climEn: 'Showers 26°', score: '8.2', cost: '2,600', wifi: '100', members: '260', newCount: '+4' },
+      { rank: 28, zh: '信阳', en: 'Xinyang', rgZh: '河南 · 大别山', rgEn: 'Henan · Dabie', terrain: 'mountain', grad: 'linear-gradient(135deg,#0ba360,#3cba92)', slug: 'xinyang', photo: 'assets/city/xinyang.jpg', tagsZh: ['信阳毛尖', '大别山', '避暑'], tagsEn: ['Maojian tea', 'Dabie Mtn', 'Cool summer'], climZh: '阵雨 30°', climEn: 'Showers 30°', score: '8.1', cost: '2,400', wifi: '100', members: '240', newCount: '+3' }
+    ];
+    const intlP2 = [
+      { rank: 10, zh: '巴塞罗那', en: 'Barcelona', rgZh: '西班牙 · 加泰罗尼亚', rgEn: 'Spain · Catalonia', terrain: 'coast', grad: 'linear-gradient(135deg,#4facfe,#00f2fe)', tagsZh: ['海滨', '建筑', '夜生活'], tagsEn: ['Seaside', 'Architecture', 'Nightlife'], climZh: '晴 28°', climEn: 'Sunny 28°', score: '9.0', cost: '2,400', wifi: '210', members: '3,540', newCount: '+17' },
+      { rank: 11, zh: '柏林', en: 'Berlin', rgZh: '德国 · 施普雷河', rgEn: 'Germany · Spree', terrain: 'city', grad: 'linear-gradient(135deg,#667eea,#764ba2)', tagsZh: ['创意', '自由', '科技'], tagsEn: ['Creative', 'Free', 'Tech'], climZh: '多云 24°', climEn: 'Cloudy 24°', score: '8.8', cost: '2,600', wifi: '200', members: '3,020', newCount: '+13' },
+      { rank: 12, zh: '台北', en: 'Taipei', rgZh: '中国台湾 · 盆地', rgEn: 'Taiwan · Basin', terrain: 'city', grad: 'linear-gradient(135deg,#43e97b,#38a3d7)', tagsZh: ['美食', '便利', '夜市'], tagsEn: ['Food', 'Convenient', 'Night market'], climZh: '雷阵雨 34°', climEn: 'T-storm 34°', score: '8.9', cost: '1,700', wifi: '230', members: '2,780', newCount: '+12' },
+      { rank: 13, zh: '首尔', en: 'Seoul', rgZh: '韩国 · 汉江', rgEn: 'Korea · Han River', terrain: 'city', grad: 'linear-gradient(135deg,#f093fb,#f5576c)', tagsZh: ['都市', '快网', '咖啡'], tagsEn: ['Metro', 'Fast wifi', 'Café'], climZh: '多云 29°', climEn: 'Cloudy 29°', score: '8.7', cost: '2,300', wifi: '300', members: '2,410', newCount: '+10' },
+      { rank: 14, zh: '布宜诺斯艾利斯', en: 'Buenos Aires', rgZh: '阿根廷 · 拉普拉塔', rgEn: 'Argentina · La Plata', terrain: 'city', grad: 'linear-gradient(135deg,#fa709a,#fee140)', tagsZh: ['探戈', '低成本', '欧风'], tagsEn: ['Tango', 'Low cost', 'European'], climZh: '晴 14°', climEn: 'Sunny 14°', score: '8.6', cost: '1,200', wifi: '90', members: '1,960', newCount: '+14' },
+      { rank: 15, zh: '伊斯坦布尔', en: 'Istanbul', rgZh: '土耳其 · 博斯普鲁斯', rgEn: 'Türkiye · Bosphorus', terrain: 'coast', grad: 'linear-gradient(135deg,#f6a96b,#ee6c8f)', tagsZh: ['跨洲', '历史', '美食'], tagsEn: ['Two continents', 'History', 'Food'], climZh: '晴 29°', climEn: 'Sunny 29°', score: '8.5', cost: '1,300', wifi: '110', members: '1,720', newCount: '+9' },
+      { rank: 16, zh: '清莱', en: 'Chiang Rai', rgZh: '泰国 · 北部', rgEn: 'Thailand · North', terrain: 'mountain', grad: 'linear-gradient(135deg,#0ba360,#3cba92)', tagsZh: ['静谧', '低成本', '自然'], tagsEn: ['Quiet', 'Low cost', 'Nature'], climZh: '雷阵雨 32°', climEn: 'T-storm 32°', score: '8.4', cost: '800', wifi: '80', members: '1,180', newCount: '+8' }
+    ];
+
+    const allDomesticRaw = [...communities, ...mkFinal(domP2, '¥')];
+    // 按社区活跃度（score，右上角带星数字）降序排列；暂停/关闭的城市排到最后，再按最终顺序重新编号（左上角 #）
+    const byScore = (a, b) => (parseFloat(b.score) || 0) - (parseFloat(a.score) || 0);
+    const allDomestic = [
+      ...allDomesticRaw.filter(x => !x.paused && !x.closed).sort(byScore),
+      ...allDomesticRaw.filter(x => x.paused || x.closed).sort(byScore)
+    ].map((x, i) => ({ ...x, rank: i + 1 }));
+    const allIntl = [...intlCommunities, ...mkFinal(intlP2, '$')];
+    const PAGE = 12;
+    const dPages = Math.ceil(allDomestic.length / PAGE);
+    const iPages = Math.ceil(allIntl.length / PAGE);
+    const dPage = Math.min(this.state.dPage || 0, dPages - 1);
+    const iPage = Math.min(this.state.iPage || 0, iPages - 1);
+    const dSlice = allDomestic;
+    const iSlice = allIntl.slice(iPage * PAGE, iPage * PAGE + PAGE);
+
+    const dDots = Array.from({ length: dPages }, (_, i) => ({
+      on: () => this.setState({ dPage: i }),
+      w: i === dPage ? '22px' : '6px',
+      radius: i === dPage ? 'var(--mp-radius-pill)' : '50%',
+      bg: i === dPage ? 'var(--mp-purple-500)' : 'var(--mp-gray-300)'
+    }));
+    const iDots = Array.from({ length: iPages }, (_, i) => ({
+      on: () => this.setState({ iPage: i }),
+      w: i === iPage ? '22px' : '6px',
+      radius: i === iPage ? 'var(--mp-radius-pill)' : '50%',
+      bg: i === iPage ? 'var(--mp-teal)' : 'var(--mp-gray-300)'
+    }));
+    const dNext = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ dPage: (dPage + 1) % dPages }); };
+    const iNext = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ iPage: (iPage + 1) % iPages }); };
+    const dPrev = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ dPage: (dPage - 1 + dPages) % dPages }); };
+    const iPrev = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ iPage: (iPage - 1 + iPages) % iPages }); };
+    const dShowPrev = dPage > 0;
+    const iShowPrev = iPage > 0;
+    const dLabel = lang === 'zh' ? ('第 ' + (dPage + 1) + ' / ' + dPages + ' 页') : ((dPage + 1) + ' / ' + dPages);
+    const iLabel = lang === 'zh' ? ('第 ' + (iPage + 1) + ' / ' + iPages + ' 页') : ((iPage + 1) + ' / ' + iPages);
+
+    const tickerEvents = [...t.events, ...t.events];
+
+    const boardGroups = t.boards.map(g => ({
+      zh: g.zh, en: g.en, note: g.note,
+      count: g.items.length + (lang === 'zh' ? ' 个版块' : ' boards'),
+      items: g.items.map(b => ({ ...b, threadsLabel: t.threadsLabel, postsLabel: t.postsLabel, href: '版块.dc.html#' + b.icon.replace('#bd-', '') }))
+    }));
+
+    const navHrefs = ['#', '#', '活动.dc.html', '指南.dc.html'];
+    const navLinks = t.nav.map((label, i) => ({ label, href: navHrefs[i] || '#' }));
+
+    const headlines = [t.headline, t.headline2];
+    const headlineText = headlines[this.state.hlIndex || 0] || t.headline;
+    const headlineOpacity = this.state.hlVisible === false ? 0 : 1;
+
+    // ===== register modal =====
+    const L = lang === 'zh';
+    const reg = L ? {
+      title: '创建你的菌丝账号', sub: '只需邮箱即可开始，1 分钟完成注册',
+      emailL: '邮箱', emailPh: 'you@example.com', emailErr: '请输入有效的邮箱地址',
+      pwL: '设置密码', pwPh: '至少 8 位字符', weak: '弱', mid: '中', strong: '强',
+      agreePre: '我已阅读并同意', terms: '服务条款', and: '与', privacy: '隐私政策',
+      create: '创建账号', or: '或使用', wechat: '微信', phone: '手机号',
+      haveAcc: '已有账号？', login: '登录',
+      sentTitle: '验证邮件已发送', sentA: '我们向', sentB: '发送了一封验证邮件，点击邮件中的链接即可完成注册。',
+      sentHint: '没收到？请检查垃圾邮件文件夹。', resend: '重新发送', backEmail: '返回修改邮箱',
+      lgTitle: '登录菌丝账号', lgSub: '欢迎回来，继续你的旅程', lgPwPh: '输入密码',
+      remember: '记住我', forgot: '忘记密码？', lgBtn: '登录', noAcc: '还没有账号？', signup: '注册'
+    } : {
+      title: 'Create your Mycelium account', sub: 'Just an email to start — done in a minute',
+      emailL: 'Email', emailPh: 'you@example.com', emailErr: 'Enter a valid email address',
+      pwL: 'Password', pwPh: 'At least 8 characters', weak: 'Weak', mid: 'Fair', strong: 'Strong',
+      agreePre: 'I agree to the', terms: 'Terms', and: '&', privacy: 'Privacy Policy',
+      create: 'Create account', or: 'or', wechat: 'WeChat', phone: 'Phone',
+      haveAcc: 'Have an account?', login: 'Log in',
+      sentTitle: 'Verification email sent', sentA: 'We sent a verification email to', sentB: '— click the link inside to finish signing up.',
+      sentHint: "Didn't get it? Check your spam folder.", resend: 'Resend', backEmail: 'Change email',
+      lgTitle: 'Log in to Mycelium', lgSub: 'Welcome back — continue your journey', lgPwPh: 'Enter password',
+      remember: 'Remember me', forgot: 'Forgot password?', lgBtn: 'Log in', noAcc: "No account yet?", signup: 'Sign up'
+    };
+    const rEmail = this.state.rEmail, rPw = this.state.rPw;
+    const rEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(rEmail);
+    const rEmailError = this.state.rTouched && rEmail.length > 0 && !rEmailValid;
+    let rsc = 0;
+    if (rPw.length >= 8) rsc++;
+    if (/[A-Z]/.test(rPw) && /[a-z]/.test(rPw)) rsc++;
+    if (/[0-9]/.test(rPw) && /[^A-Za-z0-9]/.test(rPw)) rsc++;
+    if (rPw.length === 0) rsc = 0;
+    const rStrCol = ['var(--mp-coral)', '#e0922a', 'var(--mp-sage)'];
+    const rOn = (i) => rsc > i ? rStrCol[Math.min(rsc - 1, 2)] : 'var(--mp-gray-200)';
+    const rStrLabel = rPw.length === 0 ? '' : [reg.weak, reg.mid, reg.strong][Math.min(rsc - 1, 2)] || reg.weak;
+    const rStrColor = rPw.length === 0 ? 'var(--mp-gray-400)' : rStrCol[Math.min(rsc - 1, 2)] || rStrCol[0];
+    const rCanSubmit = rEmailValid && rPw.length >= 8 && this.state.rAgree;
+
+    // login fields
+    const lEmail = this.state.lEmail, lPw = this.state.lPw;
+    const lEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(lEmail);
+    const lEmailError = this.state.lTouched && lEmail.length > 0 && !lEmailValid;
+    const lCanSubmit = lEmailValid && lPw.length > 0;
+    const authMode = this.state.authMode;
+
+    return {
+      t, lang, langLabel: lang === 'zh' ? 'EN' : '中', toggle: this.toggle,
+      headlineText, headlineOpacity, navLinks,
+      regOpen: this.state.regOpen, openReg: this.openReg, openLogin: this.openLogin, closeReg: this.closeReg, stopProp: this.stopProp,
+      switchToLogin: this.switchToLogin, switchToReg: this.switchToReg,
+      modeRegForm: authMode === 'reg' && !this.state.rSent,
+      modeLogin: authMode === 'login',
+      authToast: this.state.authToast, authToastMsg: L ? '登录成功，欢迎回来' : 'Signed in — welcome back',
+      reg, rEmail, rPw, rSetEmail: this.rSetEmail, rSetPw: this.rSetPw, rTogglePw: this.rTogglePw,
+      rToggleAgree: this.rToggleAgree, rSubmit: this.rSubmit, rBack: this.rBack,
+      rSent: this.state.rSent,
+      rEmailValid, rEmailError, rEmailBorder: rEmailError ? 'var(--mp-coral)' : 'var(--mp-border)',
+      rPwType: this.state.rShowPw ? 'text' : 'password', rShowPw: this.state.rShowPw,
+      rEye: this.state.rShowPw ? 'none' : 'flex', rEyeOff: this.state.rShowPw ? 'flex' : 'none',
+      rStr0: rOn(0), rStr1: rOn(1), rStr2: rOn(2), rStrLabel, rStrColor,
+      rAgree: this.state.rAgree,
+      rAgreeBg: this.state.rAgree ? 'var(--mp-purple-500)' : '#fff',
+      rAgreeBorder: this.state.rAgree ? 'var(--mp-purple-500)' : 'var(--mp-border)',
+      rSubmitBg: rCanSubmit ? 'linear-gradient(135deg,#667eea,#764ba2)' : 'var(--mp-gray-200)',
+      rSubmitColor: rCanSubmit ? '#fff' : 'var(--mp-gray-400)',
+      rSubmitCursor: rCanSubmit ? 'pointer' : 'not-allowed',
+      lEmail, lPw, lSetEmail: this.lSetEmail, lSetPw: this.lSetPw, lTogglePw: this.lTogglePw,
+      lToggleRemember: this.lToggleRemember, lSubmit: this.lSubmit,
+      lEmailValid, lEmailError, lEmailBorder: lEmailError ? 'var(--mp-coral)' : 'var(--mp-border)',
+      lPwType: this.state.lShowPw ? 'text' : 'password',
+      lEye: this.state.lShowPw ? 'none' : 'flex', lEyeOff: this.state.lShowPw ? 'flex' : 'none',
+      lRemember: this.state.lRemember,
+      lRememberBg: this.state.lRemember ? 'var(--mp-purple-500)' : '#fff',
+      lRememberBorder: this.state.lRemember ? 'var(--mp-purple-500)' : 'var(--mp-border)',
+      lSubmitBg: lCanSubmit ? 'linear-gradient(135deg,#667eea,#764ba2)' : 'var(--mp-gray-200)',
+      lSubmitColor: lCanSubmit ? '#fff' : 'var(--mp-gray-400)',
+      lSubmitCursor: lCanSubmit ? 'pointer' : 'not-allowed',
+      showTrend, motion, nodes, edges, hotLabels, hoverNodes, pop, stats, chips,
+      communities: dSlice, intlCommunities: iSlice, dShowPager: false,
+      dDots, iDots, dNext, iNext, dLabel, iLabel,
+      dPrev, iPrev, dShowPrev, iShowPrev, prevPage: t.prevPage,
+      boardGroups, tickerEvents,
+      vp0: t.vp[0], vp1: t.vp[1], vp2: t.vp[2]
+    };
+  }
+}
+</script>
+</body>
+</html>

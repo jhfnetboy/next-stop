@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="assets/mycelium-tokens.css">
+<script src="auth-nav.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: var(--mp-font-sans); color: var(--mp-fg-1); background: var(--mp-gray-50); -webkit-font-smoothing: antialiased; }
+  ::selection { background: rgba(118,75,162,0.22); }
+  @keyframes mp-blink { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+  .mp-blink { animation: mp-blink 1.8s ease-in-out infinite; }
+  .nav-link:hover { color: #fff !important; }
+  .nav-logo:hover { opacity: .82; }
+  .crumb:hover { color: #cbb9ff !important; }
+  .cta-btn:hover { transform: translateY(-2px); box-shadow: var(--mp-shadow-button); }
+  .ghost-btn:hover { background: rgba(255,255,255,0.16) !important; }
+  .post-card:hover { box-shadow: var(--mp-shadow-card-hover); transform: translateY(-2px); }
+  .tab-btn:hover { color: var(--mp-purple-700) !important; }
+  .chan-row:hover { background: var(--mp-gray-50) !important; }
+  .meet-card:hover { transform: translateY(-3px); box-shadow: var(--mp-shadow-card-hover); }
+  .avatar-stack:hover > * { margin-left: 2px; }
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:var(--mp-gray-50);">
+
+  <!-- ===== NAV ===== -->
+  <nav style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px clamp(20px,5vw,60px);background:rgba(18,14,43,0.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.12);">
+    <a href="数字游民社区集合网.dc.html" class="nav-logo" style="display:flex;align-items:center;gap:11px;text-decoration:none;transition:opacity var(--mp-dur-base) var(--mp-ease);">
+      <img src="assets/mushroom-logo.png" alt="" style="width:34px;height:34px;object-fit:contain;filter:drop-shadow(0 4px 8px rgba(0,0,0,0.3));">
+      <div style="font-size:18px;font-weight:800;color:#fff;letter-spacing:0.2px;">Next Stop</div>
+    </a>
+    <div style="display:flex;align-items:center;gap:28px;">
+      <a href="数字游民社区集合网.dc.html" class="nav-link" style="color:#fff;text-decoration:none;font-size:14px;font-weight:600;transition:color var(--mp-dur-base) var(--mp-ease);">发现社区</a>
+      <a href="#" class="nav-link" style="color:rgba(255,255,255,0.82);text-decoration:none;font-size:14px;font-weight:500;transition:color var(--mp-dur-base) var(--mp-ease);">城市榜单</a>
+      <a href="活动.dc.html" class="nav-link" style="color:rgba(255,255,255,0.82);text-decoration:none;font-size:14px;font-weight:500;transition:color var(--mp-dur-base) var(--mp-ease);">活动</a>
+      <a href="指南.dc.html" class="nav-link" style="color:rgba(255,255,255,0.82);text-decoration:none;font-size:14px;font-weight:500;transition:color var(--mp-dur-base) var(--mp-ease);">指南</a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <header style="position:relative;overflow:hidden;background:linear-gradient(160deg,#241a4d 0%,#33245f 55%,#3a2a6b 100%);padding:clamp(22px,3vw,30px) clamp(20px,5vw,60px) clamp(26px,3.5vw,38px);">
+    <div style="position:absolute;top:-40%;right:-4%;width:52%;height:180%;background:radial-gradient(circle,rgba(123,95,224,0.4) 0%,transparent 62%);pointer-events:none;"></div>
+    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(150,140,230,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(150,140,230,0.06) 1px,transparent 1px);background-size:42px 42px;-webkit-mask-image:radial-gradient(ellipse 70% 90% at 82% 30%,#000 10%,transparent 80%);mask-image:radial-gradient(ellipse 70% 90% at 82% 30%,#000 10%,transparent 80%);pointer-events:none;"></div>
+    <div style="position:relative;max-width:1120px;margin:0 auto;">
+      <div style="display:flex;align-items:center;gap:8px;font-family:var(--mp-font-mono);font-size:12.5px;color:rgba(255,255,255,0.6);margin-bottom:20px;flex-wrap:wrap;">
+        <a href="数字游民社区集合网.dc.html" class="crumb" style="color:rgba(255,255,255,0.6);text-decoration:none;transition:color var(--mp-dur-base) var(--mp-ease);">首页</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
+        <a href="城市.dc.html#chengdu" class="crumb" style="color:rgba(255,255,255,0.6);text-decoration:none;transition:color var(--mp-dur-base) var(--mp-ease);">成都</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
+        <span style="color:#c5b6ff;">社群</span>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:22px;">
+        <div style="display:flex;align-items:center;gap:18px;">
+          <div style="position:relative;width:74px;height:74px;border-radius:20px;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(102,126,234,0.45);flex-shrink:0;">
+            <span style="font-family:var(--mp-font-display);font-size:34px;font-weight:800;color:#fff;">蓉</span>
+            <span class="mp-blink" style="position:absolute;bottom:-3px;right:-3px;width:16px;height:16px;border-radius:50%;background:#43e97b;border:3px solid #2a1f52;"></span>
+          </div>
+          <div>
+            <h1 style="font-family:var(--mp-font-display);font-size:clamp(26px,3.6vw,38px);font-weight:800;color:#fff;line-height:1;letter-spacing:-0.8px;margin:0;">成都数字游民社群</h1>
+            <div style="display:flex;align-items:center;gap:14px;margin-top:11px;flex-wrap:wrap;">
+              <span style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:rgba(255,255,255,0.82);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8fe6b0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path></svg>2,130 位成员</span>
+              <span style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:rgba(255,255,255,0.82);"><span class="mp-blink" style="width:8px;height:8px;border-radius:50%;background:#43e97b;box-shadow:0 0 8px #43e97b;"></span>186 人在线</span>
+              <span style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:rgba(255,255,255,0.82);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 7.1-1.01L12 2z"></path></svg>活跃度 8.8</span>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <button class="ghost-btn" style="display:flex;align-items:center;gap:7px;padding:11px 18px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.3);border-radius:var(--mp-radius-pill);color:#fff;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;backdrop-filter:blur(8px);transition:background var(--mp-dur-base) var(--mp-ease);">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" x2="12" y1="2" y2="15"></line></svg>
+            分享
+          </button>
+          <button onClick="{{ openJoin }}" class="cta-btn" style="display:flex;align-items:center;gap:7px;padding:11px 22px;background:#fff;border:0;border-radius:var(--mp-radius-pill);color:var(--mp-purple-700);font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.2);transition:all var(--mp-dur-base) var(--mp-ease);">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><line x1="19" x2="19" y1="8" y2="14"></line><line x1="22" x2="16" y1="11" y2="11"></line></svg>
+            加入社群
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== BODY ===== -->
+  <div style="max-width:1120px;margin:0 auto;padding:clamp(24px,3vw,34px) clamp(20px,5vw,60px) clamp(48px,6vw,80px);display:grid;grid-template-columns:1fr 320px;gap:32px;align-items:start;">
+
+    <!-- MAIN -->
+    <div style="min-width:0;display:flex;flex-direction:column;gap:22px;">
+
+      <!-- composer -->
+      <div style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:16px 18px;">
+        <div style="width:42px;height:42px;border-radius:50%;background:var(--mp-grad-demo);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:700;flex-shrink:0;">你</div>
+        <div style="flex:1;padding:11px 16px;background:var(--mp-gray-50);border-radius:var(--mp-radius-pill);font-size:14px;color:var(--mp-gray-400);cursor:text;">分享此刻的想法、发起拼房或提问…</div>
+        <button class="cta-btn" style="display:flex;align-items:center;gap:6px;padding:10px 18px;background:linear-gradient(135deg,#667eea,#764ba2);border:0;border-radius:var(--mp-radius-pill);color:#fff;font-family:inherit;font-size:13.5px;font-weight:700;cursor:pointer;transition:all var(--mp-dur-base) var(--mp-ease);flex-shrink:0;">发布</button>
+      </div>
+
+      <!-- tabs -->
+      <div style="display:flex;align-items:center;gap:26px;border-bottom:1px solid var(--mp-border-soft);padding:0 4px;">
+        <sc-for list="{{ tabs }}" as="tab" hint-placeholder-count="4">
+          <span onClick="{{ tab.pick }}" class="tab-btn" style="position:relative;padding:12px 0;font-size:14.5px;font-weight:{{ tab.weight }};color:{{ tab.color }};cursor:pointer;transition:color var(--mp-dur-base) var(--mp-ease);">
+            {{ tab.label }}
+            <sc-if value="{{ tab.active }}" hint-placeholder-val="{{ false }}">
+              <span style="position:absolute;left:0;right:0;bottom:-1px;height:2.5px;border-radius:2px;background:var(--mp-grad-whitepaper);"></span>
+            </sc-if>
+          </span>
+        </sc-for>
+      </div>
+
+      <!-- feed -->
+      <sc-for list="{{ posts }}" as="p" hint-placeholder-count="4">
+        <div class="post-card" style="background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:20px 22px;transition:transform var(--mp-dur-base) var(--mp-ease),box-shadow var(--mp-dur-base) var(--mp-ease);">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:13px;">
+            <div style="width:42px;height:42px;border-radius:50%;background:{{ p.avatarBg }};display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;font-weight:700;flex-shrink:0;">{{ p.initial }}</div>
+            <div style="flex:1;min-width:0;">
+              <div style="display:flex;align-items:center;gap:8px;">
+                <span style="font-size:14.5px;font-weight:700;color:var(--mp-gray-900);">{{ p.name }}</span>
+                <sc-if value="{{ p.badge }}" hint-placeholder-val="{{ false }}">
+                  <span style="padding:2px 8px;background:{{ p.badgeBg }};border-radius:var(--mp-radius-pill);font-size:10.5px;font-weight:700;color:{{ p.badgeColor }};">{{ p.badge }}</span>
+                </sc-if>
+              </div>
+              <div style="font-size:12px;color:var(--mp-gray-400);margin-top:2px;">{{ p.meta }}</div>
+            </div>
+            <span style="padding:4px 11px;background:{{ p.tagBg }};border-radius:var(--mp-radius-pill);font-size:11.5px;font-weight:700;color:{{ p.tagColor }};flex-shrink:0;">{{ p.tag }}</span>
+          </div>
+          <p style="font-size:14.5px;line-height:1.7;color:var(--mp-slate-body);margin:0 0 14px;white-space:pre-line;">{{ p.body }}</p>
+          <div style="display:flex;align-items:center;gap:22px;padding-top:13px;border-top:1px solid var(--mp-border-soft);">
+            <span style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--mp-gray-500);cursor:pointer;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"></path><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"></path></svg>{{ p.likes }}</span>
+            <span style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--mp-gray-500);cursor:pointer;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>{{ p.comments }}</span>
+            <span style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--mp-gray-500);cursor:pointer;margin-left:auto;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"></path></svg></span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside style="display:flex;flex-direction:column;gap:20px;position:sticky;top:82px;">
+      <!-- about -->
+      <div style="background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:20px 22px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mp-gray-900);margin-bottom:10px;">关于本群</div>
+        <p style="font-size:13px;line-height:1.7;color:var(--mp-gray-600);margin:0 0 16px;">成都数字游民的线上聚集地。分享在地资讯、组织线下聚会、拼房拼车，帮你在天府之国快速落地、找到同路人。</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div style="background:var(--mp-gray-50);border-radius:12px;padding:12px 14px;"><div style="font-size:20px;font-weight:800;color:var(--mp-purple-700);letter-spacing:-0.5px;">2,130</div><div style="font-size:11.5px;color:var(--mp-gray-500);margin-top:2px;">成员</div></div>
+          <div style="background:var(--mp-gray-50);border-radius:12px;padding:12px 14px;"><div style="font-size:20px;font-weight:800;color:var(--mp-teal);letter-spacing:-0.5px;">42</div><div style="font-size:11.5px;color:var(--mp-gray-500);margin-top:2px;">今日发帖</div></div>
+        </div>
+      </div>
+
+      <!-- channels -->
+      <div style="background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:18px 12px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mp-gray-900);margin:0 10px 8px;">频道</div>
+        <sc-for list="{{ channels }}" as="ch" hint-placeholder-count="5">
+          <div class="chan-row" style="display:flex;align-items:center;gap:11px;padding:9px 10px;border-radius:10px;cursor:pointer;transition:background var(--mp-dur-base) var(--mp-ease);">
+            <div style="width:30px;height:30px;border-radius:9px;background:{{ ch.bg }};display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="{{ ch.color }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="{{ ch.icon }}"></use></svg></div>
+            <span style="flex:1;font-size:13.5px;font-weight:500;color:var(--mp-gray-700);">{{ ch.name }}</span>
+            <span style="font-size:11.5px;font-weight:600;color:var(--mp-gray-400);">{{ ch.count }}</span>
+          </div>
+        </sc-for>
+      </div>
+
+      <!-- upcoming meetups -->
+      <div style="background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:20px 22px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+          <div style="font-size:14px;font-weight:700;color:var(--mp-gray-900);">近期聚会</div>
+          <a href="活动.dc.html" style="font-size:12px;font-weight:600;color:var(--mp-purple-700);text-decoration:none;">全部</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <sc-for list="{{ meetups }}" as="m" hint-placeholder-count="2">
+            <a href="活动.dc.html" class="meet-card" style="display:flex;gap:12px;text-decoration:none;border-radius:12px;transition:transform var(--mp-dur-base) var(--mp-ease);">
+              <div style="width:46px;height:46px;border-radius:12px;background:{{ m.grad }};display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;color:#fff;line-height:1;"><span style="font-family:var(--mp-font-mono);font-size:16px;font-weight:800;">{{ m.day }}</span><span style="font-size:9px;margin-top:1px;">{{ m.mon }}月</span></div>
+              <div style="min-width:0;"><div style="font-size:13.5px;font-weight:600;color:var(--mp-gray-800);line-height:1.35;">{{ m.title }}</div><div style="font-size:12px;color:var(--mp-gray-400);margin-top:3px;">{{ m.meta }}</div></div>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+
+      <!-- active members -->
+      <div style="background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:20px 22px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mp-gray-900);margin-bottom:14px;">活跃成员</div>
+        <div style="display:flex;flex-direction:column;gap:13px;">
+          <sc-for list="{{ members }}" as="mb" hint-placeholder-count="4">
+            <div style="display:flex;align-items:center;gap:11px;">
+              <div style="width:36px;height:36px;border-radius:50%;background:{{ mb.bg }};display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700;flex-shrink:0;">{{ mb.initial }}</div>
+              <div style="flex:1;min-width:0;"><div style="font-size:13.5px;font-weight:600;color:var(--mp-gray-800);">{{ mb.name }}</div><div style="font-size:11.5px;color:var(--mp-gray-400);">{{ mb.role }}</div></div>
+              <span style="font-family:var(--mp-font-mono);font-size:12px;font-weight:700;color:var(--mp-purple-500);">{{ mb.pts }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ===== JOIN MODAL ===== -->
+  <sc-if value="{{ joinOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeJoin }}" style="position:fixed;inset:0;z-index:200;background:rgba(12,8,30,0.66);backdrop-filter:blur(7px);display:flex;align-items:center;justify-content:center;padding:24px;">
+      <div onClick="{{ stopProp }}" style="position:relative;width:100%;max-width:380px;background:#fff;border-radius:20px;box-shadow:0 30px 80px rgba(0,0,0,0.5);overflow:hidden;text-align:center;padding:34px 30px 30px;">
+        <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--mp-grad-spore);"></div>
+        <div onClick="{{ closeJoin }}" style="position:absolute;top:14px;right:14px;width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;color:var(--mp-gray-400);cursor:pointer;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></div>
+        <div style="width:64px;height:64px;border-radius:18px;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;box-shadow:0 10px 24px rgba(102,126,234,0.4);"><span style="font-family:var(--mp-font-display);font-size:30px;font-weight:800;color:#fff;">蓉</span></div>
+        <h2 style="font-size:20px;font-weight:800;color:var(--mp-gray-900);margin:0 0 8px;border:0;padding:0;">加入成都数字游民社群</h2>
+        <p style="font-size:13.5px;line-height:1.6;color:var(--mp-gray-500);margin:0 0 22px;">扫码添加社群管理员即可入群，与 2,130 位游民一起。</p>
+        <div style="width:172px;height:172px;margin:0 auto 20px;border-radius:16px;background:var(--mp-gray-50);border:1px solid var(--mp-border-soft);display:flex;align-items:center;justify-content:center;">
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none"><rect width="120" height="120" rx="8" fill="#fff"></rect><g fill="var(--mp-gray-900)"><rect x="12" y="12" width="30" height="30" rx="4"></rect><rect x="20" y="20" width="14" height="14" rx="2" fill="#fff"></rect><rect x="78" y="12" width="30" height="30" rx="4"></rect><rect x="86" y="20" width="14" height="14" rx="2" fill="#fff"></rect><rect x="12" y="78" width="30" height="30" rx="4"></rect><rect x="20" y="86" width="14" height="14" rx="2" fill="#fff"></rect><rect x="52" y="14" width="8" height="8"></rect><rect x="52" y="30" width="8" height="8"></rect><rect x="66" y="52" width="8" height="8"></rect><rect x="14" y="52" width="8" height="8"></rect><rect x="30" y="52" width="8" height="8"></rect><rect x="52" y="52" width="8" height="8"></rect><rect x="86" y="52" width="8" height="8"></rect><rect x="100" y="52" width="8" height="8"></rect><rect x="52" y="66" width="8" height="8"></rect><rect x="66" y="66" width="8" height="8"></rect><rect x="80" y="66" width="8" height="8"></rect><rect x="52" y="80" width="8" height="8"></rect><rect x="66" y="80" width="8" height="8"></rect><rect x="94" y="80" width="8" height="8"></rect><rect x="52" y="94" width="8" height="8"></rect><rect x="72" y="94" width="8" height="8"></rect><rect x="86" y="94" width="8" height="8"></rect><rect x="100" y="94" width="8" height="8"></rect></g></svg>
+        </div>
+        <button onClick="{{ closeJoin }}" class="cta-btn" style="width:100%;padding:12px;background:linear-gradient(135deg,#667eea,#764ba2);border:0;border-radius:var(--mp-radius-pill);color:#fff;font-family:inherit;font-size:14.5px;font-weight:700;cursor:pointer;transition:all var(--mp-dur-base) var(--mp-ease);">保存二维码</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <svg width="0" height="0" style="position:absolute;" aria-hidden="true"><defs>
+    <symbol id="ci-hash" viewBox="0 0 24 24"><line x1="4" x2="20" y1="9" y2="9"></line><line x1="4" x2="20" y1="15" y2="15"></line><line x1="10" x2="8" y1="3" y2="21"></line><line x1="16" x2="14" y1="3" y2="21"></line></symbol>
+    <symbol id="ci-home" viewBox="0 0 24 24"><path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"></path></symbol>
+    <symbol id="ci-car" viewBox="0 0 24 24"><path d="M19 17h2l-1.6-6.4A2 2 0 0 0 17.5 9h-11a2 2 0 0 0-1.9 1.6L3 17h2"></path><circle cx="7" cy="17" r="2"></circle><circle cx="17" cy="17" r="2"></circle><path d="M9 17h6"></path></symbol>
+    <symbol id="ci-briefcase" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="7" rx="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></symbol>
+    <symbol id="ci-coffee" viewBox="0 0 24 24"><path d="M10 2v2M14 2v2M16 8a6 6 0 0 1-12 0V6h12Z"></path><path d="M18 8h1a3 3 0 0 1 0 6h-1"></path><line x1="6" y1="20" x2="18" y2="20"></line></symbol>
+  </defs></svg>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { tab: 0, joinOpen: false };
+
+  pick = (i) => this.setState({ tab: i });
+  openJoin = () => this.setState({ joinOpen: true });
+  closeJoin = () => this.setState({ joinOpen: false });
+  stopProp = (e) => e.stopPropagation();
+
+  renderVals() {
+    const tabLabels = ['最新', '热门', '拼房拼车', '求职招聘'];
+    const tabs = tabLabels.map((label, i) => ({
+      label, pick: () => this.pick(i),
+      active: this.state.tab === i,
+      weight: this.state.tab === i ? 700 : 500,
+      color: this.state.tab === i ? 'var(--mp-gray-900)' : 'var(--mp-gray-500)'
+    }));
+
+    const allPosts = [
+      { initial: '林', name: '林小野', avatarBg: 'linear-gradient(135deg,#667eea,#764ba2)', badge: '版主', badgeBg: 'rgba(118,75,162,0.12)', badgeColor: 'var(--mp-purple-700)', meta: '2 小时前 · 天星生态村', tag: '在地资讯', tagBg: 'rgba(69,183,209,0.12)', tagColor: 'var(--mp-teal)', body: '天星生态村这周有空房了，四人间月租 680，环境很安静，适合专注干活的朋友。有兴趣的可以直接约我一起去看看。', likes: 48, comments: 12, cat: ['最新', '热门'] },
+      { initial: '陈', name: '陈默', avatarBg: 'linear-gradient(135deg,#43e97b,#38a3d7)', badge: '', meta: '4 小时前', tag: '拼房', tagBg: 'rgba(67,233,123,0.14)', tagColor: '#15915a', body: '7 月中旬去榜样青年社区，想拼一个大标间平摊房租，坐标温江。有没有同期过去的伙伴？做设计/远程办公都欢迎。', likes: 26, comments: 18, cat: ['最新', '拼房拼车'] },
+      { initial: '苏', name: '苏晴', avatarBg: 'linear-gradient(135deg,#fa709a,#fee140)', badge: '认证', badgeBg: 'rgba(245,87,108,0.10)', badgeColor: '#e0344f', meta: '昨天 · 玉林', tag: '招聘', tagBg: 'rgba(118,75,162,0.10)', tagColor: 'var(--mp-purple-700)', body: '我们是一个远程优先的小团队，正在找一位前端（React/TS）。可远程可来成都线下办公，欢迎社群里的朋友私信我聊聊。', likes: 33, comments: 9, cat: ['最新', '热门', '求职招聘'] },
+      { initial: '何', name: '何川', avatarBg: 'linear-gradient(135deg,#c79081,#8a5a44)', badge: '', meta: '昨天', tag: '拼车', tagBg: 'rgba(67,233,123,0.14)', tagColor: '#15915a', body: '本周六上午从市区去青城山徒步，自驾还有 2 个座位，AA 油费。想周末出去透透气的扣 1。', likes: 19, comments: 14, cat: ['最新', '拼房拼车'] },
+      { initial: '王', name: '王莉', avatarBg: 'linear-gradient(135deg,#667eea,#4ecdc4)', badge: '', meta: '2 天前 · 太古里', tag: '在地资讯', tagBg: 'rgba(69,183,209,0.12)', tagColor: 'var(--mp-teal)', body: '整理了一份成都适合远程办公的咖啡馆清单（有插座、Wi-Fi 快、不赶人），共 12 家，放评论区了，欢迎补充。', likes: 87, comments: 31, cat: ['最新', '热门'] }
+    ];
+    const tabName = tabLabels[this.state.tab];
+    const posts = allPosts.filter(p => p.cat.includes(tabName));
+
+    const channels = [
+      { icon: '#ci-home', name: '住宿 · 拼房', count: '328', bg: 'rgba(67,233,123,0.14)', color: '#15915a' },
+      { icon: '#ci-car', name: '拼车 · 出行', count: '156', bg: 'rgba(69,183,209,0.12)', color: 'var(--mp-teal)' },
+      { icon: '#ci-briefcase', name: '求职 · 招聘', count: '204', bg: 'rgba(118,75,162,0.10)', color: 'var(--mp-purple-700)' },
+      { icon: '#ci-coffee', name: '咖啡 · 办公位', count: '512', bg: 'rgba(210,119,87,0.14)', color: '#b3610f' },
+      { icon: '#ci-hash', name: '闲聊 · 灌水', count: '1.2k', bg: 'rgba(245,87,108,0.10)', color: '#e0344f' }
+    ];
+
+    const meetups = [
+      { day: '05', mon: '7', title: '苍山观星？不，成都露天观影夜', meta: '东郊记忆 · ¥60', grad: 'linear-gradient(135deg,#43e97b,#38a3d7)' },
+      { day: '12', mon: '7', title: 'Web3 数字游民 Meetup · 成都站', meta: '天府三街 · 免费', grad: 'linear-gradient(135deg,#667eea,#764ba2)' }
+    ];
+
+    const members = [
+      { initial: '林', name: '林小野', role: '版主 · 天星生态村', pts: '3,280', bg: 'linear-gradient(135deg,#667eea,#764ba2)' },
+      { initial: '王', name: '王莉', role: '在地向导', pts: '2,910', bg: 'linear-gradient(135deg,#667eea,#4ecdc4)' },
+      { initial: '苏', name: '苏晴', role: '远程团队 · HR', pts: '2,140', bg: 'linear-gradient(135deg,#fa709a,#fee140)' },
+      { initial: '何', name: '何川', role: '自由摄影师', pts: '1,760', bg: 'linear-gradient(135deg,#c79081,#8a5a44)' }
+    ];
+
+    return {
+      tabs, posts, channels, meetups, members,
+      joinOpen: this.state.joinOpen, openJoin: this.openJoin, closeJoin: this.closeJoin, stopProp: this.stopProp
+    };
+  }
+}
+</script>
+</body>
+</html>

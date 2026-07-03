@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="assets/mycelium-tokens.css">
+<script src="auth-nav.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: var(--mp-font-sans); color: var(--mp-fg-1); background: var(--mp-gray-50); -webkit-font-smoothing: antialiased; }
+  ::selection { background: rgba(118,75,162,0.22); }
+  @keyframes mp-blink { 0%,100% { opacity: 1; } 50% { opacity: .2; } }
+  .mp-blink { animation: mp-blink 1.6s ease-in-out infinite; }
+  .nav-link:hover { color: #fff !important; }
+  .nav-ava:hover { box-shadow: 0 0 0 3px rgba(247,126,176,0.4); }
+  .nav-logo:hover { opacity: 0.82; }
+  .crumb:hover { color: #cbb9ff !important; }
+  .thread-row:hover { background: var(--mp-gray-50) !important; }
+  .thread-row:hover .thread-title { color: var(--mp-purple-700) !important; }
+  .thread-row:hover .thread-arrow { opacity: 1 !important; transform: translateX(0) !important; }
+  .tab-btn:hover { color: var(--mp-purple-700) !important; }
+  .sub-chip:hover { border-color: var(--mp-purple-500) !important; color: var(--mp-purple-700) !important; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--mp-shadow-button); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.16) !important; }
+  .user-row:hover .user-name { color: var(--mp-purple-700) !important; }
+  .mp-pager:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(102,126,234,0.4); }
+  .mp-pager:hover .mp-pager-arrow { transform: translateX(3px); }
+  .mp-pager-arrow { transition: transform var(--mp-dur-base) var(--mp-ease); }
+  .page-num:hover { border-color: var(--mp-purple-500) !important; color: var(--mp-purple-700) !important; }
+  @keyframes mp-fade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes mp-pop { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+  @keyframes mp-toast { from { opacity: 0; transform: translate(-50%, 16px); } to { opacity: 1; transform: translate(-50%, 0); } }
+  .cmp-backdrop { animation: mp-fade .2s ease; }
+  .cmp-card { animation: mp-pop .28s var(--mp-ease); }
+  .fmt-btn:hover { background: var(--mp-gray-100) !important; color: var(--mp-purple-700) !important; }
+  .sub-pick:hover { border-color: var(--mp-purple-500) !important; }
+  .cmp-close:hover { background: var(--mp-gray-100) !important; color: var(--mp-gray-800) !important; }
+  .cmp-ghost:hover { background: var(--mp-gray-100) !important; }
+  .cmp-pub-on:hover { transform: translateY(-2px); box-shadow: var(--mp-shadow-button); }
+  .tag-x:hover { opacity: 1 !important; }
+  .drop-zone:hover { border-color: var(--mp-purple-500) !important; background: rgba(118,75,162,0.04) !important; }
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:var(--mp-gray-50);">
+
+  <!-- icon sprite -->
+  <svg width="0" height="0" style="position:absolute;" aria-hidden="true"><defs>
+    <symbol id="ic-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></symbol>
+    <symbol id="ic-trade" viewBox="0 0 24 24"><path d="m16 3 4 4-4 4"></path><path d="M20 7H4"></path><path d="m8 21-4-4 4-4"></path><path d="M4 17h16"></path></symbol>
+    <symbol id="ic-car" viewBox="0 0 24 24"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"></path><circle cx="7" cy="17" r="2"></circle><path d="M9 17h6"></path><circle cx="17" cy="17" r="2"></circle></symbol>
+    <symbol id="ic-promo" viewBox="0 0 24 24"><path d="m3 11 18-5v12L3 14v-3z"></path><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path></symbol>
+    <symbol id="ic-meetup" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></symbol>
+    <symbol id="ic-qa" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></symbol>
+    <symbol id="ic-jobs" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="7" rx="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></symbol>
+    <symbol id="ic-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></symbol>
+    <symbol id="fm-bold" viewBox="0 0 24 24"><path d="M6 4h8a4 4 0 0 1 0 8H6z"></path><path d="M6 12h9a4 4 0 0 1 0 8H6z"></path></symbol>
+    <symbol id="fm-italic" viewBox="0 0 24 24"><line x1="19" y1="4" x2="10" y2="4"></line><line x1="14" y1="20" x2="5" y2="20"></line><line x1="15" y1="4" x2="9" y2="20"></line></symbol>
+    <symbol id="fm-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"></path></symbol>
+    <symbol id="fm-quote" viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path></symbol>
+    <symbol id="fm-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></symbol>
+    <symbol id="fm-image" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"></rect><circle cx="9" cy="9" r="2"></circle><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"></path></symbol>
+    <symbol id="fm-code" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"></path></symbol>
+    <symbol id="bd-check" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></symbol>
+    <symbol id="bd-doc" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M16 13H8M16 17H8M10 9H8"></path></symbol>
+    <symbol id="bd-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></symbol>
+    <symbol id="bd-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></symbol>
+    <symbol id="bd-lock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></symbol>
+    <symbol id="bd-flag" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></symbol>
+  </defs></svg>
+
+  <!-- ===== NAV ===== -->
+  <nav style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px clamp(20px,5vw,60px);background:rgba(18,14,43,0.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.12);">
+    <a href="数字游民社区集合网.dc.html" title="返回首页" class="nav-logo" style="display:flex;align-items:center;gap:11px;text-decoration:none;transition:opacity var(--mp-dur-base) var(--mp-ease);">
+      <img src="assets/mushroom-logo.png" alt="" style="width:34px;height:34px;object-fit:contain;filter:drop-shadow(0 4px 8px rgba(0,0,0,0.3));">
+      <div style="font-size:18px;font-weight:800;color:#fff;letter-spacing:0.2px;">Next Stop</div>
+    </a>
+    <div style="display:flex;align-items:center;gap:28px;">
+      <a href="数字游民社区集合网.dc.html" class="nav-link" style="color:rgba(255,255,255,0.82);text-decoration:none;font-size:14px;font-weight:500;transition:color var(--mp-dur-base) var(--mp-ease);">发现社区</a>
+      <a href="#" class="nav-link" style="color:rgba(255,255,255,0.82);text-decoration:none;font-size:14px;font-weight:500;transition:color var(--mp-dur-base) var(--mp-ease);">城市榜单</a>
+      <a href="#" class="nav-link" style="color:#fff;text-decoration:none;font-size:14px;font-weight:600;transition:color var(--mp-dur-base) var(--mp-ease);">社区版块</a>
+      <a href="#" class="nav-link" style="color:rgba(255,255,255,0.82);text-decoration:none;font-size:14px;font-weight:500;transition:color var(--mp-dur-base) var(--mp-ease);">活动</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div style="position:relative;display:flex;align-items:center;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;left:13px;"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+        <input type="text" placeholder="搜索帖子" style="width:180px;padding:8px 14px 8px 36px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);border-radius:var(--mp-radius-pill);color:#fff;font-family:inherit;font-size:13px;outline:none;">
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== BOARD HERO ===== -->
+  <header style="position:relative;background:linear-gradient(160deg,#120e2b 0%,#241a4d 60%,#2c2060 100%);padding:clamp(24px,4vw,36px) clamp(20px,5vw,60px) clamp(30px,4vw,44px);overflow:hidden;">
+    <div style="position:absolute;top:-30%;right:2%;width:50%;height:160%;background:radial-gradient(circle,rgba(123,95,224,0.4) 0%,transparent 62%);pointer-events:none;"></div>
+    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(150,140,230,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(150,140,230,0.06) 1px,transparent 1px);background-size:42px 42px;-webkit-mask-image:radial-gradient(ellipse 70% 90% at 80% 40%,#000 10%,transparent 80%);mask-image:radial-gradient(ellipse 70% 90% at 80% 40%,#000 10%,transparent 80%);pointer-events:none;"></div>
+
+    <div style="position:relative;max-width:1200px;margin:0 auto;">
+      <!-- breadcrumb -->
+      <div style="display:flex;align-items:center;gap:8px;font-family:var(--mp-font-mono);font-size:12.5px;color:rgba(255,255,255,0.6);margin-bottom:22px;">
+        <a href="数字游民社区集合网.dc.html" class="crumb" style="color:rgba(255,255,255,0.6);text-decoration:none;transition:color var(--mp-dur-base) var(--mp-ease);">首页</a>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
+        <a href="数字游民社区集合网.dc.html" class="crumb" style="color:rgba(255,255,255,0.6);text-decoration:none;transition:color var(--mp-dur-base) var(--mp-ease);">社区版块 · {{ board.group }}</a>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
+        <span style="color:#9fe9dc;">{{ board.zh }}</span>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:22px;">
+        <div style="display:flex;align-items:center;gap:20px;">
+          <div style="flex-shrink:0;width:72px;height:72px;border-radius:20px;display:flex;align-items:center;justify-content:center;background:{{ board.grad }};box-shadow:0 10px 26px rgba(102,126,234,0.4);">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="{{ board.icon }}"></use></svg>
+          </div>
+          <div>
+            <div style="display:flex;align-items:baseline;gap:12px;">
+              <h1 style="font-size:clamp(28px,4vw,40px);font-weight:800;color:#fff;margin:0;letter-spacing:-0.5px;">{{ board.zh }}</h1>
+              <span style="font-family:var(--mp-font-mono);font-size:16px;font-weight:600;color:{{ board.accent }};letter-spacing:1px;">{{ board.en }}</span>
+            </div>
+            <p style="font-size:15px;color:rgba(255,255,255,0.72);margin:8px 0 14px 0;">{{ board.desc }}</p>
+            <div style="display:flex;align-items:center;gap:20px;font-family:var(--mp-font-mono);font-size:13px;color:rgba(255,255,255,0.7);">
+              <span>主题 <b style="color:#fff;">{{ board.threadsCount }}</b></span>
+              <span style="width:1px;height:12px;background:rgba(255,255,255,0.2);"></span>
+              <span>帖子 <b style="color:#fff;">{{ board.postsCount }}</b></span>
+              <span style="width:1px;height:12px;background:rgba(255,255,255,0.2);"></span>
+              <span style="display:inline-flex;align-items:center;gap:6px;"><span class="mp-blink" style="width:7px;height:7px;border-radius:50%;background:#43e97b;box-shadow:0 0 8px #43e97b;"></span>{{ board.online }} 人在线</span>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <button class="btn-ghost" style="display:flex;align-items:center;gap:7px;padding:11px 20px;background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.24);border-radius:var(--mp-radius-pill);color:#fff;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:background var(--mp-dur-base) var(--mp-ease);">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"></path><path d="M12 8v8M8 12h8"></path></svg>
+            关注版块
+          </button>
+          <button onClick="{{ openCompose }}" class="btn-primary" style="display:flex;align-items:center;gap:7px;padding:11px 22px;background:#fff;border:0;border-radius:var(--mp-radius-pill);color:var(--mp-purple-700);font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.2);transition:all var(--mp-dur-base) var(--mp-ease);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>
+            发帖
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== BODY ===== -->
+  <div style="max-width:1200px;margin:0 auto;padding:clamp(24px,3.5vw,36px) clamp(20px,5vw,60px) clamp(48px,6vw,80px);display:grid;grid-template-columns:1fr 300px;gap:28px;align-items:start;">
+
+    <!-- MAIN COLUMN -->
+    <div>
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
+        <div style="display:flex;align-items:center;gap:4px;background:#fff;padding:4px;border-radius:var(--mp-radius-pill);box-shadow:var(--mp-shadow-pill);">
+          <sc-for list="{{ tabs }}" as="tab" hint-placeholder-count="4">
+            <span onClick="{{ tab.on }}" class="tab-btn" style="padding:7px 16px;border-radius:var(--mp-radius-pill);font-size:13.5px;font-weight:600;cursor:pointer;transition:all var(--mp-dur-base) var(--mp-ease);background:{{ tab.bg }};color:{{ tab.color }};">{{ tab.label }}</span>
+          </sc-for>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;font-family:var(--mp-font-mono);font-size:12.5px;color:var(--mp-gray-500);">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M7 12h10M10 18h4"></path></svg>
+          共 {{ board.threadsCount }} 个主题
+        </div>
+      </div>
+
+      <div style="background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);overflow:hidden;">
+        <sc-for list="{{ threads }}" as="th" hint-placeholder-count="8">
+          <a href="#" class="thread-row" style="display:flex;align-items:center;gap:16px;padding:17px 22px;text-decoration:none;border-bottom:1px solid var(--mp-border-soft);transition:background var(--mp-dur-base) var(--mp-ease);">
+            <div style="flex-shrink:0;width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:{{ th.avaBg }};color:#fff;font-size:16px;font-weight:700;">{{ th.avaCh }}</div>
+            <div style="flex:1;min-width:0;">
+              <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+                <sc-for list="{{ th.badges }}" as="bd" hint-placeholder-count="1">
+                  <span style="flex-shrink:0;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700;background:{{ bd.bg }};color:{{ bd.color }};">{{ bd.label }}</span>
+                </sc-for>
+                <span class="thread-title" style="font-size:15.5px;font-weight:600;color:var(--mp-gray-900);transition:color var(--mp-dur-base) var(--mp-ease);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;">{{ th.title }}</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--mp-gray-500);">
+                <span style="color:var(--mp-purple-700);font-weight:600;">{{ th.author }}</span>
+                <span style="width:3px;height:3px;border-radius:50%;background:var(--mp-gray-300);"></span>
+                <span>{{ th.postedAt }}</span>
+                <sc-for list="{{ th.tags }}" as="tg" hint-placeholder-count="2">
+                  <span style="padding:2px 8px;background:var(--mp-gray-100);color:var(--mp-gray-600);border-radius:var(--mp-radius-pill);font-size:11px;font-weight:600;">{{ tg }}</span>
+                </sc-for>
+              </div>
+            </div>
+            <div style="flex-shrink:0;display:flex;align-items:center;gap:22px;font-family:var(--mp-font-mono);">
+              <div style="text-align:center;min-width:44px;">
+                <div style="font-size:15px;font-weight:700;color:{{ th.hot }};">{{ th.replies }}</div>
+                <div style="font-size:11px;color:var(--mp-gray-400);margin-top:1px;">回复</div>
+              </div>
+              <div style="text-align:center;min-width:48px;">
+                <div style="font-size:15px;font-weight:700;color:var(--mp-gray-700);">{{ th.views }}</div>
+                <div style="font-size:11px;color:var(--mp-gray-400);margin-top:1px;">浏览</div>
+              </div>
+            </div>
+            <div style="flex-shrink:0;width:96px;display:flex;flex-direction:column;align-items:flex-end;gap:3px;">
+              <div style="font-size:12px;color:var(--mp-gray-600);">{{ th.lastUser }}</div>
+              <div style="font-family:var(--mp-font-mono);font-size:11.5px;color:var(--mp-gray-400);">{{ th.lastAt }}</div>
+            </div>
+            <svg class="thread-arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--mp-purple-500)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:0;transform:translateX(-4px);transition:all var(--mp-dur-base) var(--mp-ease);"><path d="M9 18l6-6-6-6"></path></svg>
+          </a>
+        </sc-for>
+      </div>
+
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-top:24px;">
+        <span style="font-family:var(--mp-font-mono);font-size:12.5px;color:var(--mp-gray-500);">第 1 / {{ board.pages }} 页</span>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <sc-for list="{{ pageNums }}" as="pn" hint-placeholder-count="5">
+            <span class="page-num" style="min-width:34px;height:34px;padding:0 8px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;font-family:var(--mp-font-mono);font-size:13px;font-weight:600;cursor:pointer;transition:all var(--mp-dur-base) var(--mp-ease);background:{{ pn.bg }};color:{{ pn.color }};border:1px solid {{ pn.border }};">{{ pn.label }}</span>
+          </sc-for>
+          <a href="#" class="mp-pager" style="display:inline-flex;align-items:center;gap:7px;padding:9px 18px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;text-decoration:none;border-radius:var(--mp-radius-pill);font-size:13.5px;font-weight:600;box-shadow:0 4px 14px rgba(102,126,234,0.28);transition:transform var(--mp-dur-base) var(--mp-ease),box-shadow var(--mp-dur-base) var(--mp-ease);">
+            下一页
+            <svg class="mp-pager-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside style="display:flex;flex-direction:column;gap:22px;position:sticky;top:80px;">
+      <div style="background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:20px 20px 22px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mp-gray-900);margin-bottom:14px;">子话题</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <sc-for list="{{ subTopics }}" as="st" hint-placeholder-count="6">
+            <span class="sub-chip" style="padding:6px 13px;border:1px solid var(--mp-border);border-radius:var(--mp-radius-pill);font-size:12.5px;font-weight:600;color:var(--mp-gray-600);cursor:pointer;transition:all var(--mp-dur-base) var(--mp-ease);">{{ st.label }} <span style="color:var(--mp-gray-400);font-family:var(--mp-font-mono);">{{ st.count }}</span></span>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:20px 20px 12px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+          <div style="font-size:14px;font-weight:700;color:var(--mp-gray-900);">本版活跃</div>
+          <span style="font-family:var(--mp-font-mono);font-size:11px;color:var(--mp-gray-400);letter-spacing:1px;">7 DAYS</span>
+        </div>
+        <div style="display:flex;flex-direction:column;">
+          <sc-for list="{{ activeUsers }}" as="u" hint-placeholder-count="5">
+            <div class="user-row" style="display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--mp-border-soft);">
+              <div style="flex-shrink:0;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:{{ u.bg }};color:#fff;font-size:14px;font-weight:700;">{{ u.ch }}</div>
+              <div style="flex:1;min-width:0;">
+                <div class="user-name" style="font-size:13.5px;font-weight:600;color:var(--mp-gray-800);transition:color var(--mp-dur-base) var(--mp-ease);">{{ u.name }}</div>
+                <div style="font-size:11.5px;color:var(--mp-gray-500);">{{ u.role }}</div>
+              </div>
+              <div style="font-family:var(--mp-font-mono);font-size:12px;font-weight:700;color:var(--mp-purple-700);">{{ u.posts }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="background:linear-gradient(150deg,#241a4d,#2c2060);border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:20px;overflow:hidden;position:relative;">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--mp-grad-spore);"></div>
+        <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;">发帖前先看看</div>
+        <p style="font-size:12.5px;line-height:1.6;color:rgba(255,255,255,0.7);margin:0 0 14px;">{{ board.tip }}</p>
+        <a href="#" onClick="{{ openRules }}" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#9fe9dc;text-decoration:none;">查看发帖规范
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ===== COMPOSE MODAL ===== -->
+  <sc-if value="{{ composeOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="cmp-backdrop" onClick="{{ closeCompose }}" style="position:fixed;inset:0;z-index:100;background:rgba(12,8,30,0.62);backdrop-filter:blur(6px);display:flex;align-items:flex-start;justify-content:center;padding:clamp(20px,5vh,56px) 20px;overflow:auto;">
+      <div class="cmp-card" onClick="{{ stopProp }}" style="position:relative;width:100%;max-width:660px;background:#fff;border-radius:20px;box-shadow:0 30px 80px rgba(0,0,0,0.45);overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--mp-grad-spore);"></div>
+
+        <!-- header -->
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:22px 24px 16px;border-bottom:1px solid var(--mp-border-soft);">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;background:{{ board.grad }};box-shadow:0 6px 14px rgba(102,126,234,0.28);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="{{ board.icon }}"></use></svg>
+            </div>
+            <div>
+              <div style="font-size:17px;font-weight:800;color:var(--mp-gray-900);">发布新主题</div>
+              <div style="font-size:12.5px;color:var(--mp-gray-500);margin-top:1px;">发布到 <span style="color:var(--mp-purple-700);font-weight:600;">{{ board.zh }}</span> 版块</div>
+            </div>
+          </div>
+          <div onClick="{{ closeCompose }}" class="cmp-close" style="width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--mp-gray-500);cursor:pointer;transition:all var(--mp-dur-base) var(--mp-ease);">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+          </div>
+        </div>
+
+        <!-- form body -->
+        <div style="padding:20px 24px 8px;max-height:62vh;overflow:auto;">
+          <!-- subtopic -->
+          <div style="font-size:13px;font-weight:700;color:var(--mp-gray-800);margin-bottom:9px;">选择子话题</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;">
+            <sc-for list="{{ subChoices }}" as="sc" hint-placeholder-count="6">
+              <span onClick="{{ sc.on }}" class="sub-pick" style="padding:6px 14px;border-radius:var(--mp-radius-pill);font-size:12.5px;font-weight:600;cursor:pointer;transition:all var(--mp-dur-base) var(--mp-ease);background:{{ sc.bg }};color:{{ sc.color }};border:1px solid {{ sc.border }};">{{ sc.label }}</span>
+            </sc-for>
+          </div>
+
+          <!-- title -->
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;">
+            <span style="font-size:13px;font-weight:700;color:var(--mp-gray-800);">标题</span>
+            <span style="font-family:var(--mp-font-mono);font-size:11.5px;color:var(--mp-gray-400);">{{ titleCount }}</span>
+          </div>
+          <input type="text" value="{{ title }}" onInput="{{ setTitle }}" placeholder="用一句话说清楚你要发的内容" style="width:100%;padding:13px 16px;border:1px solid var(--mp-border);border-radius:12px;font-family:inherit;font-size:16px;font-weight:600;color:var(--mp-gray-900);outline:none;margin-bottom:20px;background:var(--mp-gray-50);">
+
+          <!-- body toolbar -->
+          <div style="font-size:13px;font-weight:700;color:var(--mp-gray-800);margin-bottom:9px;">正文</div>
+          <div style="display:flex;align-items:center;gap:2px;padding:6px 8px;border:1px solid var(--mp-border);border-bottom:0;border-radius:12px 12px 0 0;background:var(--mp-gray-50);">
+            <sc-for list="{{ fmtBtns }}" as="fb" hint-placeholder-count="6">
+              <span class="fmt-btn" style="width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;color:var(--mp-gray-600);cursor:pointer;transition:all var(--mp-dur-base) var(--mp-ease);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="{{ fb }}"></use></svg>
+              </span>
+            </sc-for>
+          </div>
+          <textarea onInput="{{ setBody }}" value="{{ body }}" placeholder="正文支持简单排版。政策/签证类信息请注明日期与来源～" style="width:100%;min-height:150px;padding:14px 16px;border:1px solid var(--mp-border);border-radius:0 0 12px 12px;font-family:inherit;font-size:14.5px;line-height:1.6;color:var(--mp-gray-800);outline:none;resize:vertical;background:#fff;"></textarea>
+
+          <!-- image drop -->
+          <div class="drop-zone" style="display:flex;align-items:center;justify-content:center;gap:10px;margin-top:16px;padding:18px;border:1.5px dashed var(--mp-border);border-radius:12px;color:var(--mp-gray-500);font-size:13px;cursor:pointer;transition:all var(--mp-dur-base) var(--mp-ease);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"></rect><circle cx="9" cy="9" r="2"></circle><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"></path></svg>
+            拖拽或点击上传图片（可选）
+          </div>
+
+          <!-- tags -->
+          <div style="font-size:13px;font-weight:700;color:var(--mp-gray-800);margin:20px 0 9px;">标签 <span style="font-weight:500;color:var(--mp-gray-400);">最多 5 个，回车添加</span></div>
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--mp-border);border-radius:12px;background:var(--mp-gray-50);">
+            <sc-for list="{{ tagList }}" as="tg" hint-placeholder-count="0">
+              <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 6px 4px 11px;background:rgba(118,75,162,0.10);color:var(--mp-purple-700);border-radius:var(--mp-radius-pill);font-size:12.5px;font-weight:600;">
+                {{ tg.label }}
+                <span onClick="{{ tg.on }}" class="tag-x" style="display:inline-flex;opacity:0.6;cursor:pointer;transition:opacity var(--mp-dur-base) var(--mp-ease);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></span>
+              </span>
+            </sc-for>
+            <input type="text" value="{{ tagInput }}" onInput="{{ setTagInput }}" onKeyDown="{{ addTagKey }}" placeholder="输入标签…" style="flex:1;min-width:90px;border:0;outline:none;background:transparent;font-family:inherit;font-size:13px;color:var(--mp-gray-800);padding:4px 0;">
+          </div>
+        </div>
+
+        <!-- footer -->
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 24px;border-top:1px solid var(--mp-border-soft);background:var(--mp-gray-50);">
+          <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:var(--mp-gray-500);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--mp-coral)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+            发布即表示同意<a href="#" onClick="{{ openRules }}" style="color:var(--mp-purple-700);text-decoration:none;font-weight:600;">发帖规范</a>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <button onClick="{{ closeCompose }}" class="cmp-ghost" style="padding:10px 18px;background:#fff;border:1px solid var(--mp-border);border-radius:var(--mp-radius-pill);color:var(--mp-gray-700);font-family:inherit;font-size:13.5px;font-weight:600;cursor:pointer;transition:background var(--mp-dur-base) var(--mp-ease);">存草稿</button>
+            <button onClick="{{ publish }}" class="cmp-pub-on" style="display:flex;align-items:center;gap:7px;padding:10px 24px;background:{{ pubBg }};border:0;border-radius:var(--mp-radius-pill);color:{{ pubColor }};font-family:inherit;font-size:13.5px;font-weight:700;cursor:{{ pubCursor }};transition:all var(--mp-dur-base) var(--mp-ease);">
+              发布主题
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"></path></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ===== RULES MODAL ===== -->
+  <sc-if value="{{ rulesOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="cmp-backdrop" onClick="{{ closeRules }}" style="position:fixed;inset:0;z-index:110;background:rgba(12,8,30,0.62);backdrop-filter:blur(6px);display:flex;align-items:flex-start;justify-content:center;padding:clamp(20px,6vh,64px) 20px;overflow:auto;">
+      <div class="cmp-card" onClick="{{ stopProp }}" style="position:relative;width:100%;max-width:560px;background:#fff;border-radius:20px;box-shadow:0 30px 80px rgba(0,0,0,0.45);overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--mp-grad-spore);"></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:24px 26px 18px;border-bottom:1px solid var(--mp-border-soft);">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:var(--mp-grad-mycelium);box-shadow:0 6px 14px rgba(102,126,234,0.28);">
+              <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M16 13H8M16 17H8M10 9H8"></path></svg>
+            </div>
+            <div>
+              <div style="font-size:17px;font-weight:800;color:var(--mp-gray-900);">发帖规范</div>
+              <div style="font-size:12.5px;color:var(--mp-gray-500);margin-top:1px;">让社区保持友善、有用、可信</div>
+            </div>
+          </div>
+          <div onClick="{{ closeRules }}" class="cmp-close" style="width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--mp-gray-500);cursor:pointer;transition:all var(--mp-dur-base) var(--mp-ease);">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+          </div>
+        </div>
+        <div style="padding:20px 26px 6px;max-height:60vh;overflow:auto;display:flex;flex-direction:column;gap:16px;">
+          <sc-for list="{{ rules }}" as="r" hint-placeholder-count="6">
+            <div style="display:flex;align-items:flex-start;gap:13px;">
+              <div style="flex-shrink:0;width:36px;height:36px;border-radius:10px;background:{{ r.bg }};display:flex;align-items:center;justify-content:center;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{ r.color }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="{{ r.icon }}"></use></svg>
+              </div>
+              <div style="flex:1;">
+                <div style="font-size:14.5px;font-weight:700;color:var(--mp-gray-900);">{{ r.title }}</div>
+                <div style="font-size:13px;line-height:1.6;color:var(--mp-gray-600);margin-top:3px;">{{ r.desc }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 26px;border-top:1px solid var(--mp-border-soft);background:var(--mp-gray-50);margin-top:14px;">
+          <span style="font-size:12px;color:var(--mp-gray-500);">感谢共建 Next Stop 社区 🌱</span>
+          <button onClick="{{ closeRules }}" class="cmp-pub-on" style="padding:10px 24px;background:var(--mp-grad-mycelium);border:0;border-radius:var(--mp-radius-pill);color:#fff;font-family:inherit;font-size:13.5px;font-weight:700;cursor:pointer;transition:all var(--mp-dur-base) var(--mp-ease);">我知道了</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- toast -->
+  <sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;left:50%;bottom:34px;z-index:120;display:flex;align-items:center;gap:10px;padding:13px 22px;background:rgba(18,13,40,0.95);backdrop-filter:blur(10px);border:1px solid rgba(95,224,200,0.35);border-radius:var(--mp-radius-pill);box-shadow:0 16px 40px rgba(0,0,0,0.4);animation:mp-toast .3s var(--mp-ease);">
+      <span style="width:22px;height:22px;border-radius:50%;background:var(--mp-grad-dao);display:flex;align-items:center;justify-content:center;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"></path></svg>
+      </span>
+      <span style="color:#fff;font-size:14px;font-weight:600;">发布成功，等待审核后展示</span>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;board&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;info&quot;,&quot;trade&quot;,&quot;car&quot;,&quot;promo&quot;,&quot;meetup&quot;,&quot;qa&quot;,&quot;jobs&quot;,&quot;chat&quot;],&quot;default&quot;:&quot;info&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;版块&quot;}}">
+class Component extends DCLogic {
+  state = { tab: 0, composeOpen: false, rulesOpen: false, title: '', body: '', sub: -1, tags: [], tagInput: '', toast: false };
+
+  openCompose = () => this.setState({ composeOpen: true });
+  closeCompose = () => this.setState({ composeOpen: false });
+  openRules = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ rulesOpen: true }); };
+  closeRules = () => this.setState({ rulesOpen: false });
+  stopProp = (e) => e.stopPropagation();
+  setTitle = (e) => this.setState({ title: e.target.value.slice(0, 60) });
+  setBody = (e) => this.setState({ body: e.target.value });
+  setTagInput = (e) => this.setState({ tagInput: e.target.value.slice(0, 8) });
+  addTagKey = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const v = (this.state.tagInput || '').trim();
+      if (v && this.state.tags.length < 5 && this.state.tags.indexOf(v) === -1) {
+        this.setState({ tags: [...this.state.tags, v], tagInput: '' });
+      }
+    }
+  };
+  removeTag = (i) => this.setState({ tags: this.state.tags.filter((_, k) => k !== i) });
+  pickSub = (i) => this.setState({ sub: this.state.sub === i ? -1 : i });
+  publish = () => {
+    if (!(this.state.title || '').trim()) return;
+    this.setState({ composeOpen: false, toast: true, title: '', body: '', sub: -1, tags: [], tagInput: '' });
+    clearTimeout(this._toastT);
+    this._toastT = setTimeout(() => this.setState({ toast: false }), 2600);
+  };
+
+  componentDidMount() {
+    this._onHash = () => { this.setState({ tab: 0 }); this.forceUpdate(); };
+    window.addEventListener('hashchange', this._onHash);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('hashchange', this._onHash);
+  }
+
+  renderVals() {
+    const PIN = { label: '置顶', bg: 'rgba(245,87,108,0.14)', color: '#e0344f' };
+    const HOT = { label: '精华', bg: 'rgba(207,152,24,0.16)', color: '#b3810f' };
+    const grads = ['var(--mp-grad-whitepaper)', 'var(--mp-grad-gtoken)', 'var(--mp-grad-dao)', 'var(--mp-grad-demo)', 'var(--mp-grad-milestone)', 'var(--mp-grad-more)'];
+    const uBg = ['var(--mp-grad-whitepaper)', 'var(--mp-grad-milestone)', 'var(--mp-grad-dao)', 'var(--mp-grad-gtoken)', 'var(--mp-grad-demo)'];
+    const postedSeq = ['今天', '今天', '今天', '昨天', '2 天前', '2 天前', '3 天前', '4 天前'];
+
+    // threads: [code, title, author, [tags], replies, views, lastUser, lastAt, hot]
+    const BOARDS = {
+      info: { zh: '信息', en: 'Info', icon: '#ic-info', grad: 'var(--mp-grad-whitepaper)', accent: '#9d86f0', group: '会员区', desc: '政策、签证、城市生活资讯 · 出发前先在这里做功课', threadsCount: '1,280', postsCount: '9.4k', online: '328', pages: '128', role: '信息达人', tip: '政策与签证信息时效性强，发帖请注明日期与来源，方便他人参考。',
+        subTopics: [['签证政策', '412'], ['城市指南', '386'], ['社保税务', '204'], ['租房住宿', '178'], ['生活服务', '156'], ['避坑提醒', '98']],
+        threads: [
+          ['P', '【新人必读】本版发帖规范与信息求助指南', '版主·菌丝', ['公告'], '86', '24k', '菌丝小助手', '刚刚', true],
+          ['PH', '2026 各国数字游民签证最新汇总（持续更新）', 'nomad_wang', ['签证', '干货'], '512', '48k', 'Leo', '3 分钟前', true],
+          ['H', '泰国 DTV 签证申请全流程，附材料清单和踩坑记录', '清迈老李', ['签证', '泰国'], '238', '19k', '小满', '12 分钟前', true],
+          ['', '大理长租房源避坑指南：押金、合同、水电这些要注意', '苍山脚下', ['城市', '租房'], '164', '11k', '阿哲', '28 分钟前', false],
+          ['', '葡萄牙 D7 签证 vs 数字游民签证，到底选哪个？', 'lisbon_amy', ['签证', '欧洲'], '97', '8.2k', 'Karen', '1 小时前', false],
+          ['', '国内社保断缴怎么办？灵活就业参保实测（成都）', '成都打工人', ['社保', '干货'], '203', '15k', '老陈', '2 小时前', true],
+          ['', '巴厘岛 KITAS 续签经验，中介 vs 自己办对比', 'bali_surfer', ['签证', '印尼'], '58', '6.1k', 'Momo', '3 小时前', false],
+          ['', '清迈租摩托、办电话卡、开银行账户一条龙', '慢慢来', ['城市', '生活'], '142', '9.8k', 'Ivan', '5 小时前', false]
+        ] },
+      trade: { zh: '交易', en: 'Trade', icon: '#ic-trade', grad: 'var(--mp-grad-gtoken)', accent: '#4ec5d4', group: '会员区', desc: '二手闲置、租房转让 · 当面交易更安心', threadsCount: '860', postsCount: '5.2k', online: '214', pages: '86', role: '资深卖家', tip: '交易请尽量当面验货、走平台担保，谨防私下转账诈骗。',
+        subTopics: [['二手数码', '168'], ['家具家电', '142'], ['租房转租', '203'], ['户外装备', '96'], ['免费送', '54'], ['求购', '78']],
+        threads: [
+          ['P', '【交易安全】当面验货 · 平台担保 · 防诈骗指南', '版主·菌丝', ['公告'], '42', '12k', '菌丝小助手', '刚刚', true],
+          ['H', '大理搬家出闲置：宜家书桌 / 显示器 / 单车 打包出', '苍山脚下', ['家具', '大理'], '76', '5.4k', '阿哲', '8 分钟前', true],
+          ['', '转让清迈公寓租约，2 房带泳池，7 月起', '清迈老李', ['租房', '泰国'], '34', '3.1k', 'May', '22 分钟前', false],
+          ['', '出 95 新 MacBook Pro 14 M3，成都可当面', '成都打工人', ['数码'], '58', '4.7k', 'Leo', '40 分钟前', true],
+          ['', '收一张人体工学椅，安吉自提', '竹林隐士', ['求购', '安吉'], '19', '1.6k', '小鹿', '1 小时前', false],
+          ['', '阿那亚民宿旺季转租，8 月两周', '海边阿May', ['租房', '阿那亚'], '27', '2.3k', 'Nina', '2 小时前', false],
+          ['', '出全套露营装备：帐篷 + 天幕 + 椅子', '山野客', ['户外'], '44', '3.8k', '老陈', '4 小时前', false],
+          ['', '二手电动车转让，同城过户（昆明）', '昆明小张', ['数码', '昆明'], '23', '2.0k', '阿哲', '昨天', false]
+        ] },
+      car: { zh: '拼车', en: 'Carpool', icon: '#ic-car', grad: 'var(--mp-grad-dao)', accent: '#43e97b', group: '会员区', desc: '同城拼车、跨城结伴 · 分摊路费一起上路', threadsCount: '430', postsCount: '2.1k', online: '176', pages: '43', role: '老司机', tip: '拼车请写清出发时间、地点与费用分摊方式，注意行车安全。',
+        subTopics: [['同城拼车', '186'], ['跨城结伴', '152'], ['机场往返', '88'], ['周末出行', '124'], ['长途', '46'], ['找车友', '63']],
+        threads: [
+          ['P', '【拼车须知】发帖模板与安全提示', '版主·菌丝', ['公告'], '31', '8.9k', '菌丝小助手', '刚刚', true],
+          ['H', '大理 → 丽江 周五下午，可带 3 人平摊油费', '苍山脚下', ['大理', '结伴'], '52', '4.2k', '阿哲', '6 分钟前', true],
+          ['', '成都双流机场 拼车进城，周日晚航班', '成都打工人', ['成都', '机场'], '28', '2.1k', 'Leo', '18 分钟前', false],
+          ['', '清迈素贴山周末结伴，AA 包车', '清迈老李', ['泰国', '周末'], '37', '2.8k', 'May', '35 分钟前', false],
+          ['', '安吉 → 杭州东站 每周一早通勤拼车', '竹林隐士', ['安吉', '通勤'], '44', '3.3k', '小鹿', '1 小时前', true],
+          ['', '找西双版纳茶山一日游车友', '版纳小周', ['版纳', '一日游'], '16', '1.4k', 'Momo', '3 小时前', false],
+          ['', '昆明 → 建水古城 周末往返', '昆明小张', ['昆明', '周末'], '22', '1.9k', '阿哲', '5 小时前', false],
+          ['', '阿那亚 → 北京 顺风车，周日返程', '海边阿May', ['阿那亚', '顺风车'], '19', '1.6k', 'Nina', '昨天', false]
+        ] },
+      promo: { zh: '推广', en: 'Promotion', icon: '#ic-promo', grad: 'var(--mp-grad-demo)', accent: '#fbb36e', group: '会员区', desc: '项目自荐、好物分享 · 让更多人看见你在做的事', threadsCount: '320', postsCount: '1.6k', online: '132', pages: '32', role: '推广达人', tip: '一人一帖、禁止刷屏，推广请如实描述，附真实链接与截图。',
+        subTopics: [['项目自荐', '142'], ['好物分享', '168'], ['空间优惠', '76'], ['工具推荐', '94'], ['招募共建', '58'], ['内容创作', '82']],
+        threads: [
+          ['P', '【推广版规】一人一帖 · 禁刷屏', '版主·菌丝', ['公告'], '24', '6.7k', '菌丝小助手', '刚刚', true],
+          ['H', '我做了个数字游民签证查询小工具，免费用', 'nomad_wang', ['工具', '干货'], '186', '14k', 'Leo', '5 分钟前', true],
+          ['', '大理新开共享办公空间，游民月卡 8 折', '苍山脚下', ['大理', '办公'], '48', '3.9k', '阿哲', '20 分钟前', false],
+          ['', '自荐：帮远程团队做异步协作 SaaS，找早期用户', 'builder_kai', ['产品'], '63', '4.5k', 'May', '45 分钟前', true],
+          ['', '好物分享：便携显示器实测，出差党福音', '慢慢来', ['好物'], '52', '4.1k', 'Ivan', '1 小时前', false],
+          ['', '安吉这家咖啡馆适合办公，插座 wifi 都在线', '竹林隐士', ['安吉', '办公'], '37', '2.8k', '小鹿', '2 小时前', false],
+          ['', '我的独立播客上线了，聊数字游民故事', '自由的风', ['播客'], '41', '3.0k', 'Sunny', '4 小时前', false],
+          ['', '招募：正在做游民社区地图，找共建者', 'map_maker', ['共建'], '29', '2.2k', 'Momo', '昨天', false]
+        ] },
+      meetup: { zh: '见面会', en: 'Meetup', icon: '#ic-meetup', grad: 'var(--mp-grad-milestone)', accent: '#f77eb0', group: '会员区', desc: '线下活动、城市聚会 · 从线上走到线下见个面', threadsCount: '540', postsCount: '3.8k', online: '268', pages: '54', role: '活动发起人', tip: '发起活动请注明时间、地点、人数与费用，方便大家报名。',
+        subTopics: [['城市聚会', '214'], ['露营户外', '132'], ['共创工作', '88'], ['运动健身', '76'], ['市集活动', '54'], ['线上连麦', '42']],
+        threads: [
+          ['P', '【见面会】发起指南与场地清单', '版主·菌丝', ['公告'], '38', '9.2k', '菌丝小助手', '刚刚', true],
+          ['PH', '7/5 大理苍山观星露营，报名接龙', '苍山脚下', ['大理', '露营'], '214', '16k', '阿哲', '4 分钟前', true],
+          ['', '成都 Coffee & Code 周五晚，玉林路', '成都打工人', ['成都', '咖啡'], '88', '6.3k', 'Leo', '15 分钟前', true],
+          ['', '清迈周三 Nomad Dinner，泰北菜局', '清迈老李', ['泰国', '饭局'], '64', '4.8k', 'May', '30 分钟前', false],
+          ['', '阿那亚海边播客面对面，7/13', '海边阿May', ['阿那亚', '播客'], '52', '3.9k', 'Nina', '1 小时前', false],
+          ['', '安吉余村共创周，开放工位 + 晚餐', '竹林隐士', ['安吉', '共创'], '73', '5.1k', '小鹿', '2 小时前', true],
+          ['', '昆明翠湖晨跑团，周六早 7 点', '昆明小张', ['昆明', '运动'], '31', '2.4k', '阿哲', '5 小时前', false],
+          ['', '招募：想在景德镇办一次手作市集', '陶溪川', ['景德镇', '市集'], '46', '3.3k', 'Momo', '昨天', false]
+        ] },
+      qa: { zh: '问答', en: 'Q&A', icon: '#ic-qa', grad: 'var(--mp-grad-more)', accent: '#7fd6b0', group: '会员区', desc: '提问求助、经验互答 · 有问题这里总有人答', threadsCount: '720', postsCount: '6.1k', online: '312', pages: '72', role: '热心解答', tip: '提问请描述清楚背景与已尝试的方法，越具体越容易被解答。',
+        subTopics: [['社保税务', '168'], ['签证求助', '142'], ['租房生活', '124'], ['数码维修', '68'], ['银行结汇', '96'], ['保险医疗', '74']],
+        threads: [
+          ['P', '【提问的智慧】如何更快得到有用回答', '版主·菌丝', ['公告'], '52', '13k', '菌丝小助手', '刚刚', true],
+          ['H', '数字游民怎么交社保和公积金？在线等', '新手上路', ['社保', '求助'], '168', '12k', '老陈', '7 分钟前', true],
+          ['', '远程工资结汇，用哪个方式手续费低？', '自由的风', ['结汇', '税务'], '97', '7.8k', 'Sunny', '19 分钟前', true],
+          ['', '一个人去清迈，租房押金一般压几个月？', '慢慢来', ['泰国', '租房'], '43', '3.4k', 'May', '32 分钟前', false],
+          ['', '笔记本坏了，大理哪里能修 Mac？', '苍山脚下', ['大理', '数码'], '28', '2.1k', '阿哲', '1 小时前', false],
+          ['', '长期在外，国内银行卡不用会冻结吗？', '成都打工人', ['银行', '求助'], '76', '5.6k', 'Leo', '2 小时前', false],
+          ['', '想学冲浪，巴厘岛还是万宁更适合新手？', 'bali_surfer', ['冲浪', '讨论'], '54', '4.0k', 'Momo', '4 小时前', false],
+          ['', '游民医保怎么买？有推荐的商业保险吗？', '稳稳的', ['医保', '求助'], '89', '6.4k', 'Nina', '昨天', true]
+        ] },
+      jobs: { zh: '求职招聘', en: 'Jobs', icon: '#ic-jobs', grad: 'var(--mp-grad-whitepaper)', accent: '#9d86f0', group: '工作区', desc: '远程岗位、自由职业机会 · 边旅居边工作', threadsCount: '670', postsCount: '4.1k', online: '198', pages: '67', role: '招聘官', tip: '招聘/求职请注明薪资、远程与地点，简历勿泄露敏感信息。',
+        subTopics: [['远程招聘', '246'], ['自由接单', '168'], ['求职简历', '132'], ['兼职零工', '88'], ['内推机会', '56'], ['薪资讨论', '74']],
+        threads: [
+          ['P', '【招聘/求职】发帖规范：薪资 · 远程 · 地点必填', '版主·菌丝', ['公告'], '34', '11k', '菌丝小助手', '刚刚', true],
+          ['PH', '远程 前端工程师，React，30-45k，全远程', '某远程team', ['招聘', '远程'], '142', '9.6k', 'HR-Lin', '6 分钟前', true],
+          ['', '招 社群运营，数字游民背景优先，可 base 大理', '苍山脚下', ['招聘', '大理'], '58', '4.3k', '阿哲', '21 分钟前', false],
+          ['', '求职：3 年产品经理，找远程 / 4 天工作制', 'pm_zhou', ['求职', '产品'], '47', '3.5k', 'May', '38 分钟前', true],
+          ['', '招 兼职 中英翻译，按稿计酬', '翻译社', ['招聘', '兼职'], '26', '2.0k', 'Leo', '1 小时前', false],
+          ['', '自由职业 UI 设计接单，作品集在内', 'design_yu', ['接单', '设计'], '39', '2.9k', '小鹿', '3 小时前', false],
+          ['', '招 短视频剪辑，长期合作，远程', 'MCN小王', ['招聘', '远程'], '31', '2.3k', 'Momo', '5 小时前', false],
+          ['', '求内推：想转远程开发，附简历', '代码新人', ['求职', '内推'], '44', '3.2k', 'Sunny', '昨天', false]
+        ] },
+      chat: { zh: '职场杂谈', en: 'Career Chat', icon: '#ic-chat', grad: 'var(--mp-grad-more)', accent: '#8fd0b0', group: '工作区', desc: '经验、副业、行业吐槽 · 聊聊工作那些事', threadsCount: '910', postsCount: '7.3k', online: '246', pages: '91', role: '话题王', tip: '理性吐槽、友善交流，禁止人身攻击与地域歧视。',
+        subTopics: [['收入分享', '168'], ['心态调节', '142'], ['副业经验', '124'], ['行业吐槽', '96'], ['职业规划', '88'], ['报价接活', '64']],
+        threads: [
+          ['P', '【职场杂谈】理性吐槽 · 友善交流', '版主·菌丝', ['公告'], '46', '12k', '菌丝小助手', '刚刚', true],
+          ['PH', '做了两年数字游民，聊聊收入和焦虑', '自由的风', ['分享', '心态'], '308', '28k', 'Sunny', '3 分钟前', true],
+          ['', '副业到底该不该告诉公司？', '匿名打工人', ['副业', '讨论'], '176', '13k', 'Leo', '14 分钟前', true],
+          ['', '远程工作时间管理，你们怎么防止摸鱼 / 过劳', '慢慢来', ['远程', '效率'], '134', '9.8k', 'May', '29 分钟前', false],
+          ['', '甲方又改需求了，来点正能量', '设计狗', ['吐槽'], '92', '6.7k', '阿哲', '1 小时前', false],
+          ['', '一个人远程久了会孤独吗？大家怎么调节', '稳稳的', ['心态', '讨论'], '118', '8.4k', 'Nina', '2 小时前', true],
+          ['', '35 岁转自由职业，晚不晚？', '中年转型', ['职业', '讨论'], '87', '6.1k', '老陈', '4 小时前', false],
+          ['', '接私活报价，怎么定才不亏', 'freelance_j', ['副业', '报价'], '73', '5.2k', 'Momo', '昨天', false]
+        ] }
+    };
+
+    let key = 'info';
+    try {
+      const h = (location.hash || '').replace(/^#/, '').replace(/^board=/, '').trim();
+      const qp = new URLSearchParams(location.search || '').get('board');
+      key = h || qp || this.props.board || 'info';
+    } catch (e) { key = this.props.board || 'info'; }
+    const board = BOARDS[key] || BOARDS.info;
+
+    const firstCh = (s) => { const m = (s || '').match(/[\u4e00-\u9fa5A-Za-z]/g); return m ? m[m.length > 1 ? m.length - 1 : 0] : (s || '·').slice(0, 1); };
+
+    const tabLabels = ['最新回复', '热门', '精华', '未回复'];
+    const tabs = tabLabels.map((label, i) => ({
+      label,
+      on: () => this.setState({ tab: i }),
+      bg: i === this.state.tab ? 'linear-gradient(135deg,#667eea,#764ba2)' : 'transparent',
+      color: i === this.state.tab ? '#fff' : 'var(--mp-gray-600)'
+    }));
+
+    const threads = board.threads.map((r, i) => {
+      const code = r[0]; const badges = [];
+      if (code.indexOf('P') > -1) badges.push(PIN);
+      if (code.indexOf('H') > -1) badges.push(HOT);
+      return {
+        badges, title: r[1], author: r[2], tags: r[3],
+        replies: r[4], views: r[5], lastUser: r[6], lastAt: r[7],
+        hot: r[8] ? 'var(--mp-coral)' : 'var(--mp-gray-700)',
+        postedAt: postedSeq[i] || '几天前',
+        avaBg: grads[i % grads.length],
+        avaCh: firstCh(r[2])
+      };
+    });
+
+    const subTopics = board.subTopics.map(s => ({ label: s[0], count: s[1] }));
+
+    const postsPool = ['142', '118', '96', '87', '73'];
+    const activeUsers = board.threads.slice(1, 6).map((r, i) => ({
+      name: r[2], role: board.role, posts: postsPool[i],
+      bg: uBg[i], ch: firstCh(r[2])
+    }));
+
+    const pageDefs = ['1', '2', '3', '4', '…', board.pages];
+    const pageNums = pageDefs.map((label, i) => {
+      const active = i === 0; const dots = label === '…';
+      return {
+        label,
+        bg: active ? 'linear-gradient(135deg,#667eea,#764ba2)' : '#fff',
+        color: active ? '#fff' : dots ? 'var(--mp-gray-400)' : 'var(--mp-gray-700)',
+        border: active ? 'transparent' : 'var(--mp-border)'
+      };
+    });
+
+    const subChoices = board.subTopics.map((s, i) => ({
+      label: s[0],
+      active: this.state.sub === i,
+      bg: this.state.sub === i ? 'linear-gradient(135deg,#667eea,#764ba2)' : '#fff',
+      color: this.state.sub === i ? '#fff' : 'var(--mp-gray-600)',
+      border: this.state.sub === i ? 'transparent' : 'var(--mp-border)',
+      on: () => this.pickSub(i)
+    }));
+    const tagList = this.state.tags.map((tg, i) => ({ label: tg, on: () => this.removeTag(i) }));
+    const canPublish = (this.state.title || '').trim().length > 0;
+    const fmtBtns = ['#fm-bold', '#fm-italic', '#fm-list', '#fm-quote', '#fm-link', '#fm-image', '#fm-code'];
+
+    return {
+      board, tabs, threads, subTopics, activeUsers, pageNums,
+      composeOpen: this.state.composeOpen, openCompose: this.openCompose, closeCompose: this.closeCompose, stopProp: this.stopProp,
+      rulesOpen: this.state.rulesOpen, openRules: this.openRules, closeRules: this.closeRules,
+      rules: [
+        { icon: '#bd-check', color: '#1f9e5a', bg: 'rgba(67,233,123,0.12)', title: '发对版块，写清标题', desc: '发布前确认选对子话题，标题用一句话说清主题，方便别人检索与回复。' },
+        { icon: '#bd-doc', color: 'var(--mp-purple-700)', bg: 'rgba(118,75,162,0.10)', title: '政策/签证类注明日期与来源', desc: '签证、税务、社保等时效性信息，请标注生效日期与官方来源链接，避免误导他人。' },
+        { icon: '#bd-heart', color: '#e0344f', bg: 'rgba(255,107,107,0.12)', title: '友善交流，就事论事', desc: '尊重不同的选择与观点，禁止人身攻击、地域歧视、拉踩与骚扰。' },
+        { icon: '#bd-shield', color: '#2A6FDB', bg: 'rgba(42,111,219,0.10)', title: '禁止广告与拉群导流', desc: '招聘/交易请发到对应版块并如实标注。禁止刷屏、软文、诱导私加与虚假信息。' },
+        { icon: '#bd-lock', color: '#c98a1a', bg: 'rgba(245,184,41,0.14)', title: '保护隐私与版权', desc: '请勿公开他人隐私信息；转载注明出处，图片确保有使用权，尊重原创。' },
+        { icon: '#bd-flag', color: 'var(--mp-gray-600)', bg: 'var(--mp-gray-100)', title: '发现违规可举报', desc: '违反规范的内容将被折叠或删除，屡犯将限制发帖。看到问题内容欢迎点击举报。' }
+      ],
+      title: this.state.title, setTitle: this.setTitle, titleCount: this.state.title.length + ' / 60',
+      body: this.state.body, setBody: this.setBody,
+      tagInput: this.state.tagInput, setTagInput: this.setTagInput, addTagKey: this.addTagKey, tagList,
+      subChoices, fmtBtns, publish: this.publish,
+      canPublish,
+      pubBg: canPublish ? 'linear-gradient(135deg,#667eea,#764ba2)' : 'var(--mp-gray-200)',
+      pubColor: canPublish ? '#fff' : 'var(--mp-gray-400)',
+      pubCursor: canPublish ? 'pointer' : 'not-allowed',
+      toast: this.state.toast
+    };
+  }
+}
+</script>
+</body>
+</html>

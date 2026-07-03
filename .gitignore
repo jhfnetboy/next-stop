@@ -1,0 +1,6 @@
+# OS
+.DS_Store
+.thumbnail
+
+# User uploads (runtime-generated, not source)
+uploads/

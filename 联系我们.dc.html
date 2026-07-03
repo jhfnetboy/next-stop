@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="assets/mycelium-tokens.css">
+<script src="auth-nav.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: var(--mp-font-sans); color: var(--mp-fg-1); background: var(--mp-gray-50); -webkit-font-smoothing: antialiased; }
+  ::selection { background: rgba(157,134,240,0.22); }
+  .nav-link:hover { color: #fff !important; }
+  .nav-logo:hover { opacity: .82; }
+  .crumb:hover { color: #c4b6ff !important; }
+  .contact-card:hover { transform: translateY(-3px); box-shadow: var(--mp-shadow-button); }
+  .cta-btn:hover { transform: translateY(-2px); box-shadow: var(--mp-shadow-button); }
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:var(--mp-gray-50);">
+  <nav style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:10px clamp(20px,5vw,60px);background:rgba(18,14,43,0.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.12);">
+    <a href="数字游民社区集合网.dc.html" class="nav-logo" style="display:flex;align-items:center;gap:11px;text-decoration:none;transition:opacity var(--mp-dur-base) var(--mp-ease);">
+      <img src="assets/mushroom-logo.png" alt="" style="width:34px;height:34px;object-fit:contain;filter:drop-shadow(0 4px 8px rgba(0,0,0,0.3));">
+      <div style="font-size:18px;font-weight:800;color:#fff;letter-spacing:0.2px;">Next Stop</div>
+    </a>
+    <div style="display:flex;align-items:center;gap:28px;">
+      <a href="数字游民社区集合网.dc.html" class="nav-link" style="color:rgba(255,255,255,0.82);text-decoration:none;font-size:14px;font-weight:500;transition:color var(--mp-dur-base) var(--mp-ease);">发现社区</a>
+      <a href="活动.dc.html" class="nav-link" style="color:rgba(255,255,255,0.82);text-decoration:none;font-size:14px;font-weight:500;transition:color var(--mp-dur-base) var(--mp-ease);">活动</a>
+      <a href="指南.dc.html" class="nav-link" style="color:rgba(255,255,255,0.82);text-decoration:none;font-size:14px;font-weight:500;transition:color var(--mp-dur-base) var(--mp-ease);">指南</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+    <a href="社区入驻.dc.html" class="cta-btn" style="padding:7px 14px;background:#fff;color:var(--mp-purple-700);text-decoration:none;border-radius:var(--mp-radius-pill);font-size:13px;font-weight:600;box-shadow:0 4px 14px rgba(0,0,0,0.18);transition:all var(--mp-dur-base) var(--mp-ease);">提交社区</a>
+    </div>
+  </nav>
+
+  <header style="position:relative;background:linear-gradient(158deg,#171232 0%,#3a2470 60%,#5b3fb0 120%);padding:clamp(40px,5vw,64px) clamp(20px,5vw,60px);overflow:hidden;">
+    <div style="position:absolute;top:-30%;right:0;width:55%;height:170%;background:radial-gradient(circle,rgba(157,134,240,0.4) 0%,transparent 62%);pointer-events:none;"></div>
+    <div style="position:relative;max-width:900px;margin:0 auto;">
+      <div style="display:flex;align-items:center;gap:8px;font-family:var(--mp-font-mono);font-size:12.5px;color:rgba(255,255,255,0.6);margin-bottom:16px;">
+        <a href="数字游民社区集合网.dc.html" class="crumb" style="color:rgba(255,255,255,0.6);text-decoration:none;">首页</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
+        <span style="color:#c4b6ff;">联系我们</span>
+      </div>
+      <h1 style="font-family:var(--mp-font-display);font-size:clamp(30px,4.4vw,48px);font-weight:800;color:#fff;line-height:1.08;letter-spacing:-1px;margin:0 0 14px;">有问题、建议或合作？找我们聊聊</h1>
+      <p style="font-size:clamp(15px,1.5vw,18px);font-weight:300;line-height:1.6;color:rgba(255,255,255,0.85);margin:0;max-width:620px;">无论你是数字游民、社区主理人还是媒体伙伴，都可以通过下面的方式联系 Next Stop 团队，我们通常在 1 个工作日内回复。</p>
+    </div>
+  </header>
+
+  <main style="max-width:900px;margin:0 auto;padding:clamp(32px,4vw,52px) clamp(20px,5vw,60px) clamp(48px,6vw,80px);display:flex;flex-direction:column;gap:36px;">
+    <section>
+      <h2 style="font-size:22px;font-weight:800;color:var(--mp-gray-900);margin:0 0 16px;letter-spacing:-0.3px;border:0;padding:0;">联系方式</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;">
+        <sc-for list="{{ channels }}" as="c" hint-placeholder-count="4">
+          <a href="{{ c.href }}" class="contact-card" style="display:block;background:#fff;border-radius:16px;box-shadow:var(--mp-shadow-card);padding:20px 22px;text-decoration:none;transition:all var(--mp-dur-base) var(--mp-ease);">
+            <div style="width:40px;height:40px;border-radius:11px;background:{{ c.bg }};display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{ c.color }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="{{ c.icon }}"></use></svg>
+            </div>
+            <div style="font-size:14px;font-weight:800;color:var(--mp-gray-900);margin-bottom:4px;">{{ c.title }}</div>
+            <div style="font-size:13.5px;color:var(--mp-purple-700);font-weight:600;word-break:break-all;">{{ c.value }}</div>
+            <div style="font-size:12.5px;color:var(--mp-gray-500);margin-top:6px;line-height:1.5;">{{ c.note }}</div>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+
+    <section>
+      <h2 style="font-size:22px;font-weight:800;color:var(--mp-gray-900);margin:0 0 16px;letter-spacing:-0.3px;border:0;padding:0;">常见联系事由</h2>
+      <div style="background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:8px 24px;">
+        <sc-for list="{{ topics }}" as="t" hint-placeholder-count="4">
+          <div style="display:flex;align-items:flex-start;gap:14px;padding:15px 0;border-bottom:1px solid var(--mp-border-soft);">
+            <div style="width:110px;flex-shrink:0;font-size:13.5px;font-weight:700;color:var(--mp-gray-900);">{{ t.k }}</div>
+            <div style="font-size:13.5px;line-height:1.6;color:var(--mp-gray-600);">{{ t.v }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="background:linear-gradient(150deg,#2c2060,#5b3fb0);border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:clamp(24px,3vw,36px);text-align:center;">
+      <h2 style="font-size:22px;font-weight:800;color:#fff;margin:0 0 8px;letter-spacing:-0.3px;border:0;padding:0;">想让你的社区被更多人看到？</h2>
+      <p style="font-size:14.5px;line-height:1.6;color:rgba(255,255,255,0.85);margin:0 0 20px;">把你的社区提交给我们，通过审核后即可展示在 Next Stop。</p>
+      <a href="社区入驻.dc.html" class="cta-btn" style="display:inline-flex;align-items:center;gap:7px;padding:12px 26px;background:#fff;color:var(--mp-purple-700);text-decoration:none;border-radius:var(--mp-radius-pill);font-size:14.5px;font-weight:700;transition:all var(--mp-dur-base) var(--mp-ease);">提交你的社区
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+      </a>
+    </section>
+  </main>
+
+  <svg width="0" height="0" style="position:absolute;" aria-hidden="true"><defs>
+    <symbol id="ci-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></symbol>
+    <symbol id="ci-wechat" viewBox="0 0 24 24"><path d="M8 3C4.7 3 2 5.4 2 8.3c0 1.6.8 3 2.1 4L3 15l2.8-1.3c.7.2 1.4.3 2.2.3M16 8c-3.3 0-6 2.4-6 5.3S12.7 18.6 16 18.6c.7 0 1.4-.1 2-.3L20.5 20l-.9-2.2c1.3-1 2.4-2.4 2.4-4C22 10.4 19.3 8 16 8Z"></path></symbol>
+    <symbol id="ci-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></symbol>
+    <symbol id="ci-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></symbol>
+  </defs></svg>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const channels = [
+      { icon: '#ci-mail', title: '电子邮箱', value: 'clestons@sina.com', note: '合作、媒体与一般咨询', href: 'mailto:clestons@sina.com', bg: 'rgba(157,134,240,0.14)', color: 'var(--mp-purple-700)' },
+      { icon: '#ci-wechat', title: '微信公众号', value: 'Next Stop 数字游民', note: '暂未开通，敬请期待', href: '#', bg: 'rgba(67,233,123,0.14)', color: '#15915a' },
+      { icon: '#ci-book', title: '小红书', value: '@NextStop', note: '暂未开通，敬请期待', href: '#', bg: 'rgba(245,87,108,0.12)', color: '#e0344f' },
+      { icon: '#ci-pin', title: '团队所在', value: '远程优先 · 全国各地基地', note: '我们在各地 Next Stop 基地办公', href: '#', bg: 'rgba(42,111,219,0.1)', color: 'var(--mp-action)' }
+    ];
+    const topics = [
+      { k: '社区入驻', v: '想把你的数字游民社区 / 线下基地收录进 Next Stop，请前往「提交社区」或邮件联系。' },
+      { k: '信息纠错', v: '发现某个社区的价格、状态或图片有误？告诉我们，核实后会尽快更新。' },
+      { k: '商务合作', v: '品牌联名、活动共创、内容合作等，请发邮件说明来意与预期。' },
+      { k: '媒体采访', v: '关于数字游民趋势与社区生态的采访与约稿，欢迎邮件预约。' }
+    ];
+    return { channels, topics };
+  }
+}
+</script>
+</body>
+</html>

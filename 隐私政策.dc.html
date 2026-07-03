@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="assets/mycelium-tokens.css">
+<script src="auth-nav.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: var(--mp-font-sans); color: var(--mp-fg-1); background: var(--mp-gray-50); -webkit-font-smoothing: antialiased; }
+  ::selection { background: rgba(157,134,240,0.22); }
+  .nav-link:hover { color: #fff !important; }
+  .nav-logo:hover { opacity: .82; }
+  .crumb:hover { color: #c4b6ff !important; }
+  .toc-link:hover { color: var(--mp-purple-700) !important; }
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:var(--mp-gray-50);">
+  <nav style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:10px clamp(20px,5vw,60px);background:rgba(18,14,43,0.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.12);">
+    <a href="数字游民社区集合网.dc.html" class="nav-logo" style="display:flex;align-items:center;gap:11px;text-decoration:none;transition:opacity var(--mp-dur-base) var(--mp-ease);">
+      <img src="assets/mushroom-logo.png" alt="" style="width:34px;height:34px;object-fit:contain;filter:drop-shadow(0 4px 8px rgba(0,0,0,0.3));">
+      <div style="font-size:18px;font-weight:800;color:#fff;letter-spacing:0.2px;">Next Stop</div>
+    </a>
+    <div style="display:flex;align-items:center;gap:28px;">
+      <a href="数字游民社区集合网.dc.html" class="nav-link" style="color:rgba(255,255,255,0.82);text-decoration:none;font-size:14px;font-weight:500;transition:color var(--mp-dur-base) var(--mp-ease);">发现社区</a>
+      <a href="活动.dc.html" class="nav-link" style="color:rgba(255,255,255,0.82);text-decoration:none;font-size:14px;font-weight:500;transition:color var(--mp-dur-base) var(--mp-ease);">活动</a>
+      <a href="指南.dc.html" class="nav-link" style="color:rgba(255,255,255,0.82);text-decoration:none;font-size:14px;font-weight:500;transition:color var(--mp-dur-base) var(--mp-ease);">指南</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+    <a href="社区入驻.dc.html" style="padding:7px 14px;background:#fff;color:var(--mp-purple-700);text-decoration:none;border-radius:var(--mp-radius-pill);font-size:13px;font-weight:600;box-shadow:0 4px 14px rgba(0,0,0,0.18);">提交社区</a>
+    </div>
+  </nav>
+
+  <header style="position:relative;background:linear-gradient(158deg,#171232 0%,#3a2470 60%,#5b3fb0 120%);padding:clamp(40px,5vw,60px) clamp(20px,5vw,60px);overflow:hidden;">
+    <div style="position:absolute;top:-30%;right:0;width:55%;height:170%;background:radial-gradient(circle,rgba(157,134,240,0.4) 0%,transparent 62%);pointer-events:none;"></div>
+    <div style="position:relative;max-width:820px;margin:0 auto;">
+      <div style="display:flex;align-items:center;gap:8px;font-family:var(--mp-font-mono);font-size:12.5px;color:rgba(255,255,255,0.6);margin-bottom:16px;">
+        <a href="数字游民社区集合网.dc.html" class="crumb" style="color:rgba(255,255,255,0.6);text-decoration:none;">首页</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
+        <span style="color:#c4b6ff;">隐私政策</span>
+      </div>
+      <h1 style="font-family:var(--mp-font-display);font-size:clamp(28px,4vw,44px);font-weight:800;color:#fff;line-height:1.1;letter-spacing:-1px;margin:0 0 10px;">隐私政策</h1>
+      <p style="font-size:14px;font-family:var(--mp-font-mono);color:rgba(255,255,255,0.7);margin:0;">最后更新：2026 年 7 月 3 日</p>
+    </div>
+  </header>
+
+  <main style="max-width:820px;margin:0 auto;padding:clamp(28px,3.5vw,44px) clamp(20px,5vw,60px) clamp(48px,6vw,80px);">
+    <div style="background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:clamp(24px,3vw,40px);">
+      <p style="font-size:14.5px;line-height:1.75;color:var(--mp-gray-700);margin:0 0 28px;">Next Stop（下称「我们」）尊重并保护每一位用户的隐私。本政策说明我们在你使用中国数字游民社区集合网时，会收集哪些信息、如何使用与保护，以及你享有的权利。使用本网站即表示你同意本政策所述的做法。</p>
+      <sc-for list="{{ sections }}" as="s" hint-placeholder-count="6">
+        <section style="padding:20px 0;border-top:1px solid var(--mp-border-soft);">
+          <h2 style="font-size:18px;font-weight:800;color:var(--mp-gray-900);margin:0 0 10px;letter-spacing:-0.2px;border:0;padding:0;">{{ s.h }}</h2>
+          <p style="font-size:14px;line-height:1.75;color:var(--mp-gray-600);margin:0;">{{ s.b }}</p>
+        </section>
+      </sc-for>
+      <div style="margin-top:28px;padding:18px 20px;background:var(--mp-gray-50);border-radius:14px;display:flex;align-items:flex-start;gap:11px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--mp-purple-700)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+        <div style="font-size:13.5px;line-height:1.65;color:var(--mp-gray-700);">对本政策有任何疑问，或希望行使你的数据权利，请联系 <a href="mailto:clestons@sina.com" style="color:var(--mp-purple-700);font-weight:600;text-decoration:none;">clestons@sina.com</a>，或前往<a href="联系我们.dc.html" style="color:var(--mp-purple-700);font-weight:600;text-decoration:none;">联系我们</a>页面。</div>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const sections = [
+      { h: '一、我们收集的信息', b: '你主动提供的信息：注册时的邮箱与昵称、提交社区时填写的社区资料与联系方式、以及你在联系我们时提供的内容。自动收集的信息：为改善体验，我们会记录匿名的访问日志（如页面浏览、设备与浏览器类型、大致地区），不用于识别个人身份。' },
+      { h: '二、我们如何使用信息', b: '用于提供与维护服务、展示与核实社区信息、回复你的咨询与申请、发送你订阅的活动与社区更新，以及分析整体使用情况以改进产品。我们不会将你的个人信息用于与上述目的无关的用途。' },
+      { h: '三、信息的共享与披露', b: '我们不会出售你的个人信息。仅在以下情况共享：经你明确同意；为提供服务所必需的技术服务商（受保密义务约束）；或依据法律法规、监管要求必须披露时。社区提交资料中标注为「公开」的内容会展示在网站上。' },
+      { h: '四、Cookie 与本地存储', b: '我们使用必要的 Cookie 与浏览器本地存储来记住你的语言、登录状态与偏好设置。你可以在浏览器中清除或禁用它们，但部分功能可能因此无法正常使用。' },
+      { h: '五、信息安全与保存', b: '我们采取合理的技术与管理措施保护你的信息，防止未经授权的访问、泄露或篡改。我们仅在实现本政策目的所必需的期间内保存你的信息，法律另有要求的除外。' },
+      { h: '六、你的权利', b: '你有权访问、更正或删除你的个人信息，撤回此前的同意，或注销账号。你也可以随时取消订阅我们的邮件。行使权利请通过下方邮箱联系我们，我们将在合理期限内响应。' },
+      { h: '七、未成年人', b: '本网站主要面向成年数字游民。我们不会有意收集未成年人的个人信息；如你认为我们可能收集了此类信息，请联系我们删除。' },
+      { h: '八、政策的更新', b: '我们可能会不时更新本政策。重大变更将通过网站公告或邮件通知，并在本页更新「最后更新」日期。继续使用本网站即表示你接受更新后的政策。' }
+    ];
+    return { sections };
+  }
+}
+</script>
+</body>
+</html>

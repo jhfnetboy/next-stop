@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="assets/mycelium-tokens.css">
+<script src="auth-nav.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: var(--mp-font-sans); color: var(--mp-fg-1); background: var(--mp-gray-50); -webkit-font-smoothing: antialiased; }
+  ::selection { background: rgba(118,75,162,0.22); }
+  @keyframes mp-blink { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
+  .mp-blink { animation: mp-blink 1.8s ease-in-out infinite; }
+  .nav-link:hover { color: #fff !important; }
+  .nav-logo:hover { opacity: .82; }
+  .crumb:hover { color: #d7c8ff !important; }
+  .cta-btn:hover { transform: translateY(-2px); box-shadow: var(--mp-shadow-button); }
+  .link-row:hover { background: var(--mp-gray-50) !important; }
+  .house-card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.10); }
+  .gal:hover img { transform: scale(1.04); }
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:var(--mp-gray-50);">
+
+  <!-- ===== NAV ===== -->
+  <nav style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px clamp(20px,5vw,60px);background:rgba(18,14,43,0.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.12);">
+    <a href="数字游民社区集合网.dc.html" class="nav-logo" style="display:flex;align-items:center;gap:11px;text-decoration:none;transition:opacity var(--mp-dur-base) var(--mp-ease);">
+      <img src="assets/mushroom-logo.png" alt="" style="width:34px;height:34px;object-fit:contain;filter:drop-shadow(0 4px 8px rgba(0,0,0,0.3));">
+      <div style="font-size:18px;font-weight:800;color:#fff;letter-spacing:0.2px;">Next Stop</div>
+    </a>
+    <div style="display:flex;align-items:center;gap:28px;">
+      <a href="数字游民社区集合网.dc.html" class="nav-link" style="color:#fff;text-decoration:none;font-size:14px;font-weight:600;transition:color var(--mp-dur-base) var(--mp-ease);">发现社区</a>
+      <a href="#" class="nav-link" style="color:rgba(255,255,255,0.82);text-decoration:none;font-size:14px;font-weight:500;transition:color var(--mp-dur-base) var(--mp-ease);">城市榜单</a>
+      <a href="活动.dc.html" class="nav-link" style="color:rgba(255,255,255,0.82);text-decoration:none;font-size:14px;font-weight:500;transition:color var(--mp-dur-base) var(--mp-ease);">活动</a>
+      <a href="指南.dc.html" class="nav-link" style="color:rgba(255,255,255,0.82);text-decoration:none;font-size:14px;font-weight:500;transition:color var(--mp-dur-base) var(--mp-ease);">指南</a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <header style="position:relative;background:linear-gradient(160deg,#1a1436 0%,#3a2668 52%,#6b4fb0 100%);padding:clamp(22px,3vw,30px) clamp(20px,5vw,60px) clamp(30px,4vw,42px);overflow:hidden;">
+    <div style="position:absolute;top:-30%;right:2%;width:50%;height:170%;background:radial-gradient(circle,rgba(157,134,240,0.34) 0%,transparent 62%);pointer-events:none;"></div>
+    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(190,170,240,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(190,170,240,0.06) 1px,transparent 1px);background-size:42px 42px;-webkit-mask-image:radial-gradient(ellipse 70% 90% at 80% 40%,#000 10%,transparent 80%);mask-image:radial-gradient(ellipse 70% 90% at 80% 40%,#000 10%,transparent 80%);pointer-events:none;"></div>
+    <div style="position:relative;max-width:1120px;margin:0 auto;">
+      <div style="display:flex;align-items:center;gap:8px;font-family:var(--mp-font-mono);font-size:12.5px;color:rgba(255,255,255,0.6);margin-bottom:20px;flex-wrap:wrap;">
+        <a href="数字游民社区集合网.dc.html" class="crumb" style="color:rgba(255,255,255,0.6);text-decoration:none;transition:color var(--mp-dur-base) var(--mp-ease);">首页</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
+        <a href="城市.dc.html#hangzhou" class="crumb" style="color:rgba(255,255,255,0.6);text-decoration:none;transition:color var(--mp-dur-base) var(--mp-ease);">杭州</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
+        <span style="color:#c5b6ff;">706 良渚</span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 300px;gap:32px;align-items:center;">
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
+            <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 13px;background:rgba(157,134,240,0.2);border:1px solid rgba(157,134,240,0.42);border-radius:var(--mp-radius-pill);font-size:12.5px;font-weight:700;color:#c5b6ff;"><span class="mp-blink" style="width:7px;height:7px;border-radius:50%;background:#9d86f0;box-shadow:0 0 8px #9d86f0;"></span>营业中</span>
+            <span style="padding:4px 12px;background:rgba(157,134,240,0.16);border:1px solid rgba(157,134,240,0.3);border-radius:var(--mp-radius-pill);font-size:12px;font-weight:600;color:#c5b6ff;">山景</span>
+            <span style="padding:4px 12px;background:rgba(67,233,123,0.16);border:1px solid rgba(67,233,123,0.3);border-radius:var(--mp-radius-pill);font-size:12px;font-weight:600;color:#9ff0b6;">田园风光</span>
+            <span style="padding:4px 12px;background:rgba(255,107,107,0.16);border:1px solid rgba(255,107,107,0.3);border-radius:var(--mp-radius-pill);font-size:12px;font-weight:600;color:#ffb3b3;">城市周边</span>
+            <span style="padding:4px 12px;background:rgba(69,183,209,0.16);border:1px solid rgba(69,183,209,0.3);border-radius:var(--mp-radius-pill);font-size:12px;font-weight:600;color:#a9e6f5;">生活便利</span>
+          </div>
+          <h1 style="font-family:var(--mp-font-display);font-size:clamp(30px,4.4vw,48px);font-weight:800;color:#fff;line-height:1.05;letter-spacing:-1px;margin:0;text-shadow:0 0 40px rgba(157,134,240,0.4);">杭州 · 706 良渚</h1>
+          <div style="display:flex;align-items:center;gap:8px;margin-top:12px;font-size:14px;color:rgba(255,255,255,0.72);">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c5b6ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            浙江省杭州市余杭区良渚文化村白鹭郡南
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;margin-top:22px;flex-wrap:wrap;">
+            <div style="display:flex;align-items:baseline;gap:6px;">
+              <span style="font-family:var(--mp-font-mono);font-size:28px;font-weight:800;color:#fff;">¥1,600–1,900</span>
+              <span style="font-size:13px;color:rgba(255,255,255,0.6);">/ 月</span>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <span style="padding:5px 12px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.22);border-radius:var(--mp-radius-pill);font-size:12px;font-weight:600;color:#fff;">单人间</span>
+              <span style="padding:5px 12px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.22);border-radius:var(--mp-radius-pill);font-size:12px;font-weight:600;color:#fff;">床位 ¥98/天</span>
+            </div>
+          </div>
+        </div>
+        <!-- hero photo -->
+        <div style="position:relative;width:100%;height:210px;border-radius:16px;overflow:hidden;box-shadow:0 12px 30px rgba(0,0,0,0.35);">
+          <img src="assets/liangzhu706/garden.png" alt="706 良渚青年社区花园" style="width:100%;height:100%;object-fit:cover;object-position:center 55%;">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== BODY ===== -->
+  <div style="max-width:1120px;margin:0 auto;padding:clamp(28px,4vw,40px) clamp(20px,5vw,60px) clamp(48px,6vw,80px);display:grid;grid-template-columns:1fr 320px;gap:32px;align-items:start;">
+
+    <!-- MAIN -->
+    <div style="min-width:0;display:flex;flex-direction:column;gap:28px;">
+
+      <!-- 基地信息 -->
+      <section>
+        <h2 style="font-size:22px;font-weight:800;color:var(--mp-gray-900);margin:0 0 16px;letter-spacing:-0.3px;border:0;padding:0;">基地信息</h2>
+        <div style="background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:8px 24px;">
+          <sc-for list="{{ info }}" as="it" hint-placeholder-count="9">
+            <div style="display:flex;align-items:flex-start;gap:16px;padding:15px 0;border-bottom:1px solid var(--mp-border-soft);">
+              <div style="display:flex;align-items:center;gap:10px;width:120px;flex-shrink:0;color:var(--mp-gray-500);">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--mp-purple-500)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="{{ it.icon }}"></use></svg>
+                <span style="font-size:13.5px;font-weight:600;">{{ it.k }}</span>
+              </div>
+              <span style="font-size:14px;line-height:1.6;color:var(--mp-gray-800);font-weight:500;">{{ it.v }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- 房型与价格 -->
+      <section>
+        <h2 style="font-size:22px;font-weight:800;color:var(--mp-gray-900);margin:0 0 6px;letter-spacing:-0.3px;border:0;padding:0;">两栋空间 · 房型与价格</h2>
+        <p style="font-size:13px;color:var(--mp-gray-400);margin:0 0 16px;font-family:var(--mp-font-mono);">共 8 个房间 · 优先长租 · 单位：元</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+
+          <div class="house-card" style="position:relative;background:linear-gradient(165deg,#f5f1fb,#ece4f7);border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:24px 24px 26px;transition:transform var(--mp-dur-base) var(--mp-ease),box-shadow var(--mp-dur-base) var(--mp-ease);overflow:hidden;">
+            <div style="display:flex;align-items:center;gap:9px;margin-bottom:14px;">
+              <div style="width:34px;height:34px;border-radius:10px;background:rgba(118,75,162,0.14);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--mp-purple-700)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#bi-flask"></use></svg>
+              </div>
+              <div><div style="font-size:12px;color:var(--mp-gray-500);font-weight:600;">栋一 · 4 间</div><div style="font-size:16px;font-weight:800;color:var(--mp-gray-900);">706 良渚生活实验室</div></div>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:5px;margin:6px 0 16px;">
+              <span style="font-family:var(--mp-font-mono);font-size:34px;font-weight:800;color:var(--mp-gray-900);letter-spacing:-1px;">¥1,600–1,900</span>
+              <span style="font-size:14px;color:var(--mp-gray-500);">/ 月</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:11px;">
+              <div style="display:flex;gap:9px;align-items:flex-start;"><span style="width:6px;height:6px;border-radius:50%;background:var(--mp-purple-500);margin-top:7px;flex-shrink:0;"></span><span style="font-size:13.5px;line-height:1.55;color:var(--mp-gray-700);"><b style="color:var(--mp-gray-900);">单间</b>：1 个月起租</span></div>
+              <div style="display:flex;gap:9px;align-items:flex-start;"><span style="width:6px;height:6px;border-radius:50%;background:var(--mp-purple-500);margin-top:7px;flex-shrink:0;"></span><span style="font-size:13.5px;line-height:1.55;color:var(--mp-gray-700);"><b style="color:var(--mp-gray-900);">床位</b>：按天起租，¥98 / 天</span></div>
+            </div>
+          </div>
+
+          <div class="house-card" style="position:relative;background:linear-gradient(165deg,#f5f1fb,#ece4f7);border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:24px 24px 26px;transition:transform var(--mp-dur-base) var(--mp-ease),box-shadow var(--mp-dur-base) var(--mp-ease);overflow:hidden;">
+            <div style="display:flex;align-items:center;gap:9px;margin-bottom:14px;">
+              <div style="width:34px;height:34px;border-radius:10px;background:rgba(69,183,209,0.14);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--mp-teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#bi-sofa"></use></svg>
+              </div>
+              <div><div style="font-size:12px;color:var(--mp-gray-500);font-weight:600;">栋二 · 4 间</div><div style="font-size:16px;font-weight:800;color:var(--mp-gray-900);">706 良渚客厅</div></div>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:5px;margin:6px 0 16px;">
+              <span style="font-family:var(--mp-font-mono);font-size:34px;font-weight:800;color:var(--mp-gray-900);letter-spacing:-1px;">¥1,600–1,900</span>
+              <span style="font-size:14px;color:var(--mp-gray-500);">/ 月</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:11px;">
+              <div style="display:flex;gap:9px;align-items:flex-start;"><span style="width:6px;height:6px;border-radius:50%;background:var(--mp-teal);margin-top:7px;flex-shrink:0;"></span><span style="font-size:13.5px;line-height:1.55;color:var(--mp-gray-700);"><b style="color:var(--mp-gray-900);">共 4 间</b>：客厅式共居空间</span></div>
+              <div style="display:flex;gap:9px;align-items:flex-start;"><span style="width:6px;height:6px;border-radius:50%;background:var(--mp-teal);margin-top:7px;flex-shrink:0;"></span><span style="font-size:13.5px;line-height:1.55;color:var(--mp-gray-700);"><b style="color:var(--mp-gray-900);">优先</b>：长租优先考虑</span></div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 备注 -->
+      <section>
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:16px 18px;background:rgba(207,152,24,0.08);border:1px solid rgba(207,152,24,0.24);border-radius:14px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b3610f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg>
+          <div style="font-size:13.5px;line-height:1.65;color:var(--mp-gray-800);"><b style="color:var(--mp-gray-900);">备注</b>：房间只有 8 个；有一些空间兼职职务，比如活动协调员、财务管理等，会给予一些补贴。</div>
+        </div>
+      </section>
+
+      <!-- 实景相册 -->
+      <section>
+        <h2 style="font-size:22px;font-weight:800;color:var(--mp-gray-900);margin:0 0 16px;letter-spacing:-0.3px;border:0;padding:0;">实景相册</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          <div class="gal" style="position:relative;grid-column:1 / -1;border-radius:16px;overflow:hidden;box-shadow:var(--mp-shadow-card);">
+            <img src="assets/liangzhu706/dining.png" alt="公共活动区" style="width:100%;display:block;transition:transform var(--mp-dur-slow) var(--mp-ease);">
+            <span style="position:absolute;left:14px;bottom:14px;padding:5px 13px;background:rgba(26,20,54,0.62);border-radius:var(--mp-radius-pill);font-size:12.5px;font-weight:600;color:#fff;backdrop-filter:blur(4px);">公共活动区 · 长桌 + 书架 · 吊扇采光</span>
+          </div>
+          <div class="gal" style="position:relative;border-radius:16px;overflow:hidden;box-shadow:var(--mp-shadow-card);">
+            <img src="assets/liangzhu706/garden.png" alt="社区花园" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform var(--mp-dur-slow) var(--mp-ease);">
+            <span style="position:absolute;left:14px;bottom:14px;padding:5px 13px;background:rgba(26,20,54,0.62);border-radius:var(--mp-radius-pill);font-size:12.5px;font-weight:600;color:#fff;backdrop-filter:blur(4px);">私家花园 · 遮阳伞草坪</span>
+          </div>
+          <div class="gal" style="position:relative;border-radius:16px;overflow:hidden;box-shadow:var(--mp-shadow-card);">
+            <img src="assets/liangzhu706/sofa.png" alt="休憩区" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform var(--mp-dur-slow) var(--mp-ease);">
+            <span style="position:absolute;left:14px;bottom:14px;padding:5px 13px;background:rgba(26,20,54,0.62);border-radius:var(--mp-radius-pill);font-size:12.5px;font-weight:600;color:#fff;backdrop-filter:blur(4px);">阳光休憩区 · 落地窗沙发</span>
+          </div>
+          <div class="gal" style="position:relative;border-radius:16px;overflow:hidden;box-shadow:var(--mp-shadow-card);">
+            <img src="assets/liangzhu706/kitchen.png" alt="共享厨房" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform var(--mp-dur-slow) var(--mp-ease);">
+            <span style="position:absolute;left:14px;bottom:14px;padding:5px 13px;background:rgba(26,20,54,0.62);border-radius:var(--mp-radius-pill);font-size:12.5px;font-weight:600;color:#fff;backdrop-filter:blur(4px);">共享厨房 · 中央餐桌</span>
+          </div>
+          <div class="gal" style="position:relative;border-radius:16px;overflow:hidden;box-shadow:var(--mp-shadow-card);">
+            <img src="assets/liangzhu706/workspace.png" alt="联合办公" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform var(--mp-dur-slow) var(--mp-ease);">
+            <span style="position:absolute;left:14px;bottom:14px;padding:5px 13px;background:rgba(26,20,54,0.62);border-radius:var(--mp-radius-pill);font-size:12.5px;font-weight:600;color:#fff;backdrop-filter:blur(4px);">联合办公 · 通往庭院</span>
+          </div>
+          <div class="gal" style="position:relative;border-radius:16px;overflow:hidden;box-shadow:var(--mp-shadow-card);">
+            <img src="assets/liangzhu706/room-bunk.png" alt="上下铺房间" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform var(--mp-dur-slow) var(--mp-ease);">
+            <span style="position:absolute;left:14px;bottom:14px;padding:5px 13px;background:rgba(26,20,54,0.62);border-radius:var(--mp-radius-pill);font-size:12.5px;font-weight:600;color:#fff;backdrop-filter:blur(4px);">床位房 · 子母床 · 木地板</span>
+          </div>
+          <div class="gal" style="position:relative;border-radius:16px;overflow:hidden;box-shadow:var(--mp-shadow-card);">
+            <img src="assets/liangzhu706/bathroom.png" alt="独立卫浴" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform var(--mp-dur-slow) var(--mp-ease);">
+            <span style="position:absolute;left:14px;bottom:14px;padding:5px 13px;background:rgba(26,20,54,0.62);border-radius:var(--mp-radius-pill);font-size:12.5px;font-weight:600;color:#fff;backdrop-filter:blur(4px);">独立卫浴 · 干湿分离</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 配套 -->
+      <section>
+        <h2 style="font-size:22px;font-weight:800;color:var(--mp-gray-900);margin:0 0 16px;letter-spacing:-0.3px;border:0;padding:0;">配套设施</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;">
+          <sc-for list="{{ amenities }}" as="a" hint-placeholder-count="4">
+            <div style="display:flex;align-items:center;gap:11px;background:#fff;border-radius:14px;box-shadow:var(--mp-shadow-card);padding:16px 18px;">
+              <div style="width:38px;height:38px;border-radius:11px;background:{{ a.bg }};display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{ a.color }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="{{ a.icon }}"></use></svg>
+              </div>
+              <div style="min-width:0;"><div style="font-size:13.5px;font-weight:700;color:var(--mp-gray-900);">{{ a.name }}</div><div style="font-size:11.5px;color:var(--mp-gray-400);">{{ a.note }}</div></div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside style="display:flex;flex-direction:column;gap:20px;position:sticky;top:82px;">
+      <!-- 预定 -->
+      <div style="position:relative;border-radius:var(--mp-radius-lg);overflow:hidden;background:linear-gradient(150deg,#3a2668,#6b4fb0);box-shadow:var(--mp-shadow-card);padding:22px;">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--mp-grad-spore);"></div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.6);margin-bottom:4px;">参考价</div>
+        <div style="font-family:var(--mp-font-mono);font-size:24px;font-weight:800;color:#fff;margin-bottom:16px;">¥1,600–1,900<span style="font-size:13px;font-weight:500;color:rgba(255,255,255,0.6);"> /月</span></div>
+        <div style="display:flex;align-items:flex-start;gap:9px;padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:12px;margin-bottom:14px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c5b6ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><use href="#bi-wechat"></use></svg>
+          <div style="font-size:12.5px;line-height:1.55;color:rgba(255,255,255,0.8);">预定方式：客服微信号 <b style="color:#fff;">withu706</b>。</div>
+        </div>
+        <button class="cta-btn" onclick="window.location.href='入住登记.dc.html'" style="display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:13px;background:#fff;border:0;border-radius:var(--mp-radius-pill);color:#5a3fa0;font-family:inherit;font-size:14.5px;font-weight:700;cursor:pointer;transition:all var(--mp-dur-base) var(--mp-ease);">
+          申请预定
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </button>
+      </div>
+
+      <!-- 关注渠道 -->
+      <div style="background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:20px 12px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mp-gray-900);margin:0 12px 8px;">关注与了解</div>
+        <sc-for list="{{ links }}" as="l" hint-placeholder-count="3">
+          <a href="{{ l.href }}" class="link-row" style="display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:11px;text-decoration:none;transition:background var(--mp-dur-base) var(--mp-ease);">
+            <div style="width:34px;height:34px;border-radius:10px;background:{{ l.bg }};display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="{{ l.color }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="{{ l.icon }}"></use></svg>
+            </div>
+            <div style="flex:1;min-width:0;"><div style="font-size:13px;font-weight:600;color:var(--mp-gray-800);">{{ l.k }}</div><div style="font-size:12px;color:var(--mp-gray-400);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{ l.v }}</div></div>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--mp-gray-300)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M9 18l6-6-6-6"></path></svg>
+          </a>
+        </sc-for>
+      </div>
+
+      <!-- 速览 -->
+      <div style="background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:20px 22px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mp-gray-900);margin-bottom:12px;">速览</div>
+        <div style="display:flex;flex-direction:column;">
+          <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--mp-border-soft);"><span style="font-size:13px;color:var(--mp-gray-500);">开业时间</span><span style="font-size:13px;font-weight:600;color:var(--mp-gray-800);">2025.05.20</span></div>
+          <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--mp-border-soft);"><span style="font-size:13px;color:var(--mp-gray-500);">省份</span><span style="font-size:13px;font-weight:600;color:var(--mp-gray-800);">浙江</span></div>
+          <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--mp-border-soft);"><span style="font-size:13px;color:var(--mp-gray-500);">健身房</span><span style="font-size:13px;font-weight:600;color:var(--mp-gray-500);">无</span></div>
+          <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--mp-border-soft);"><span style="font-size:13px;color:var(--mp-gray-500);">房间数</span><span style="font-size:13px;font-weight:600;color:var(--mp-gray-800);">8 间</span></div>
+          <div style="display:flex;justify-content:space-between;padding:8px 0;"><span style="font-size:13px;color:var(--mp-gray-500);">可订房型</span><span style="font-size:13px;font-weight:600;color:var(--mp-gray-800);">单人间 / 双人间</span></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <svg width="0" height="0" style="position:absolute;" aria-hidden="true"><defs>
+    <symbol id="bi-cal" viewBox="0 0 24 24"><path d="M8 2v4M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path></symbol>
+    <symbol id="bi-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></symbol>
+    <symbol id="bi-money" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></symbol>
+    <symbol id="bi-click" viewBox="0 0 24 24"><path d="M9 9a3 3 0 1 1 5 2.24"></path><path d="m9 12 3 3 8-8"></path><path d="M12 22a10 10 0 1 1 8-16"></path></symbol>
+    <symbol id="bi-bed" viewBox="0 0 24 24"><path d="M2 9V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v3"></path><path d="M2 11v5a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"></path></symbol>
+    <symbol id="bi-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path><path d="M2 12h20"></path></symbol>
+    <symbol id="bi-wechat" viewBox="0 0 24 24"><path d="M8 3C4.7 3 2 5.4 2 8.3c0 1.6.8 3 2.1 4L3 15l2.8-1.3c.7.2 1.4.3 2.2.3M16 8c-3.3 0-6 2.4-6 5.3S12.7 18.6 16 18.6c.7 0 1.4-.1 2-.3L20.5 20l-.9-2.2c1.3-1 2.4-2.4 2.4-4C22 10.4 19.3 8 16 8Z"></path></symbol>
+    <symbol id="bi-xhs" viewBox="0 0 24 24"><path d="M4 7v10M8 7v10M8 12H4M13 7l-1 10M17 7l1 10M20 7l-1 10"></path></symbol>
+    <symbol id="bi-food" viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2h0a2 2 0 0 0 2-2V2M7 2v20M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></symbol>
+    <symbol id="bi-desk" viewBox="0 0 24 24"><path d="M3 5h18M4 5v14M20 5v14M4 12h16M9 19v-3M15 19v-3"></path></symbol>
+    <symbol id="bi-flask" viewBox="0 0 24 24"><path d="M10 2v7.31M14 9.3V1.99M8.5 2h7M14 9.3a6.5 6.5 0 1 1-4 0M5.58 16.5h12.85"></path></symbol>
+    <symbol id="bi-sofa" viewBox="0 0 24 24"><path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"></path><path d="M2 11a2 2 0 0 1 2 2v3h16v-3a2 2 0 1 1 4 0v5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2Z"></path><path d="M4 18v2M20 18v2"></path></symbol>
+    <symbol id="bi-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6"></path></symbol>
+    <symbol id="bi-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></symbol>
+  </defs></svg>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const info = [
+      { icon: '#bi-cal', k: '开业时间', v: 'May 20, 2025' },
+      { icon: '#bi-pin', k: '详细地址', v: '浙江省杭州市余杭区良渚文化村白鹭郡南' },
+      { icon: '#bi-money', k: '参考价', v: '1,600 / 月 – 1,900 / 月' },
+      { icon: '#bi-click', k: '预定方式', v: '客服微信号：withu706' },
+      { icon: '#bi-bed', k: '可订房型', v: '单人间 · 双人间' },
+      { icon: '#bi-wechat', k: '公众号', v: '706良渚' },
+      { icon: '#bi-xhs', k: '小红书', v: '706良渚' },
+      { icon: '#bi-globe', k: '省份', v: '浙江' },
+      { icon: '#bi-food', k: '吃饭相关', v: '待确认' }
+    ];
+    const amenities = [
+      { icon: '#bi-desk', name: '联合办公', note: '公共长桌 · 免费工位', bg: 'rgba(118,75,162,0.10)', color: 'var(--mp-purple-700)' },
+      { icon: '#bi-food', name: '共享厨房', note: '中央餐桌 · 自炊', bg: 'rgba(67,233,123,0.14)', color: '#15915a' },
+      { icon: '#bi-leaf', name: '私家花园', note: '草坪 · 遮阳伞', bg: 'rgba(69,183,209,0.12)', color: 'var(--mp-teal)' },
+      { icon: '#bi-users', name: '空间兼职', note: '协调 / 财务 · 有补贴', bg: 'rgba(210,119,87,0.14)', color: '#b3610f' }
+    ];
+    const links = [
+      { icon: '#bi-wechat', k: '公众号', v: '706良渚', bg: 'rgba(67,233,123,0.14)', color: '#15915a', href: 'https://mp.weixin.qq.com/s/SAyw7axHcScZK4f5VxzA9g' },
+      { icon: '#bi-xhs', k: '小红书', v: '706良渚', bg: 'rgba(224,52,79,0.12)', color: '#e0344f', href: '#' },
+      { icon: '#bi-globe', k: '官方介绍', v: 'mp.weixin.qq.com', bg: 'rgba(118,75,162,0.10)', color: 'var(--mp-purple-700)', href: 'https://mp.weixin.qq.com/s/SAyw7axHcScZK4f5VxzA9g' }
+    ];
+    return { info, amenities, links };
+  }
+}
+</script>
+</body>
+</html>

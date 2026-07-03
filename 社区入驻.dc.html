@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="assets/mycelium-tokens.css">
+<script src="auth-nav.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+<script src="image-slot.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: var(--mp-font-sans); color: var(--mp-fg-1); background: var(--mp-gray-50); -webkit-font-smoothing: antialiased; }
+  ::selection { background: rgba(118,75,162,0.22); }
+  .nav-link:hover { color: #fff !important; }
+  .nav-logo:hover { opacity: .82; }
+  .crumb:hover { color: #cbb9ff !important; }
+  .cta-btn:hover { transform: translateY(-2px); box-shadow: var(--mp-shadow-button); }
+  .reg-in:focus { border-color: var(--mp-purple-500) !important; background: #fff !important; box-shadow: 0 0 0 4px rgba(118,75,162,0.10) !important; }
+  .chip:hover { border-color: var(--mp-purple-500) !important; }
+  .prev-cover-img { transition: transform var(--mp-dur-slow) var(--mp-ease); }
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:var(--mp-gray-50);">
+
+  <!-- ===== NAV ===== -->
+  <nav style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px clamp(20px,5vw,60px);background:rgba(18,14,43,0.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.12);">
+    <a href="数字游民社区集合网.dc.html" class="nav-logo" style="display:flex;align-items:center;gap:11px;text-decoration:none;transition:opacity var(--mp-dur-base) var(--mp-ease);">
+      <img src="assets/mushroom-logo.png" alt="" style="width:34px;height:34px;object-fit:contain;filter:drop-shadow(0 4px 8px rgba(0,0,0,0.3));">
+      <div style="font-size:18px;font-weight:800;color:#fff;letter-spacing:0.2px;">Next Stop</div>
+    </a>
+    <div style="display:flex;align-items:center;gap:28px;">
+      <a href="数字游民社区集合网.dc.html" class="nav-link" style="color:rgba(255,255,255,0.82);text-decoration:none;font-size:14px;font-weight:500;transition:color var(--mp-dur-base) var(--mp-ease);">发现社区</a>
+      <a href="活动.dc.html" class="nav-link" style="color:rgba(255,255,255,0.82);text-decoration:none;font-size:14px;font-weight:500;transition:color var(--mp-dur-base) var(--mp-ease);">活动</a>
+      <a href="指南.dc.html" class="nav-link" style="color:rgba(255,255,255,0.82);text-decoration:none;font-size:14px;font-weight:500;transition:color var(--mp-dur-base) var(--mp-ease);">指南</a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO STRIP ===== -->
+  <header style="position:relative;background:linear-gradient(160deg,#120e2b 0%,#241a4d 58%,#2c2060 100%);padding:clamp(24px,3vw,34px) clamp(20px,5vw,60px) clamp(28px,3vw,40px);overflow:hidden;">
+    <div style="position:absolute;top:-40%;right:4%;width:44%;height:180%;background:radial-gradient(circle,rgba(123,95,224,0.4) 0%,transparent 62%);pointer-events:none;"></div>
+    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(150,140,230,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(150,140,230,0.06) 1px,transparent 1px);background-size:42px 42px;-webkit-mask-image:radial-gradient(ellipse 60% 90% at 82% 40%,#000 10%,transparent 80%);mask-image:radial-gradient(ellipse 60% 90% at 82% 40%,#000 10%,transparent 80%);pointer-events:none;"></div>
+    <div style="position:relative;max-width:1060px;margin:0 auto;">
+      <div style="display:flex;align-items:center;gap:8px;font-family:var(--mp-font-mono);font-size:12.5px;color:rgba(255,255,255,0.6);margin-bottom:16px;flex-wrap:wrap;">
+        <a href="数字游民社区集合网.dc.html" class="crumb" style="color:rgba(255,255,255,0.6);text-decoration:none;transition:color var(--mp-dur-base) var(--mp-ease);">首页</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
+        <span style="color:#9fe9dc;">社区入驻申请</span>
+      </div>
+      <div style="display:inline-flex;align-items:center;gap:7px;padding:5px 13px;background:rgba(157,134,240,0.2);border:1px solid rgba(157,134,240,0.35);border-radius:var(--mp-radius-pill);font-size:12px;font-weight:600;color:#c5b6ff;margin-bottom:14px;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"></path></svg>
+        接入菌丝网络
+      </div>
+      <h1 style="font-family:var(--mp-font-display);font-size:clamp(28px,3.8vw,42px);font-weight:800;color:#fff;line-height:1.08;letter-spacing:-0.8px;margin:0;">把你的社区接入菌丝网络</h1>
+      <p style="font-size:14.5px;line-height:1.6;color:rgba(255,255,255,0.72);margin:10px 0 0;max-width:560px;">填写以下信息，提交后我们将在 2 个工作日内审核。通过后，你的社区会出现在菌丝的城市榜单与地图上，让正在路上的人找到你。</p>
+    </div>
+  </header>
+
+  <!-- ===== BODY ===== -->
+  <div style="max-width:1060px;margin:0 auto;padding:clamp(26px,4vw,36px) clamp(20px,5vw,60px) clamp(48px,6vw,80px);display:grid;grid-template-columns:1fr 320px;gap:30px;align-items:start;">
+
+    <!-- FORM -->
+    <sc-if value="{{ formView }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;flex-direction:column;gap:22px;">
+
+      <!-- 1 基本信息 -->
+      <section style="background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:24px 26px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
+          <span style="width:26px;height:26px;border-radius:50%;background:var(--mp-grad-whitepaper);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;">1</span>
+          <h2 style="font-size:17px;font-weight:800;color:var(--mp-gray-900);margin:0;border:0;padding:0;">基本信息</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          <div>
+            <label style="display:block;font-size:12.5px;font-weight:700;color:var(--mp-gray-800);margin-bottom:7px;">社区 / 基地名称 <span style="color:var(--mp-coral);">*</span></label>
+            <input type="text" value="{{ f.name }}" onInput="{{ setName }}" placeholder="如：天星生态村" class="reg-in" style="width:100%;padding:11px 13px;border:1px solid var(--mp-border);border-radius:11px;font-family:inherit;font-size:14px;color:var(--mp-gray-900);outline:none;background:var(--mp-gray-50);transition:all var(--mp-dur-base) var(--mp-ease);">
+          </div>
+          <div>
+            <label style="display:block;font-size:12.5px;font-weight:700;color:var(--mp-gray-800);margin-bottom:7px;">所在城市 <span style="color:var(--mp-coral);">*</span></label>
+            <input type="text" value="{{ f.city }}" onInput="{{ setCity }}" placeholder="如：成都" class="reg-in" style="width:100%;padding:11px 13px;border:1px solid var(--mp-border);border-radius:11px;font-family:inherit;font-size:14px;color:var(--mp-gray-900);outline:none;background:var(--mp-gray-50);transition:all var(--mp-dur-base) var(--mp-ease);">
+          </div>
+        </div>
+        <div style="margin-top:14px;">
+          <label style="display:block;font-size:12.5px;font-weight:700;color:var(--mp-gray-800);margin-bottom:7px;">详细地址 <span style="color:var(--mp-coral);">*</span></label>
+          <input type="text" value="{{ f.addr }}" onInput="{{ setAddr }}" placeholder="省 / 市 / 区 / 详细门牌" class="reg-in" style="width:100%;padding:11px 13px;border:1px solid var(--mp-border);border-radius:11px;font-family:inherit;font-size:14px;color:var(--mp-gray-900);outline:none;background:var(--mp-gray-50);transition:all var(--mp-dur-base) var(--mp-ease);">
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px;">
+          <div>
+            <label style="display:block;font-size:12.5px;font-weight:700;color:var(--mp-gray-800);margin-bottom:7px;">社区类型</label>
+            <div style="display:flex;flex-wrap:wrap;gap:7px;">
+              <sc-for list="{{ types }}" as="t" hint-placeholder-count="4">
+                <span onClick="{{ t.pick }}" class="chip" style="padding:7px 13px;border:1.5px solid {{ t.border }};border-radius:var(--mp-radius-pill);font-size:12.5px;font-weight:600;cursor:pointer;background:{{ t.bg }};color:{{ t.color }};transition:all var(--mp-dur-base) var(--mp-ease);">{{ t.label }}</span>
+              </sc-for>
+            </div>
+          </div>
+          <div>
+            <label style="display:block;font-size:12.5px;font-weight:700;color:var(--mp-gray-800);margin-bottom:7px;">开业时间</label>
+            <input type="date" value="{{ f.opened }}" onInput="{{ setOpened }}" class="reg-in" style="width:100%;padding:11px 13px;border:1px solid var(--mp-border);border-radius:11px;font-family:inherit;font-size:14px;color:var(--mp-gray-900);outline:none;background:var(--mp-gray-50);transition:all var(--mp-dur-base) var(--mp-ease);">
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 容纳与费用 -->
+      <section style="background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:24px 26px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
+          <span style="width:26px;height:26px;border-radius:50%;background:var(--mp-grad-dao);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;">2</span>
+          <h2 style="font-size:17px;font-weight:800;color:var(--mp-gray-900);margin:0;border:0;padding:0;">容纳与费用</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;">
+          <div>
+            <label style="display:block;font-size:12.5px;font-weight:700;color:var(--mp-gray-800);margin-bottom:7px;">月均参考价（元）<span style="color:var(--mp-coral);">*</span></label>
+            <input type="text" value="{{ f.price }}" onInput="{{ setPrice }}" placeholder="如：680–3000" class="reg-in" style="width:100%;padding:11px 13px;border:1px solid var(--mp-border);border-radius:11px;font-family:inherit;font-size:14px;color:var(--mp-gray-900);outline:none;background:var(--mp-gray-50);transition:all var(--mp-dur-base) var(--mp-ease);">
+          </div>
+          <div>
+            <label style="display:block;font-size:12.5px;font-weight:700;color:var(--mp-gray-800);margin-bottom:7px;">可容纳（人）</label>
+            <input type="text" value="{{ f.capacity }}" onInput="{{ setCapacity }}" placeholder="如：40" class="reg-in" style="width:100%;padding:11px 13px;border:1px solid var(--mp-border);border-radius:11px;font-family:inherit;font-size:14px;color:var(--mp-gray-900);outline:none;background:var(--mp-gray-50);transition:all var(--mp-dur-base) var(--mp-ease);">
+          </div>
+          <div>
+            <label style="display:block;font-size:12.5px;font-weight:700;color:var(--mp-gray-800);margin-bottom:7px;">WiFi 网速（M）</label>
+            <input type="text" value="{{ f.wifi }}" onInput="{{ setWifi }}" placeholder="如：100" class="reg-in" style="width:100%;padding:11px 13px;border:1px solid var(--mp-border);border-radius:11px;font-family:inherit;font-size:14px;color:var(--mp-gray-900);outline:none;background:var(--mp-gray-50);transition:all var(--mp-dur-base) var(--mp-ease);">
+          </div>
+        </div>
+        <div style="margin-top:16px;">
+          <label style="display:block;font-size:12.5px;font-weight:700;color:var(--mp-gray-800);margin-bottom:9px;">提供房型 <span style="color:var(--mp-gray-400);font-weight:500;">（可多选）</span></label>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <sc-for list="{{ roomTypes }}" as="r" hint-placeholder-count="4">
+              <span onClick="{{ r.toggle }}" class="chip" style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:1.5px solid {{ r.border }};border-radius:var(--mp-radius-pill);font-size:13px;font-weight:600;cursor:pointer;background:{{ r.bg }};color:{{ r.color }};transition:all var(--mp-dur-base) var(--mp-ease);">
+                <sc-if value="{{ r.on }}" hint-placeholder-val="{{ false }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"></path></svg></sc-if>
+                {{ r.label }}
+              </span>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 环境与配套 -->
+      <section style="background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:24px 26px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
+          <span style="width:26px;height:26px;border-radius:50%;background:var(--mp-grad-gtoken);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;">3</span>
+          <h2 style="font-size:17px;font-weight:800;color:var(--mp-gray-900);margin:0;border:0;padding:0;">环境标签与配套</h2>
+        </div>
+        <label style="display:block;font-size:12.5px;font-weight:700;color:var(--mp-gray-800);margin-bottom:9px;">环境标签 <span style="color:var(--mp-gray-400);font-weight:500;">（最多 3 个，展示在卡片上）</span></label>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;">
+          <sc-for list="{{ envTags }}" as="e" hint-placeholder-count="6">
+            <span onClick="{{ e.toggle }}" class="chip" style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:1.5px solid {{ e.border }};border-radius:var(--mp-radius-pill);font-size:13px;font-weight:600;cursor:pointer;background:{{ e.bg }};color:{{ e.color }};transition:all var(--mp-dur-base) var(--mp-ease);">
+              <sc-if value="{{ e.on }}" hint-placeholder-val="{{ false }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"></path></svg></sc-if>
+              {{ e.label }}
+            </span>
+          </sc-for>
+        </div>
+        <label style="display:block;font-size:12.5px;font-weight:700;color:var(--mp-gray-800);margin-bottom:9px;">配套设施 <span style="color:var(--mp-gray-400);font-weight:500;">（可多选）</span></label>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <sc-for list="{{ amenities }}" as="a" hint-placeholder-count="6">
+            <span onClick="{{ a.toggle }}" class="chip" style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:1.5px solid {{ a.border }};border-radius:var(--mp-radius-pill);font-size:13px;font-weight:600;cursor:pointer;background:{{ a.bg }};color:{{ a.color }};transition:all var(--mp-dur-base) var(--mp-ease);">
+              <sc-if value="{{ a.on }}" hint-placeholder-val="{{ false }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"></path></svg></sc-if>
+              {{ a.label }}
+            </span>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- 4 简介与照片 -->
+      <section style="background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:24px 26px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
+          <span style="width:26px;height:26px;border-radius:50%;background:var(--mp-grad-demo);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;">4</span>
+          <h2 style="font-size:17px;font-weight:800;color:var(--mp-gray-900);margin:0;border:0;padding:0;">简介与实景照片</h2>
+        </div>
+        <label style="display:block;font-size:12.5px;font-weight:700;color:var(--mp-gray-800);margin-bottom:7px;">社区简介 <span style="color:var(--mp-coral);">*</span></label>
+        <textarea value="{{ f.desc }}" onInput="{{ setDesc }}" placeholder="用两三句话介绍你的社区：地理环境、氛围、适合怎样的游民……" rows="4" class="reg-in" style="width:100%;padding:11px 13px;border:1px solid var(--mp-border);border-radius:11px;font-family:inherit;font-size:14px;line-height:1.6;color:var(--mp-gray-900);outline:none;background:var(--mp-gray-50);resize:vertical;transition:all var(--mp-dur-base) var(--mp-ease);"></textarea>
+        <label style="display:block;font-size:12.5px;font-weight:700;color:var(--mp-gray-800);margin:16px 0 9px;">实景照片 <span style="color:var(--mp-gray-400);font-weight:500;">（封面 + 内景，拖入图片）</span></label>
+        <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:12px;">
+          <image-slot id="onb-cover" style="width:100%;height:120px;" shape="rounded" radius="12" placeholder="封面图"></image-slot>
+          <image-slot id="onb-2" style="width:100%;height:120px;" shape="rounded" radius="12" placeholder="内景 1"></image-slot>
+          <image-slot id="onb-3" style="width:100%;height:120px;" shape="rounded" radius="12" placeholder="内景 2"></image-slot>
+        </div>
+      </section>
+
+      <!-- 5 联系方式 -->
+      <section style="background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:24px 26px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
+          <span style="width:26px;height:26px;border-radius:50%;background:var(--mp-grad-milestone);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;">5</span>
+          <h2 style="font-size:17px;font-weight:800;color:var(--mp-gray-900);margin:0;border:0;padding:0;">对接联系人</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          <div>
+            <label style="display:block;font-size:12.5px;font-weight:700;color:var(--mp-gray-800);margin-bottom:7px;">负责人姓名 <span style="color:var(--mp-coral);">*</span></label>
+            <input type="text" value="{{ f.contact }}" onInput="{{ setContact }}" placeholder="真实姓名" class="reg-in" style="width:100%;padding:11px 13px;border:1px solid var(--mp-border);border-radius:11px;font-family:inherit;font-size:14px;color:var(--mp-gray-900);outline:none;background:var(--mp-gray-50);transition:all var(--mp-dur-base) var(--mp-ease);">
+          </div>
+          <div>
+            <label style="display:block;font-size:12.5px;font-weight:700;color:var(--mp-gray-800);margin-bottom:7px;">手机号 <span style="color:var(--mp-coral);">*</span></label>
+            <input type="tel" value="{{ f.phone }}" onInput="{{ setPhone }}" placeholder="11 位手机号" class="reg-in" style="width:100%;padding:11px 13px;border:1px solid var(--mp-border);border-radius:11px;font-family:inherit;font-size:14px;color:var(--mp-gray-900);outline:none;background:var(--mp-gray-50);transition:all var(--mp-dur-base) var(--mp-ease);">
+          </div>
+          <div>
+            <label style="display:block;font-size:12.5px;font-weight:700;color:var(--mp-gray-800);margin-bottom:7px;">微信 / 公众号</label>
+            <input type="text" value="{{ f.wechat }}" onInput="{{ setWechat }}" placeholder="选填" class="reg-in" style="width:100%;padding:11px 13px;border:1px solid var(--mp-border);border-radius:11px;font-family:inherit;font-size:14px;color:var(--mp-gray-900);outline:none;background:var(--mp-gray-50);transition:all var(--mp-dur-base) var(--mp-ease);">
+          </div>
+          <div>
+            <label style="display:block;font-size:12.5px;font-weight:700;color:var(--mp-gray-800);margin-bottom:7px;">小红书 / 官网链接</label>
+            <input type="text" value="{{ f.link }}" onInput="{{ setLink }}" placeholder="选填" class="reg-in" style="width:100%;padding:11px 13px;border:1px solid var(--mp-border);border-radius:11px;font-family:inherit;font-size:14px;color:var(--mp-gray-900);outline:none;background:var(--mp-gray-50);transition:all var(--mp-dur-base) var(--mp-ease);">
+          </div>
+        </div>
+      </section>
+    </div>
+    </sc-if>
+
+    <!-- SUCCESS -->
+    <sc-if value="{{ doneView }}" hint-placeholder-val="{{ false }}">
+    <div style="grid-column:1 / -1;">
+      <div style="max-width:540px;margin:20px auto;background:#fff;border-radius:var(--mp-radius-lg);box-shadow:var(--mp-shadow-card);padding:44px 40px;text-align:center;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--mp-grad-spore);"></div>
+        <div style="width:76px;height:76px;border-radius:50%;background:var(--mp-grad-dao);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(67,233,123,0.4);margin:0 auto 22px;">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"></path></svg>
+        </div>
+        <h2 style="font-size:23px;font-weight:800;color:var(--mp-gray-900);margin:0 0 10px;border:0;padding:0;">申请已提交</h2>
+        <p style="font-size:14px;line-height:1.7;color:var(--mp-gray-600);margin:0 0 22px;"><b style="color:var(--mp-purple-700);">{{ f.name }}</b> 的入驻申请已收到，菌丝团队将在 <b style="color:var(--mp-purple-700);">2 个工作日</b> 内审核并与你联系。通过后，它将出现在城市榜单与社区地图上。</p>
+        <div style="text-align:left;background:var(--mp-gray-50);border-radius:14px;padding:18px 20px;margin-bottom:24px;">
+          <div style="display:flex;justify-content:space-between;padding:7px 0;font-size:13.5px;"><span style="color:var(--mp-gray-500);">申请编号</span><span style="font-family:var(--mp-font-mono);font-weight:700;color:var(--mp-gray-900);">{{ appNo }}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:7px 0;font-size:13.5px;"><span style="color:var(--mp-gray-500);">社区</span><span style="font-weight:600;color:var(--mp-gray-900);">{{ f.name }} · {{ f.city }}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:7px 0;font-size:13.5px;"><span style="color:var(--mp-gray-500);">对接人</span><span style="font-weight:600;color:var(--mp-gray-900);">{{ f.contact }}</span></div>
+        </div>
+        <div style="display:flex;gap:12px;justify-content:center;">
+          <a href="数字游民社区集合网.dc.html" class="cta-btn" style="display:inline-flex;align-items:center;gap:7px;padding:12px 22px;background:linear-gradient(135deg,#667eea,#764ba2);border-radius:var(--mp-radius-pill);color:#fff;text-decoration:none;font-size:14px;font-weight:700;box-shadow:0 6px 18px rgba(102,126,234,0.26);transition:all var(--mp-dur-base) var(--mp-ease);">返回首页</a>
+          <span onClick="{{ reset }}" style="display:inline-flex;align-items:center;padding:12px 22px;color:var(--mp-gray-600);font-size:14px;font-weight:600;cursor:pointer;">再提交一个</span>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- LIVE PREVIEW SIDEBAR -->
+    <sc-if value="{{ formView }}" hint-placeholder-val="{{ true }}">
+    <aside style="position:sticky;top:82px;display:flex;flex-direction:column;gap:16px;">
+      <div>
+        <div style="display:flex;align-items:center;gap:7px;font-size:12px;font-weight:700;color:var(--mp-gray-500);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.5px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          卡片预览
+        </div>
+        <!-- homepage-style card preview -->
+        <div style="background:#fff;border-radius:var(--mp-radius-lg);overflow:hidden;box-shadow:var(--mp-shadow-card);">
+          <div style="position:relative;height:150px;overflow:hidden;">
+            <div class="prev-cover-img" style="position:absolute;inset:0;background:{{ prevGrad }};"></div>
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(0,0,0,0.32) 100%);"></div>
+            <div style="position:absolute;top:12px;left:12px;display:inline-flex;align-items:center;padding:4px 11px;background:rgba(20,12,40,0.42);border:1px solid rgba(255,255,255,0.25);border-radius:var(--mp-radius-pill);backdrop-filter:blur(6px);font-size:11px;font-weight:600;color:#fff;">{{ prevType }}</div>
+            <div style="position:absolute;left:14px;right:14px;bottom:11px;">
+              <div style="font-family:var(--mp-font-display);font-size:22px;font-weight:800;color:#fff;line-height:1;letter-spacing:-0.5px;text-shadow:0 2px 8px rgba(0,0,0,0.35);">{{ prevName }}</div>
+              <div style="font-size:11.5px;font-weight:500;color:rgba(255,255,255,0.88);margin-top:4px;">{{ prevCity }}</div>
+            </div>
+          </div>
+          <div style="padding:14px 16px 16px;">
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;min-height:22px;">
+              <sc-for list="{{ prevTags }}" as="tag" hint-placeholder-count="3">
+                <span style="padding:4px 10px;background:var(--mp-gray-100);color:var(--mp-gray-600);border-radius:var(--mp-radius-pill);font-size:11px;font-weight:600;">{{ tag }}</span>
+              </sc-for>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding-top:12px;border-top:1px solid var(--mp-border-soft);">
+              <div><div style="font-size:10px;color:var(--mp-gray-400);margin-bottom:2px;">月均</div><div style="font-family:var(--mp-font-mono);font-size:13px;font-weight:700;color:var(--mp-gray-900);">¥{{ prevPrice }}</div></div>
+              <div><div style="font-size:10px;color:var(--mp-gray-400);margin-bottom:2px;">网速</div><div style="font-family:var(--mp-font-mono);font-size:13px;font-weight:700;color:var(--mp-gray-900);">{{ prevWifi }}M</div></div>
+              <div><div style="font-size:10px;color:var(--mp-gray-400);margin-bottom:2px;">容纳</div><div style="font-family:var(--mp-font-mono);font-size:13px;font-weight:700;color:var(--mp-gray-900);">{{ prevCap }}</div></div>
+            </div>
+          </div>
+        </div>
+        <p style="font-size:11px;line-height:1.5;color:var(--mp-gray-400);margin:10px 2px 0;">这是审核通过后，你的社区在城市榜单里的展示样式（封面图以你上传的照片为准）。</p>
+      </div>
+
+      <button onClick="{{ submit }}" class="cta-btn" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px;background:{{ submitBg }};border:0;border-radius:var(--mp-radius-pill);color:{{ submitColor }};font-family:inherit;font-size:15px;font-weight:700;cursor:{{ submitCursor }};box-shadow:0 6px 18px rgba(102,126,234,0.26);transition:all var(--mp-dur-base) var(--mp-ease);">
+        提交入驻申请
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+      </button>
+      <div style="min-height:15px;margin-top:-6px;text-align:center;">
+        <sc-if value="{{ showErr }}" hint-placeholder-val="{{ false }}">
+          <span style="font-size:11.5px;color:var(--mp-coral);">{{ errMsg }}</span>
+        </sc-if>
+      </div>
+    </aside>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    type: 0, rooms: {}, env: {}, amen: {}, submitted: false, _touched: false,
+    f: { name: '', city: '', addr: '', opened: '', price: '', capacity: '', wifi: '',
+         desc: '', contact: '', phone: '', wechat: '', link: '' }
+  };
+
+  typeList = ['共居', '联合办公', '创意园区', '社区基地'];
+  roomList = ['单人间', '双人间', '多人间', '床位'];
+  envList = ['山系', '海边', '田园', '城市', '雨林', '湖景'];
+  amenList = ['联合办公', '食堂', '咖啡', '健身房', '户外活动', '停车'];
+  gradList = [
+    'linear-gradient(135deg,#43e97b,#38a3d7)', 'linear-gradient(135deg,#667eea,#764ba2)',
+    'linear-gradient(135deg,#fa709a,#fee140)', 'linear-gradient(135deg,#4facfe,#00f2fe)'
+  ];
+
+  setF = (k) => (e) => { const v = e.target.value; this.setState(s => ({ f: { ...s.f, [k]: v } })); };
+  pickType = (i) => () => this.setState({ type: i });
+  toggleMap = (mapKey, key) => () => this.setState(s => ({ [mapKey]: { ...s[mapKey], [key]: !s[mapKey][key] } }));
+
+  submit = () => {
+    const f = this.state.f;
+    const phoneOk = /^1\d{10}$/.test(f.phone.replace(/\s/g, ''));
+    if (f.name.trim() && f.city.trim() && f.addr.trim() && f.price.trim() && f.desc.trim() && f.contact.trim() && phoneOk) {
+      this.setState({ submitted: true });
+      try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) {}
+    } else {
+      this.setState({ _touched: true });
+    }
+  };
+  reset = () => this.setState({
+    submitted: false, _touched: false, type: 0, rooms: {}, env: {}, amen: {},
+    f: { name: '', city: '', addr: '', opened: '', price: '', capacity: '', wifi: '', desc: '', contact: '', phone: '', wechat: '', link: '' }
+  });
+
+  chipify(list, mapKey, opts) {
+    const on = this.state[mapKey];
+    return list.map((label, i) => {
+      const active = !!on[label];
+      return {
+        label, on: active, toggle: this.toggleMap(mapKey, label),
+        bg: active ? (opts.solid ? 'var(--mp-purple-500)' : 'rgba(118,75,162,0.08)') : 'transparent',
+        color: active ? (opts.solid ? '#fff' : 'var(--mp-purple-700)') : 'var(--mp-gray-600)',
+        border: active ? 'var(--mp-purple-500)' : 'var(--mp-border-soft)'
+      };
+    });
+  }
+
+  renderVals() {
+    const s = this.state, f = s.f;
+
+    const types = this.typeList.map((label, i) => ({
+      label, pick: this.pickType(i),
+      bg: s.type === i ? 'var(--mp-purple-500)' : 'transparent',
+      color: s.type === i ? '#fff' : 'var(--mp-gray-600)',
+      border: s.type === i ? 'var(--mp-purple-500)' : 'var(--mp-border-soft)'
+    }));
+    const roomTypes = this.chipify(this.roomList, 'rooms', {});
+    const envTags = this.chipify(this.envList, 'env', {});
+    const amenities = this.chipify(this.amenList, 'amen', {});
+
+    const selectedEnv = this.envList.filter(l => s.env[l]).slice(0, 3);
+    const phoneOk = /^1\d{10}$/.test(f.phone.replace(/\s/g, ''));
+    const canSubmit = f.name.trim() && f.city.trim() && f.addr.trim() && f.price.trim() && f.desc.trim() && f.contact.trim() && phoneOk;
+
+    let errMsg = '';
+    if (s._touched && !canSubmit) {
+      if (!f.name.trim()) errMsg = '请填写社区名称';
+      else if (!f.city.trim()) errMsg = '请填写所在城市';
+      else if (!f.addr.trim()) errMsg = '请填写详细地址';
+      else if (!f.price.trim()) errMsg = '请填写月均参考价';
+      else if (!f.desc.trim()) errMsg = '请填写社区简介';
+      else if (!f.contact.trim()) errMsg = '请填写负责人姓名';
+      else if (!phoneOk) errMsg = '请填写有效手机号';
+    }
+
+    const appNo = 'MC' + Date.now().toString().slice(-8);
+
+    return {
+      formView: !s.submitted, doneView: s.submitted,
+      f,
+      setName: this.setF('name'), setCity: this.setF('city'), setAddr: this.setF('addr'),
+      setOpened: this.setF('opened'), setPrice: this.setF('price'), setCapacity: this.setF('capacity'),
+      setWifi: this.setF('wifi'), setDesc: this.setF('desc'), setContact: this.setF('contact'),
+      setPhone: this.setF('phone'), setWechat: this.setF('wechat'), setLink: this.setF('link'),
+      types, roomTypes, envTags, amenities,
+      // preview
+      prevName: f.name || '你的社区名称',
+      prevCity: f.city ? (f.city + (f.addr ? '' : '')) : '所在城市',
+      prevType: this.typeList[s.type],
+      prevGrad: this.gradList[s.type],
+      prevTags: selectedEnv.length ? selectedEnv : ['环境标签'],
+      prevPrice: f.price || '—',
+      prevWifi: f.wifi || '—',
+      prevCap: f.capacity || '—',
+      submit: this.submit, reset: this.reset,
+      submitBg: canSubmit ? 'linear-gradient(135deg,#667eea,#764ba2)' : 'var(--mp-gray-200)',
+      submitColor: canSubmit ? '#fff' : 'var(--mp-gray-400)',
+      submitCursor: canSubmit ? 'pointer' : 'not-allowed',
+      showErr: !!errMsg, errMsg, appNo
+    };
+  }
+}
+</script>
+</body>
+</html>
